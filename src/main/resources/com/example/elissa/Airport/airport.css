@@ -1,0 +1,78 @@
+/* Styles for TableView */
+.table-view {
+    -fx-background-color: #f9f9f9; /* Set background color */
+    -fx-border-color: #cccccc; /* Set border color */
+    -fx-border-width: 1px; /* Set border width */
+}
+
+/* Styles for TableColumns */
+.table-column {
+    -fx-alignment: CENTER_LEFT; /* Align column content to left */
+    -fx-font-size: 14px; /* Set font size */
+    -fx-text-fill: #333333; /* Set text color */
+}
+
+/* Styles for TableCells */
+.table-cell {
+    -fx-padding: 10px; /* Set padding */
+}
+
+/* Alternate row color for TableView */
+.table-row-cell:even {
+    -fx-background-color: #f0f0f0; /* Set alternate row background color */
+}
+
+/* Hover effect for TableView rows */
+.table-row-cell:hover {
+    -fx-background-color: #e0e0e0; /* Set background color on hover */
+    -fx-cursor: hand; /* Change cursor on hover */
+}
+
+/* Styles for TextFields */
+.text-field {
+    -fx-background-color: #ffffff; /* Set background color */
+    -fx-border-color: #cccccc; /* Set border color */
+    -fx-border-width: 1px; /* Set border width */
+    -fx-pref-width: 200px; /* Set preferred width */
+    -fx-padding: 8px; /* Set padding */
+    -fx-font-size: 14px; /* Set font size */
+}
+
+/* Styles for Buttons */
+.button {
+    -fx-background-color: #4CAF50; /* Set default background color */
+    -fx-text-fill: white; /* Set text color */
+    -fx-font-weight: bold; /* Set font weight */
+    -fx-padding: 10px 20px; /* Set padding */
+    -fx-border-radius: 30px; /* Set border radius */
+    -fx-font-size: 14px; /* Set font size */
+    -fx-cursor: hand; /* Change cursor on hover */
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 1, 1, 1, 1); /* Add drop shadow effect */
+    -fx-transition-duration: 0.2s; /* Set transition duration */
+}
+
+/* Hover effect for Buttons */
+.button:hover {
+    -fx-background-color: #45a049; /* Set background color on hover */
+    -fx-border-color: #45a049; /* Set border color on hover */
+    -fx-border-width: 2px; /* Increase border width on hover */
+    -fx-padding: 8px 18px; /* Adjust padding on hover */
+    -fx-border-radius: 30px; /* Set border radius on hover */
+    -fx-scale-x: 1.05; /* Scale up horizontally on hover */
+    -fx-scale-y: 1.05; /* Scale up vertically on hover */
+    -fx-rotate: 2deg; /* Rotate slightly on hover */
+}
+
+/* Pressed effect for Buttons */
+.button:pressed {
+    -fx-background-color: derive(#4CAF50, -20%); /* Darken the background color on press */
+    -fx-border-color: derive(#45a049, -20%); /* Darken the border color on press */
+    -fx-padding: 9px 19px; /* Adjust padding on press */
+    -fx-scale-x: 0.95; /* Scale down horizontally on press */
+    -fx-scale-y: 0.95; /* Scale down vertically on press */
+}
+
+/* Disabled effect for Buttons */
+.button:disabled {
+    -fx-opacity: 0.6; /* Reduce opacity for disabled state */
+}

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1200.0" stylesheets="@airport.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.elissa.Controller.FlightclassController">
+    <children>
+        <TableView fx:id="flightclassTableView" layoutX="156.0" layoutY="253.0" prefHeight="342.0" prefWidth="570.0">
+            <columns>
+                <TableColumn fx:id="classNameColumn" prefWidth="150.0" text="Class Name" />
+                <TableColumn fx:id="descriptionColumn" prefWidth="191.0" text="Description" />
+                <TableColumn fx:id="priceColumn" prefWidth="84.0" text="Price" />
+                <TableColumn fx:id="ticketNumberColumn" prefWidth="143.0" text="Ticket Number" />
+            </columns>
+        </TableView>
+        <TextField fx:id="newClassNameField" layoutX="749.0" layoutY="300.0" promptText="Class Name" />
+        <TextField fx:id="newDescriptionField" layoutX="749.0" layoutY="368.0" promptText="Description" />
+        <TextField fx:id="newPriceField" layoutX="749.0" layoutY="424.0" promptText="Price" />
+        <TextField fx:id="newTicketNumberField" layoutX="749.0" layoutY="487.0" promptText="Ticket Number" />
+        <Button fx:id="newFlightclassButton" layoutX="825.0" layoutY="180.0" mnemonicParsing="false" onAction="#handleNewFlightclassButton" prefHeight="33.0" prefWidth="79.0" text="Add" />
+        <Button fx:id="deleteFlightclassButton" layoutX="1054.0" layoutY="180.0" mnemonicParsing="false" onAction="#handleDeleteFlightclassButton" prefHeight="40.0" prefWidth="94.0" text="Delete" />
+        <Button fx:id="updateFlightclassButton" layoutX="924.0" layoutY="180.0" mnemonicParsing="false" onAction="#handleModifyFlightclassButton" prefHeight="36.0" prefWidth="103.0" text="Update" />
+        <Button layoutX="156.0" layoutY="180.0" mnemonicParsing="false" text="Airports" />
+        <Button layoutX="270.0" layoutY="180.0" mnemonicParsing="false" text="Flights" />
+        <Button layoutX="366.0" layoutY="180.0" mnemonicParsing="false" text="FlightClass" />
+        <Button layoutX="482.0" layoutY="180.0" mnemonicParsing="false" text="FlightClass" />
+    </children>
+</AnchorPane>
