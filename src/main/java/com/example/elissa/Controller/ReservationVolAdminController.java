@@ -3,11 +3,31 @@ package com.example.elissa.Controller;
 import com.example.elissa.Models.ReservationVolAdmin;
 import com.example.elissa.Services.ReservationVolAdminDAO;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+
+
+
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+
+
+
+
+
+
 
 public class ReservationVolAdminController {
 
@@ -131,4 +151,53 @@ public class ReservationVolAdminController {
         newReservationTotalPriceField.clear();
         newReservationPaymentMethodField.clear();
     }
+
+
+
+
+
+
+
+    @FXML
+    void handleAirportsButtonClick() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/elissa/Airport/index.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) reservationTableView.getScene().getWindow();
+        stage.setScene(scene);
+    }
+
+    @FXML
+    void handleFlightsButtonClick() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/elissa/Airport/flight.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) reservationTableView.getScene().getWindow();
+        stage.setScene(scene);
+    }
+
+    @FXML
+    void handleFlightClassButtonClick() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/elissa/Airport/flightclass.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) reservationTableView.getScene().getWindow();
+        stage.setScene(scene);
+    }
+
+    @FXML
+    void handleReservationButtonClick() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/elissa/Airport/reservationvoladmin.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) reservationTableView.getScene().getWindow();
+        stage.setScene(scene);
+    }
+
+
+
+
+
+
+
 }

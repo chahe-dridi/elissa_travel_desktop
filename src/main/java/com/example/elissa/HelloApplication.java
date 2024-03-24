@@ -16,7 +16,7 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         // Load the index.fxml file
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/example/elissa/Airport/flight.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/example/elissa/Airport/index.fxml"));
 
         // Create a new scene with the loaded FXML file as the root
         Scene scene = new Scene(fxmlLoader.load(), 1200, 700);

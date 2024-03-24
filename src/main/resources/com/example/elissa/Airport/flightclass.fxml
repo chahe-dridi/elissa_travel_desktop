@@ -23,9 +23,14 @@
         <Button fx:id="newFlightclassButton" layoutX="825.0" layoutY="180.0" mnemonicParsing="false" onAction="#handleNewFlightclassButton" prefHeight="33.0" prefWidth="79.0" text="Add" />
         <Button fx:id="deleteFlightclassButton" layoutX="1054.0" layoutY="180.0" mnemonicParsing="false" onAction="#handleDeleteFlightclassButton" prefHeight="40.0" prefWidth="94.0" text="Delete" />
         <Button fx:id="updateFlightclassButton" layoutX="924.0" layoutY="180.0" mnemonicParsing="false" onAction="#handleModifyFlightclassButton" prefHeight="36.0" prefWidth="103.0" text="Update" />
-        <Button layoutX="156.0" layoutY="180.0" mnemonicParsing="false" text="Airports" />
-        <Button layoutX="270.0" layoutY="180.0" mnemonicParsing="false" text="Flights" />
-        <Button layoutX="366.0" layoutY="180.0" mnemonicParsing="false" text="FlightClass" />
-        <Button layoutX="482.0" layoutY="180.0" mnemonicParsing="false" text="FlightClass" />
+
+
+        <Button layoutX="156.0" layoutY="180.0" mnemonicParsing="false" text="Airports" onAction="#handleAirportsButtonClick" />
+        <Button layoutX="270.0" layoutY="180.0" mnemonicParsing="false" text="Flights" onAction="#handleFlightsButtonClick" />
+        <Button layoutX="366.0" layoutY="180.0" mnemonicParsing="false" text="FlightClass" onAction="#handleFlightClassButtonClick" />
+        <Button layoutX="482.0" layoutY="180.0" mnemonicParsing="false" text="Reservation" onAction="#handleReservationButtonClick" />
+
+
+
     </children>
 </AnchorPane>

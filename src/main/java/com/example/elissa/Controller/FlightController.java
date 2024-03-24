@@ -18,6 +18,21 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import java.io.IOException;
+
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+
+
+
+
+
+
+
+
 public class FlightController implements Initializable {
 
     private final FlightDAO flightDAO = new FlightDAO();
@@ -186,4 +201,53 @@ public class FlightController implements Initializable {
         newFlightHeureArriveField.clear();
         newFlightDisponibleCheckbox.setSelected(false);
     }
+
+
+
+
+
+
+
+
+
+    @FXML
+    void handleAirportsButtonClick() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/elissa/Airport/index.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) flightTableView.getScene().getWindow();
+        stage.setScene(scene);
+    }
+
+    @FXML
+    void handleFlightsButtonClick() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/elissa/Airport/flight.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) flightTableView.getScene().getWindow();
+        stage.setScene(scene);
+    }
+
+    @FXML
+    void handleFlightClassButtonClick() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/elissa/Airport/flightclass.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) flightTableView.getScene().getWindow();
+        stage.setScene(scene);
+    }
+
+    @FXML
+    void handleReservationButtonClick() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/elissa/Airport/reservationvoladmin.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) flightTableView.getScene().getWindow();
+        stage.setScene(scene);
+    }
+
+
+
+
+
 }
