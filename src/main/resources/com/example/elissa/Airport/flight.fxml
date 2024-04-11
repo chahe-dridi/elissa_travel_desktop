@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -9,41 +10,39 @@
 
 <AnchorPane prefHeight="700.0" prefWidth="1200.0" stylesheets="@airport.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.elissa.Controller.FlightController">
     <children>
-        <TableView fx:id="flightTableView" layoutX="56.0" layoutY="241.0" prefHeight="342.0" prefWidth="843.0">
+        <TableView fx:id="flightTableView" layoutX="446.0" layoutY="154.0" prefHeight="342.0" prefWidth="576.0">
             <columns>
                 <TableColumn fx:id="flightIdColumn" prefWidth="50.0" text="ID" />
                 <TableColumn fx:id="flightAirportDepartIdColumn" prefWidth="74.0" text="Departure Airport ID" />
                 <TableColumn fx:id="flightAirportArriveIdColumn" prefWidth="69.0" text="Arrival Airport ID" />
                 <TableColumn fx:id="flightVolclassIdColumn" prefWidth="122.0" text="Class ID" />
                 <TableColumn fx:id="flightUserIdColumn" prefWidth="62.0" text="User ID" />
-                <TableColumn fx:id="flightCompagnieAerienneColumn" prefWidth="135.0" text="Airline" />
-                <TableColumn fx:id="flightHeureDepartColumn" prefWidth="118.0" text="Departure Time" />
-                <TableColumn fx:id="flightHeureArriveColumn" prefWidth="120.0" text="Arrival Time" />
-                <TableColumn fx:id="flightDisponibleColumn" prefWidth="91.0" text="Available" />
+                <TableColumn fx:id="flightCompagnieAerienneColumn" prefWidth="126.0" text="Airline" />
+                <TableColumn fx:id="flightHeureDepartColumn" prefWidth="127.0" text="Departure Time" />
+                <TableColumn fx:id="flightHeureArriveColumn" prefWidth="135.0" text="Arrival Time" />
+                <TableColumn fx:id="flightDisponibleColumn" prefWidth="97.0" text="Available" />
             </columns>
         </TableView>
-        <TextField fx:id="newFlightAirportDepartIdField" layoutX="56.0" layoutY="618.0" prefHeight="38.0" prefWidth="145.0" promptText="Departure Airport ID" />
-        <TextField fx:id="newFlightAirportArriveIdField" layoutX="288.0" layoutY="618.0" prefHeight="38.0" prefWidth="143.0" promptText="Arrival Airport ID" />
-        <TextField fx:id="newFlightVolclassIdField" layoutX="516.0" layoutY="618.0" prefWidth="200.0" promptText="Class ID" />
-        <TextField fx:id="newFlightUserIdField" layoutX="925.0" layoutY="252.0" prefWidth="200.0" promptText="User ID" />
-        <TextField fx:id="newFlightCompagnieAerienneField" layoutX="925.0" layoutY="312.0" prefWidth="200.0" promptText="Airline" />
-        <TextField fx:id="newFlightHeureDepartField" layoutX="925.0" layoutY="374.0" prefWidth="200.0" promptText="Departure Time" />
-        <TextField fx:id="newFlightHeureArriveField" layoutX="925.0" layoutY="430.0" prefWidth="200.0" promptText="Arrival Time" />
-        <CheckBox fx:id="newFlightDisponibleCheckbox" layoutX="925.0" layoutY="492.0" text="Available" />
+        <TextField fx:id="newFlightAirportDepartIdField" layoutX="312.0" layoutY="523.0" prefHeight="38.0" prefWidth="145.0" promptText="Departure Airport ID" />
+        <TextField fx:id="newFlightAirportArriveIdField" layoutX="544.0" layoutY="523.0" prefHeight="38.0" prefWidth="143.0" promptText="Arrival Airport ID" />
+        <TextField fx:id="newFlightVolclassIdField" layoutX="430.0" layoutY="648.0" prefHeight="38.0" prefWidth="103.0" promptText="Class ID" />
+        <TextField fx:id="newFlightUserIdField" layoutX="312.0" layoutY="599.0" prefWidth="200.0" promptText="User ID" />
+        <TextField fx:id="newFlightCompagnieAerienneField" layoutX="542.0" layoutY="599.0" prefWidth="200.0" promptText="Airline" />
 
+        <DatePicker fx:id="newFlightDepartureDateField" layoutX="772.0" layoutY="523.0" prefHeight="38.0" prefWidth="162.0" promptText="Departure Date" />
+        <TextField fx:id="newFlightDepartureTimeField" layoutX="963.0" layoutY="599.0" prefHeight="38.0" prefWidth="88.0" promptText="HH:mm" />
+        <DatePicker fx:id="newFlightArrivalDateField" layoutX="772.0" layoutY="599.0" prefHeight="38.0" prefWidth="162.0" promptText="Arrival Date" />
+        <TextField fx:id="newFlightArrivalTimeField" layoutX="963.0" layoutY="523.0" prefHeight="38.0" prefWidth="103.0" promptText="HH:mm" />
+        <CheckBox fx:id="newFlightDisponibleCheckbox" layoutX="734.0" layoutY="659.0" text="Available" />
 
+        <Button fx:id="newFlightButton" layoutX="1054.0" layoutY="154.0" mnemonicParsing="false" onAction="#handleNewFlightButton" prefHeight="40.0" prefWidth="103.0" text="Add" />
+        <Button fx:id="modifyFlightButton" layoutX="1054.0" layoutY="220.0" mnemonicParsing="false" onAction="#handleModifyFlightButton" prefHeight="33.0" prefWidth="103.0" text="Update" />
+        <Button fx:id="deleteFlightButton" layoutX="1054.0" layoutY="285.0" mnemonicParsing="false" onAction="#handleDeleteFlightButton" prefHeight="40.0" prefWidth="103.0" text="Delete" />
 
-        <Button fx:id="newFlightButton" layoutX="825.0" layoutY="180.0" mnemonicParsing="false" onAction="#handleNewFlightButton" prefHeight="33.0" prefWidth="79.0" text="Add" />
-        <Button fx:id="modifyFlightButton" layoutX="924.0" layoutY="180.0" mnemonicParsing="false" onAction="#handleModifyFlightButton" prefHeight="33.0" prefWidth="103.0" text="Update" />
-        <Button fx:id="deleteFlightButton" layoutX="1054.0" layoutY="180.0" mnemonicParsing="false" onAction="#handleDeleteFlightButton" prefHeight="40.0" prefWidth="94.0" text="Delete" />
-
-
-
-        <Button layoutX="156.0" layoutY="180.0" mnemonicParsing="false" text="Airports" onAction="#handleAirportsButtonClick" />
-        <Button layoutX="270.0" layoutY="180.0" mnemonicParsing="false" text="Flights" onAction="#handleFlightsButtonClick" />
-        <Button layoutX="366.0" layoutY="180.0" mnemonicParsing="false" text="FlightClass" onAction="#handleFlightClassButtonClick" />
-        <Button layoutX="482.0" layoutY="180.0" mnemonicParsing="false" text="Reservation" onAction="#handleReservationButtonClick" />
-
+        <Button layoutX="446.0" layoutY="70.0" mnemonicParsing="false" onAction="#handleAirportsButtonClick" prefHeight="40.0" prefWidth="118.0" text="Airports" />
+        <Button layoutX="600.0" layoutY="70.0" mnemonicParsing="false" onAction="#handleFlightsButtonClick" prefHeight="40.0" prefWidth="118.0" text="Flights" />
+        <Button layoutX="754.0" layoutY="70.0" mnemonicParsing="false" onAction="#handleFlightClassButtonClick" prefHeight="40.0" prefWidth="118.0" text="FlightClass" />
+        <Button layoutX="904.0" layoutY="70.0" mnemonicParsing="false" onAction="#handleReservationButtonClick" text="Reservation" />
 
     </children>
 </AnchorPane>

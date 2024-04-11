@@ -8,29 +8,32 @@
 
 <AnchorPane prefHeight="700.0" prefWidth="1200.0" stylesheets="@airport.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.elissa.Controller.ReservationVolAdminController">
     <children>
-        <TableView fx:id="reservationTableView" layoutX="156.0" layoutY="253.0" prefHeight="342.0" prefWidth="536.0">
+        <TableView fx:id="reservationTableView" layoutX="446.0" layoutY="154.0" prefHeight="342.0" prefWidth="603.0">
             <columns>
-                <TableColumn fx:id="reservationIdColumn" prefWidth="111.0" text="Reservation ID" />
-                <TableColumn fx:id="reservationVolIdColumn" prefWidth="114.0" text="Vol ID" />
-                <TableColumn fx:id="reservationUserIdColumn" prefWidth="149.0" text="User ID" />
-                <TableColumn fx:id="reservationTotalPriceColumn" prefWidth="161.0" text="Total Price" />
+                <TableColumn fx:id="reservationIdColumn" prefWidth="70.0" text="ID" />
+                <TableColumn fx:id="reservationVolIdColumn" prefWidth="85.0" text="Vol ID" />
+                <TableColumn fx:id="reservationUserIdColumn" prefWidth="131.0" text="User ID" />
+                <TableColumn fx:id="reservationTotalPriceColumn" prefWidth="154.0" text="Total Price" />
                 <TableColumn fx:id="reservationPaymentMethodColumn" prefWidth="161.0" text="Payment Method" />
             </columns>
         </TableView>
-        <TextField fx:id="newReservationVolIdField" layoutX="749.0" layoutY="300.0" promptText="Vol ID" />
-        <TextField fx:id="newReservationUserIdField" layoutX="749.0" layoutY="368.0" promptText="User ID" />
-        <TextField fx:id="newReservationTotalPriceField" layoutX="749.0" layoutY="424.0" promptText="Total Price" />
-        <TextField fx:id="newReservationPaymentMethodField" layoutX="749.0" layoutY="487.0" promptText="Payment Method" />
-         <Button fx:id="newAirportButton" layoutX="825.0" layoutY="180.0" mnemonicParsing="false" onAction="#handleNewReservationButton" prefHeight="33.0" prefWidth="79.0" text="Add" />
-        <Button fx:id="deleteAirportButton" layoutX="924.0" layoutY="180.0" mnemonicParsing="false" onAction="#handleModifyReservationButton" prefHeight="40.0" prefWidth="94.0" text="Update" />
-        <Button fx:id="updateAirportButton" layoutX="1054.0" layoutY="180.0" mnemonicParsing="false" onAction="#handleDeleteReservationButton" prefHeight="36.0" prefWidth="103.0" text="Delete" />
+
+        <TextField fx:id="searchReservationField" layoutX="488.0" layoutY="650.0" promptText="Search by query" onKeyReleased="#handleSearchReservationFieldTextChanged" />
 
 
-        <Button layoutX="156.0" layoutY="180.0" mnemonicParsing="false" text="Airports" onAction="#handleAirportsButtonClick" />
-        <Button layoutX="270.0" layoutY="180.0" mnemonicParsing="false" text="Flights" onAction="#handleFlightsButtonClick" />
-        <Button layoutX="366.0" layoutY="180.0" mnemonicParsing="false" text="FlightClass" onAction="#handleFlightClassButtonClick" />
-        <Button layoutX="482.0" layoutY="180.0" mnemonicParsing="false" text="Reservation" onAction="#handleReservationButtonClick" />
+        <TextField fx:id="newReservationVolIdField" layoutX="488.0" layoutY="521.0" promptText="Vol ID" />
+        <TextField fx:id="newReservationUserIdField" layoutX="488.0" layoutY="585.0" promptText="User ID" />
+        <TextField fx:id="newReservationTotalPriceField" layoutX="788.0" layoutY="521.0" promptText="Total Price" />
+        <TextField fx:id="newReservationPaymentMethodField" layoutX="788.0" layoutY="585.0" promptText="Payment Method" />
+        <Button fx:id="NewReservationVolAButton" layoutX="1060.0" layoutY="154.0" mnemonicParsing="false" onAction="#handleNewReservationButton" prefHeight="40.0" prefWidth="103.0" text="Add" />
+        <Button fx:id="UpdateReservationVolAButton" layoutX="1060.0" layoutY="218.0" mnemonicParsing="false" onAction="#handleModifyReservationButton" prefHeight="40.0" prefWidth="103.0" text="Update" />
+        <Button fx:id="DeleteReservationVolAButton" layoutX="1060.0" layoutY="285.0" mnemonicParsing="false" onAction="#handleDeleteReservationButton" prefHeight="36.0" prefWidth="103.0" text="Delete" />
 
+
+        <Button layoutX="446.0" layoutY="70.0" mnemonicParsing="false" onAction="#handleAirportsButtonClick" prefHeight="40.0" prefWidth="118.0" text="Airports" />
+        <Button layoutX="600.0" layoutY="70.0" mnemonicParsing="false" onAction="#handleFlightsButtonClick" prefHeight="40.0" prefWidth="118.0" text="Flights" />
+        <Button layoutX="754.0" layoutY="70.0" mnemonicParsing="false" onAction="#handleFlightClassButtonClick" prefHeight="40.0" prefWidth="118.0" text="FlightClass" />
+        <Button layoutX="904.0" layoutY="70.0" mnemonicParsing="false" onAction="#handleReservationButtonClick" text="Reservation" />
 
     </children>
 

@@ -79,4 +79,42 @@ public class AirportDAO {
             e.printStackTrace();
         }
     }
+
+
+
+
+
+
+    public List<Airport> searchAirportByCode(String code) {
+        List<Airport> airports = new ArrayList<>();
+        String sql = "SELECT * FROM airport WHERE code LIKE ?";
+        try (PreparedStatement statement = conn.prepareStatement(sql)) {
+            statement.setString(1, "%" + code + "%"); // Using LIKE operator for partial matches
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    Airport airport = new Airport(
+                            resultSet.getInt("id"),
+                            resultSet.getInt("user_id"),
+                            resultSet.getString("code"),
+                            resultSet.getString("name"),
+                            resultSet.getString("city"),
+                            resultSet.getString("country")
+                    );
+                    airports.add(airport);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return airports;
+    }
+
+
+
+
+
+
+
+
+
 }

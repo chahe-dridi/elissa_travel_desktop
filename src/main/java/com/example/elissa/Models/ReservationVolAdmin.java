@@ -1,5 +1,6 @@
 package com.example.elissa.Models;
 
+
 public class ReservationVolAdmin {
     private int id;
     private int volId;
@@ -9,6 +10,10 @@ public class ReservationVolAdmin {
 
     public ReservationVolAdmin() {
     }
+
+
+
+
 
     public ReservationVolAdmin(int volId, int userId, double totalPrice, String paymentMethod) {
         this.volId = volId;

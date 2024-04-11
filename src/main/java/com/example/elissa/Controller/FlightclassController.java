@@ -1,5 +1,6 @@
 package com.example.elissa.Controller;
 
+import com.example.elissa.Models.Airport;
 import com.example.elissa.Models.Flightclass;
 import com.example.elissa.Services.FlightclassDAO;
 import javafx.collections.FXCollections;
@@ -40,6 +41,11 @@ public class FlightclassController implements Initializable {
     @FXML
     private TableColumn<Flightclass, Integer> ticketNumberColumn;
 
+
+    @FXML
+    private TableColumn<Flightclass, String> IdColumn;
+
+
     @FXML
     private TextField newClassNameField;
 
@@ -55,6 +61,8 @@ public class FlightclassController implements Initializable {
     @FXML
     private Button newFlightclassButton;
 
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("FlightclassController initialized");
@@ -69,6 +77,7 @@ public class FlightclassController implements Initializable {
     }
 
     private void configureTableView() {
+        IdColumn.setCellValueFactory(new PropertyValueFactory<>("Id"));
         classNameColumn.setCellValueFactory(new PropertyValueFactory<>("className"));
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));

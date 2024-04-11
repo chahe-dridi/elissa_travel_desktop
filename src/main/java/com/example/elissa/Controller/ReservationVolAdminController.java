@@ -1,7 +1,10 @@
 package com.example.elissa.Controller;
 
+import com.example.elissa.Models.Airport;
 import com.example.elissa.Models.ReservationVolAdmin;
 import com.example.elissa.Services.ReservationVolAdminDAO;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,7 +17,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-
+import java.util.List;
 
 
 import javafx.fxml.FXMLLoader;
@@ -71,6 +74,15 @@ public class ReservationVolAdminController {
 
     @FXML
     private Button deleteReservationButton;
+
+
+    @FXML
+    private TextField searchReservationField;
+
+
+
+
+
 
     @FXML
     public void initialize() {
@@ -136,6 +148,58 @@ public class ReservationVolAdminController {
         }
     }
 
+
+
+
+
+
+
+
+
+
+
+    @FXML
+    void handleSearchReservationFieldTextChanged() {
+        String searchQuery = searchReservationField.getText().trim();
+        if (!searchQuery.isEmpty()) {
+            // Perform search by query
+            List<ReservationVolAdmin> searchResult = reservationDAO.searchReservationByQuery(searchQuery);
+            // Update the table view with search result
+            updateTableView(searchResult);
+        } else {
+            // If search query is empty, refresh the table view with all reservations
+            refreshTableView();
+        }
+    }
+
+    private void updateTableView(List<ReservationVolAdmin> searchResult) {
+        // Clear existing items in the table
+        reservationTableView.getItems().clear();
+        // Create an observable list from the search result
+        ObservableList<ReservationVolAdmin> reservationObservableList = FXCollections.observableArrayList(searchResult);
+        // Set the items of the table view
+        reservationTableView.setItems(reservationObservableList);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     @FXML
     void handleDeleteReservationButton() {
         ReservationVolAdmin selectedReservation = reservationTableView.getSelectionModel().getSelectedItem();
@@ -151,6 +215,21 @@ public class ReservationVolAdminController {
         newReservationTotalPriceField.clear();
         newReservationPaymentMethodField.clear();
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

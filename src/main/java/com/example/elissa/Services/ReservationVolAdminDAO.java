@@ -1,5 +1,6 @@
 package com.example.elissa.Services;
 
+import com.example.elissa.Models.Airport;
 import com.example.elissa.Models.ReservationVolAdmin;
 import com.example.elissa.Outil.My_db;
 
@@ -78,4 +79,36 @@ public class ReservationVolAdminDAO {
             e.printStackTrace();
         }
     }
+
+
+
+    public List<ReservationVolAdmin> searchReservationByQuery(String query) {
+        List<ReservationVolAdmin> reservations = new ArrayList<>();
+        String sql = "SELECT * FROM reservationvol WHERE id LIKE ?"; // Modify the query according to your database schema
+        try (PreparedStatement statement = conn.prepareStatement(sql)) {
+            // Use "%" to allow partial matching in the database query
+            statement.setString(1, "%" + query + "%");
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    ReservationVolAdmin reservation = new ReservationVolAdmin();
+                    reservation.setId(resultSet.getInt("id"));
+                    reservation.setVolId(resultSet.getInt("vol_id"));
+                    reservation.setUserId(resultSet.getInt("user_id"));
+                    reservation.setTotalPrice(resultSet.getDouble("total_price"));
+                    reservation.setPaymentMethod(resultSet.getString("payment_method"));
+                    reservations.add(reservation);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return reservations;
+    }
+
+
+
+
+
+
+
 }

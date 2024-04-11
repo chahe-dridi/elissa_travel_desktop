@@ -36,6 +36,23 @@
     -fx-pref-width: 200px; /* Set preferred width */
     -fx-padding: 8px; /* Set padding */
     -fx-font-size: 14px; /* Set font size */
+    -fx-border-radius: 5px; /* Round the edges */
+    -fx-effect: dropshadow(rgba(0,0,0,0.2), 3, 3, 3, 0); /* Add shadow effect */
+}
+
+/* Hover effect for TextFields */
+.text-field:hover {
+    -fx-border-color: #999999; /* Change border color on hover */
+    -fx-background-color: #f5f5f5; /* Change background color on hover */
+}
+
+/* Focused effect for TextFields */
+.text-field:focused {
+    -fx-border-color: #0066ff; /* Change border color when focused */
+    -fx-border-width: 2px; /* Increase border width when focused */
+    -fx-background-color: #f0f0f0; /* Change background color when focused */
+    -fx-border-radius: 5px; /* Round the edges when focused */
+    -fx-effect: dropshadow(rgba(0,0,0,0.4), 5, 5, 5, 0); /* Add shadow effect when focused */
 }
 
 /* Styles for Buttons */

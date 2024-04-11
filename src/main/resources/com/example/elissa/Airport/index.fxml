@@ -8,28 +8,38 @@
 
 <AnchorPane prefHeight="700.0" prefWidth="1200.0" stylesheets="@airport.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.elissa.Controller.AirportController">
    <children>
-      <TableView fx:id="airportTableView" layoutX="156.0" layoutY="253.0" prefHeight="342.0" prefWidth="536.0">
+      <TableView fx:id="airportTableView" layoutX="446.0" layoutY="154.0" prefHeight="342.0" prefWidth="576.0">
          <columns>
+
+            <TableColumn fx:id="airportIdColumn" prefWidth="70.0" text="Id" />
+
             <TableColumn fx:id="airportCodeColumn" prefWidth="111.0" text="Code" />
             <TableColumn fx:id="airportNameColumn" prefWidth="114.0" text="Name" />
             <TableColumn fx:id="airportCityColumn" prefWidth="149.0" text="City" />
-            <TableColumn fx:id="airportCountryColumn" prefWidth="161.0" text="Country" />
+            <TableColumn fx:id="airportCountryColumn" prefWidth="130.0" text="Country" />
          </columns>
       </TableView>
-      <TextField fx:id="newAirportCodeField" layoutX="749.0" layoutY="300.0" promptText="Code" />
-      <TextField fx:id="newAirportNameField" layoutX="749.0" layoutY="368.0" promptText="Name" />
-      <TextField fx:id="newAirportCityField" layoutX="749.0" layoutY="424.0" promptText="City" />
-      <TextField fx:id="newAirportCountryField" layoutX="749.0" layoutY="487.0" promptText="Country" />
-      <Button fx:id="newAirportButton" layoutX="825.0" layoutY="180.0" mnemonicParsing="false" onAction="#handleNewAirportButton" prefHeight="33.0" prefWidth="79.0" text="Add" />
-      <Button fx:id="deleteAirportButton" layoutX="1054.0" layoutY="180.0" mnemonicParsing="false" onAction="#handleDeleteAirportButton" prefHeight="40.0" prefWidth="94.0" text="Delete" />
-      <Button fx:id="updateAirportButton" layoutX="924.0" layoutY="180.0" mnemonicParsing="false" onAction="#handleModifyAirportButton" prefHeight="36.0" prefWidth="103.0" text="Update" />
+
+      <!-- Modify the TextField to invoke search action when text changes -->
+      <TextField fx:id="searchAirportCodeField" layoutX="488.0" layoutY="650.0" promptText="Search by Code" onKeyReleased="#handleSearchAirportFieldTextChanged" />
+
+      <TextField fx:id="newAirportCodeField" layoutX="488.0" layoutY="521.0"  promptText="Code" styleClass="text-field"  />
+      <TextField fx:id="newAirportNameField" layoutX="488.0" layoutY="585.0" promptText="Name"  styleClass="text-field" />
+      <TextField fx:id="newAirportCityField" layoutX="788.0" layoutY="521.0" promptText="City" styleClass="text-field" />
+      <TextField fx:id="newAirportCountryField" layoutX="788.0" layoutY="585.0" promptText="Country" styleClass="text-field" />
 
 
 
-      <Button layoutX="156.0" layoutY="180.0" mnemonicParsing="false" text="Airports" onAction="#handleAirportsButtonClick" />
-      <Button layoutX="270.0" layoutY="180.0" mnemonicParsing="false" text="Flights" onAction="#handleFlightsButtonClick" />
-      <Button layoutX="366.0" layoutY="180.0" mnemonicParsing="false" text="FlightClass" onAction="#handleFlightClassButtonClick" />
-      <Button layoutX="482.0" layoutY="180.0" mnemonicParsing="false" text="Reservation" onAction="#handleReservationButtonClick" />
+      <Button fx:id="newAirportButton" layoutX="1060.0" layoutY="154.0" mnemonicParsing="false" onAction="#handleNewAirportButton" prefHeight="40.0" prefWidth="103.0" text="Add" />
+      <Button fx:id="deleteAirportButton" layoutX="1060.0" layoutY="285.0" mnemonicParsing="false" onAction="#handleDeleteAirportButton" prefHeight="40.0" prefWidth="103.0" text="Delete" />
+      <Button fx:id="updateAirportButton" layoutX="1060.0" layoutY="220.0" mnemonicParsing="false" onAction="#handleModifyAirportButton" prefHeight="40.0" prefWidth="103.0" text="Update" />
+
+
+
+      <Button layoutX="446.0" layoutY="70.0" mnemonicParsing="false" onAction="#handleAirportsButtonClick" prefHeight="40.0" prefWidth="118.0" text="Airports" />
+      <Button layoutX="600.0" layoutY="70.0" mnemonicParsing="false" onAction="#handleFlightsButtonClick" prefHeight="40.0" prefWidth="118.0" text="Flights" />
+      <Button layoutX="751.0" layoutY="70.0" mnemonicParsing="false" onAction="#handleFlightClassButtonClick" prefHeight="40.0" prefWidth="118.0" text="FlightClass" />
+      <Button layoutX="904.0" layoutY="70.0" mnemonicParsing="false" onAction="#handleReservationButtonClick" text="Reservation" />
 
 
 

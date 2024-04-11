@@ -15,6 +15,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -26,8 +27,10 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 
+import javafx.scene.control.DatePicker;
 
 
+import java.time.format.DateTimeFormatter;
 
 
 
@@ -68,15 +71,6 @@ public class FlightController implements Initializable {
     private TableColumn<Flight, Boolean> flightDisponibleColumn;
 
     @FXML
-    private Button newFlightButton;
-
-    @FXML
-    private Button modifyFlightButton;
-
-    @FXML
-    private Button deleteFlightButton;
-
-    @FXML
     private TextField newFlightAirportDepartIdField;
 
     @FXML
@@ -92,14 +86,28 @@ public class FlightController implements Initializable {
     private TextField newFlightCompagnieAerienneField;
 
     @FXML
-    private TextField newFlightHeureDepartField;
+    private DatePicker newFlightDepartureDateField;
 
     @FXML
-    private TextField newFlightHeureArriveField;
+    private TextField newFlightDepartureTimeField;
+
+    @FXML
+    private DatePicker newFlightArrivalDateField;
+
+    @FXML
+    private TextField newFlightArrivalTimeField;
 
     @FXML
     private CheckBox newFlightDisponibleCheckbox;
 
+    @FXML
+    private Button newFlightButton;
+
+    @FXML
+    private Button modifyFlightButton;
+
+    @FXML
+    private Button deleteFlightButton;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         configureTableView();
@@ -138,8 +146,19 @@ public class FlightController implements Initializable {
         int volclassId = Integer.parseInt(newFlightVolclassIdField.getText());
         int userId = Integer.parseInt(newFlightUserIdField.getText());
         String compagnieAerienne = newFlightCompagnieAerienneField.getText();
-        LocalDateTime heureDepart = LocalDateTime.parse(newFlightHeureDepartField.getText()); // Assuming format is compatible
-        LocalDateTime heureArrive = LocalDateTime.parse(newFlightHeureArriveField.getText()); // Assuming format is compatible
+
+        // Parse departure date and time
+        LocalDateTime heureDepart = LocalDateTime.of(
+                newFlightDepartureDateField.getValue(),
+                LocalTime.parse(newFlightDepartureTimeField.getText())
+        );
+
+        // Parse arrival date and time
+        LocalDateTime heureArrive = LocalDateTime.of(
+                newFlightArrivalDateField.getValue(),
+                LocalTime.parse(newFlightArrivalTimeField.getText())
+        );
+
         boolean disponible = newFlightDisponibleCheckbox.isSelected();
 
         Flight newFlight = new Flight(airportDepartId, airportArriveId, volclassId, userId, compagnieAerienne, heureDepart, heureArrive, disponible);
@@ -158,8 +177,16 @@ public class FlightController implements Initializable {
             int volclassId = Integer.parseInt(newFlightVolclassIdField.getText());
             int userId = Integer.parseInt(newFlightUserIdField.getText());
             String compagnieAerienne = newFlightCompagnieAerienneField.getText();
-            LocalDateTime heureDepart = LocalDateTime.parse(newFlightHeureDepartField.getText()); // Assuming format is compatible
-            LocalDateTime heureArrive = LocalDateTime.parse(newFlightHeureArriveField.getText()); // Assuming format is compatible
+
+            // Define custom date-time formatter
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
+            // Parse departure date-time
+            LocalDateTime heureDepart = LocalDateTime.parse(newFlightDepartureDateField.getValue() + " " + newFlightDepartureTimeField.getText(), formatter);
+
+            // Parse arrival date-time
+            LocalDateTime heureArrive = LocalDateTime.parse(newFlightArrivalDateField.getValue() + " " + newFlightArrivalTimeField.getText(), formatter);
+
             boolean disponible = newFlightDisponibleCheckbox.isSelected();
 
             Flight modifiedFlight = new Flight(id, airportDepartId, airportArriveId, volclassId, userId, compagnieAerienne, heureDepart, heureArrive, disponible);
@@ -168,7 +195,6 @@ public class FlightController implements Initializable {
             clearFields();
         }
     }
-
     @FXML
     void handleDeleteFlightButton() {
         Flight selectedFlight = flightTableView.getSelectionModel().getSelectedItem();
@@ -180,14 +206,22 @@ public class FlightController implements Initializable {
     }
 
     // Method to populate input fields with flight data
+    // Updated method to populate input fields with flight data
     private void populateFields(Flight flight) {
         newFlightAirportDepartIdField.setText(String.valueOf(flight.getAirportDepartId()));
         newFlightAirportArriveIdField.setText(String.valueOf(flight.getAirportArriveId()));
         newFlightVolclassIdField.setText(String.valueOf(flight.getVolclassId()));
         newFlightUserIdField.setText(String.valueOf(flight.getUserId()));
         newFlightCompagnieAerienneField.setText(flight.getCompagnieAerienne());
-        newFlightHeureDepartField.setText(flight.getHeureDepart().toString());
-        newFlightHeureArriveField.setText(flight.getHeureArrive().toString());
+
+        // Separate departure date and time
+        newFlightDepartureDateField.setValue(flight.getHeureDepart().toLocalDate());
+        newFlightDepartureTimeField.setText(flight.getHeureDepart().toLocalTime().toString());
+
+        // Separate arrival date and time
+        newFlightArrivalDateField.setValue(flight.getHeureArrive().toLocalDate());
+        newFlightArrivalTimeField.setText(flight.getHeureArrive().toLocalTime().toString());
+
         newFlightDisponibleCheckbox.setSelected(flight.isDisponible());
     }
 
@@ -197,8 +231,8 @@ public class FlightController implements Initializable {
         newFlightVolclassIdField.clear();
         newFlightUserIdField.clear();
         newFlightCompagnieAerienneField.clear();
-        newFlightHeureDepartField.clear();
-        newFlightHeureArriveField.clear();
+
+        newFlightArrivalTimeField.clear();
         newFlightDisponibleCheckbox.setSelected(false);
     }
 

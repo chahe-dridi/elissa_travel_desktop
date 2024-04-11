@@ -14,6 +14,19 @@ public class Flight {
     private LocalDateTime heureArrive;
     private boolean disponible;
 
+
+    private Flightclass flightClass;
+    public Flightclass getFlightClass() {
+        return flightClass;
+    }
+
+    public void setFlightClass(Flightclass flightClass) {
+        this.flightClass = flightClass;
+    }
+
+
+
+
     public Flight(int id, int airportDepartId, int airportArriveId, int volclassId, int userId, String compagnieAerienne, LocalDateTime heureDepart, LocalDateTime heureArrive, boolean disponible) {
         this.id = id;
         this.airportDepartId = airportDepartId;

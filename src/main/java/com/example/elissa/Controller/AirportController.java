@@ -1,6 +1,8 @@
 package com.example.elissa.Controller;
 
 import com.example.elissa.Models.Airport;
+
+import com.example.elissa.Models.Airport;
 import com.example.elissa.Services.AirportDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,7 +15,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+
 import javafx.scene.control.cell.PropertyValueFactory;
+
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -29,6 +33,9 @@ public class AirportController implements Initializable {
     private TableView<Airport> airportTableView;
 
     @FXML
+    private TableColumn<Airport, String> airportIdColumn;
+
+    @FXML
     private TableColumn<Airport, String> airportCodeColumn;
 
     @FXML
@@ -39,6 +46,10 @@ public class AirportController implements Initializable {
 
     @FXML
     private TableColumn<Airport, String> airportCountryColumn;
+
+
+
+
 
     @FXML
     private TextField newAirportCodeField;
@@ -55,6 +66,13 @@ public class AirportController implements Initializable {
     @FXML
     private Button newAirportButton;
 
+
+
+    @FXML
+    private TextField searchAirportCodeField;
+
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("AirportController initialized");
@@ -69,7 +87,9 @@ public class AirportController implements Initializable {
     }
 
 
+
     private void configureTableView() {
+        airportIdColumn.setCellValueFactory(new PropertyValueFactory<>("Id"));
         airportCodeColumn.setCellValueFactory(new PropertyValueFactory<>("code"));
         airportNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         airportCityColumn.setCellValueFactory(new PropertyValueFactory<>("city"));
@@ -81,6 +101,7 @@ public class AirportController implements Initializable {
 
     @FXML
     void handleNewAirportButton() {
+
         // Retrieve data from input fields
         String code = newAirportCodeField.getText();
         String name = newAirportNameField.getText();
@@ -124,14 +145,11 @@ public class AirportController implements Initializable {
 
 
 
-
-
-
-
     @FXML
     void handleModifyAirportButton() {
         Airport selectedAirport = airportTableView.getSelectionModel().getSelectedItem();
         if (selectedAirport != null) {
+
             // Retrieve modified data from input fields
             String code = newAirportCodeField.getText();
             String name = newAirportNameField.getText();
@@ -157,11 +175,23 @@ public class AirportController implements Initializable {
 
 
     private void populateFields(Airport airport) {
+
         newAirportCodeField.setText(airport.getCode());
         newAirportNameField.setText(airport.getName());
         newAirportCityField.setText(airport.getCity());
         newAirportCountryField.setText(airport.getCountry());
     }
+
+
+
+
+
+
+    // Method to handle search action when text changes in the search field
+
+
+
+
 
 
     @FXML
@@ -176,8 +206,29 @@ public class AirportController implements Initializable {
         }
     }
 
+    @FXML
+    void handleSearchAirportFieldTextChanged() {
+        String searchCode = searchAirportCodeField.getText().trim();
+        if (!searchCode.isEmpty()) {
+            // Perform search by code
+            List<Airport> searchResult = airportDAO.searchAirportByCode(searchCode);
+            // Update the table view with search result
+            updateTableView(searchResult);
+        } else {
+            // If search code is empty, refresh the table view with all airports
+            refreshTableView();
+        }
+    }
 
 
+    private void updateTableView(List<Airport> searchResult) {
+        // Clear existing items in the table
+        airportTableView.getItems().clear();
+        // Create an observable list from the search result
+        ObservableList<Airport> airportObservableList = FXCollections.observableArrayList(searchResult);
+        // Set the items of the table view
+        airportTableView.setItems(airportObservableList);
+    }
 
     private void clearFields() {
         newAirportCodeField.clear();
