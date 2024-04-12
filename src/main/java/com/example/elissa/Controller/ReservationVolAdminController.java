@@ -9,10 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -115,12 +112,27 @@ public class ReservationVolAdminController {
         });
     }
 
+
+
+
+
+
     @FXML
     void handleNewReservationButton() {
-        int volId = Integer.parseInt(newReservationVolIdField.getText());
-        int userId = Integer.parseInt(newReservationUserIdField.getText());
-        double totalPrice = Double.parseDouble(newReservationTotalPriceField.getText());
-        String paymentMethod = newReservationPaymentMethodField.getText();
+        String volIdText = newReservationVolIdField.getText().trim();
+        String userIdText = newReservationUserIdField.getText().trim();
+        String totalPriceText = newReservationTotalPriceField.getText().trim();
+        String paymentMethod = newReservationPaymentMethodField.getText().trim();
+
+        // Validate input fields
+        if (!isValidPositiveInteger(volIdText) || !isValidPositiveInteger(userIdText) || !isValidPositiveDouble(totalPriceText) || !isValidPaymentMethod(paymentMethod)) {
+            showAlert(Alert.AlertType.ERROR, "Invalid Input", "Please enter valid values for all fields.");
+            return;
+        }
+
+        int volId = Integer.parseInt(volIdText);
+        int userId = Integer.parseInt(userIdText);
+        double totalPrice = Double.parseDouble(totalPriceText);
 
         ReservationVolAdmin newReservation = new ReservationVolAdmin(volId, userId, totalPrice, paymentMethod);
         reservationDAO.addReservation(newReservation);
@@ -132,10 +144,20 @@ public class ReservationVolAdminController {
     void handleModifyReservationButton() {
         ReservationVolAdmin selectedReservation = reservationTableView.getSelectionModel().getSelectedItem();
         if (selectedReservation != null) {
-            int volId = Integer.parseInt(newReservationVolIdField.getText());
-            int userId = Integer.parseInt(newReservationUserIdField.getText());
-            double totalPrice = Double.parseDouble(newReservationTotalPriceField.getText());
-            String paymentMethod = newReservationPaymentMethodField.getText();
+            String volIdText = newReservationVolIdField.getText().trim();
+            String userIdText = newReservationUserIdField.getText().trim();
+            String totalPriceText = newReservationTotalPriceField.getText().trim();
+            String paymentMethod = newReservationPaymentMethodField.getText().trim();
+
+            // Validate input fields
+            if (!isValidPositiveInteger(volIdText) || !isValidPositiveInteger(userIdText) || !isValidPositiveDouble(totalPriceText) || !isValidPaymentMethod(paymentMethod)) {
+                showAlert(Alert.AlertType.ERROR, "Invalid Input", "Please enter valid values for all fields.");
+                return;
+            }
+
+            int volId = Integer.parseInt(volIdText);
+            int userId = Integer.parseInt(userIdText);
+            double totalPrice = Double.parseDouble(totalPriceText);
 
             selectedReservation.setVolId(volId);
             selectedReservation.setUserId(userId);
@@ -147,6 +169,41 @@ public class ReservationVolAdminController {
             clearFields();
         }
     }
+
+    // Method to validate if a string can be parsed to a positive integer
+    private boolean isValidPositiveInteger(String str) {
+        try {
+            int value = Integer.parseInt(str);
+            return value > 0; // Check if value is positive
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    // Method to validate if a string can be parsed to a positive double
+    private boolean isValidPositiveDouble(String str) {
+        try {
+            double value = Double.parseDouble(str);
+            return value > 0; // Check if value is positive
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    // Method to validate payment method (either "Online" or "Cash" case-insensitive)
+    private boolean isValidPaymentMethod(String str) {
+        return str.equalsIgnoreCase("Online") || str.equalsIgnoreCase("Cash");
+    }
+
+    // Method to display an alert dialog
+    private void showAlert(Alert.AlertType type, String title, String content) {
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
+
 
 
 

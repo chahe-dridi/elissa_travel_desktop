@@ -27,6 +27,8 @@ import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import javafx.scene.control.Alert;
+
 public class ReservationVolController {
 
     @FXML
@@ -436,7 +438,20 @@ public class ReservationVolController {
         // Save the reservation to the database
         reservationDAO.addReservation(newReservation);
 
-        // Optionally, display a confirmation message or update UI
+        // Display confirmation message
+        showReservationConfirmation();
+    }
+
+    private void showReservationConfirmation() {
+        Alert confirmationAlert = new Alert(Alert.AlertType.INFORMATION);
+        confirmationAlert.setTitle("Reservation Confirmation");
+        confirmationAlert.setHeaderText(null);
+        confirmationAlert.setContentText("Reservation successfully created!");
+
+        // Show and wait for user response
+        confirmationAlert.showAndWait()
+                .filter(response -> response == ButtonType.OK)
+                .ifPresent(response -> System.out.println("Reservation confirmed."));
     }
 
 

@@ -25,6 +25,11 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Alert;
+import java.util.regex.Pattern;
+
 public class AirportController implements Initializable {
 
     private final AirportDAO airportDAO = new AirportDAO();
@@ -99,20 +104,37 @@ public class AirportController implements Initializable {
 
 
 
+//-----------------------------------
+
+    private boolean isValidInput(String str) {
+        return !str.isEmpty() && str.matches("^[a-zA-Z\\s'\"./]+$");
+    }
+
+    // Method to display an alert dialog
+    private void showAlert(Alert.AlertType type, String title, String content) {
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
+    //-----------------------------------
     @FXML
     void handleNewAirportButton() {
-
         // Retrieve data from input fields
-        String code = newAirportCodeField.getText();
-        String name = newAirportNameField.getText();
-        String city = newAirportCityField.getText();
-        String country = newAirportCountryField.getText();
+        String code = newAirportCodeField.getText().trim();
+        String name = newAirportNameField.getText().trim();
+        String city = newAirportCityField.getText().trim();
+        String country = newAirportCountryField.getText().trim();
 
-        // Assuming userId is available in your application, retrieve it accordingly
-        //int userId = getUserIdFromSomeSource(); // Implement this method as per your application's logic
+        // Validate input fields
+        if (!isValidInput(code) || !isValidInput(name) || !isValidInput(city) || !isValidInput(country)) {
+            showAlert(Alert.AlertType.ERROR, "Invalid Input", "Fields cannot be empty and must contain valid characters.");
+            return;
+        }
 
-        // Create a new Airport object with the retrieved userId
-        Airport newAirport = new Airport( 1, code, name, city, country);
+        // Create a new Airport object
+        Airport newAirport = new Airport(1, code, name, city, country);
 
         // Add the new airport to the database
         airportDAO.addAirport(newAirport);
@@ -149,12 +171,17 @@ public class AirportController implements Initializable {
     void handleModifyAirportButton() {
         Airport selectedAirport = airportTableView.getSelectionModel().getSelectedItem();
         if (selectedAirport != null) {
-
             // Retrieve modified data from input fields
-            String code = newAirportCodeField.getText();
-            String name = newAirportNameField.getText();
-            String city = newAirportCityField.getText();
-            String country = newAirportCountryField.getText();
+            String code = newAirportCodeField.getText().trim();
+            String name = newAirportNameField.getText().trim();
+            String city = newAirportCityField.getText().trim();
+            String country = newAirportCountryField.getText().trim();
+
+            // Validate input fields
+            if (!isValidInput(code) || !isValidInput(name) || !isValidInput(city) || !isValidInput(country)) {
+                showAlert(Alert.AlertType.ERROR, "Invalid Input", "Fields cannot be empty and must contain valid characters.");
+                return;
+            }
 
             // Update the selected airport with modified data
             selectedAirport.setCode(code);

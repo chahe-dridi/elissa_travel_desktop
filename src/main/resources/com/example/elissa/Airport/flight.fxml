@@ -30,9 +30,9 @@
         <TextField fx:id="newFlightCompagnieAerienneField" layoutX="542.0" layoutY="599.0" prefWidth="200.0" promptText="Airline" />
 
         <DatePicker fx:id="newFlightDepartureDateField" layoutX="772.0" layoutY="523.0" prefHeight="38.0" prefWidth="162.0" promptText="Departure Date" />
-        <TextField fx:id="newFlightDepartureTimeField" layoutX="963.0" layoutY="599.0" prefHeight="38.0" prefWidth="88.0" promptText="HH:mm" />
+        <TextField fx:id="newFlightDepartureTimeField" layoutX="963.0" layoutY="523.0" prefHeight="38.0" prefWidth="88.0" promptText="HH:mm" />
         <DatePicker fx:id="newFlightArrivalDateField" layoutX="772.0" layoutY="599.0" prefHeight="38.0" prefWidth="162.0" promptText="Arrival Date" />
-        <TextField fx:id="newFlightArrivalTimeField" layoutX="963.0" layoutY="523.0" prefHeight="38.0" prefWidth="103.0" promptText="HH:mm" />
+        <TextField fx:id="newFlightArrivalTimeField" layoutX="963.0" layoutY="599.0" prefHeight="38.0" prefWidth="103.0" promptText="HH:mm" />
         <CheckBox fx:id="newFlightDisponibleCheckbox" layoutX="734.0" layoutY="659.0" text="Available" />
 
         <Button fx:id="newFlightButton" layoutX="1054.0" layoutY="154.0" mnemonicParsing="false" onAction="#handleNewFlightButton" prefHeight="40.0" prefWidth="103.0" text="Add" />

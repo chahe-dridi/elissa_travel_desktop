@@ -6,14 +6,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
@@ -25,9 +22,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-
-import javafx.scene.control.DatePicker;
 
 
 import java.time.format.DateTimeFormatter;
@@ -139,7 +133,15 @@ public class FlightController implements Initializable {
         flightTableView.setItems(flightObservableList);
     }
 
-    @FXML
+
+
+
+
+
+
+
+
+ /*   @FXML
     void handleNewFlightButton() {
         int airportDepartId = Integer.parseInt(newFlightAirportDepartIdField.getText());
         int airportArriveId = Integer.parseInt(newFlightAirportArriveIdField.getText());
@@ -194,7 +196,136 @@ public class FlightController implements Initializable {
             refreshTableView();
             clearFields();
         }
+    }*/
+
+
+
+    @FXML
+    void handleNewFlightButton() {
+        String airportDepartIdText = newFlightAirportDepartIdField.getText().trim();
+        String airportArriveIdText = newFlightAirportArriveIdField.getText().trim();
+        String volclassIdText = newFlightVolclassIdField.getText().trim();
+        String userIdText = newFlightUserIdField.getText().trim();
+        String compagnieAerienne = newFlightCompagnieAerienneField.getText().trim();
+        LocalDate departureDate = newFlightDepartureDateField.getValue();
+        String departureTimeText = newFlightDepartureTimeField.getText().trim();
+        LocalDate arrivalDate = newFlightArrivalDateField.getValue();
+        String arrivalTimeText = newFlightArrivalTimeField.getText().trim();
+
+        // Validate input fields
+        if (airportDepartIdText.isEmpty() || airportArriveIdText.isEmpty() || volclassIdText.isEmpty() || userIdText.isEmpty() || compagnieAerienne.isEmpty() || departureDate == null || departureTimeText.isEmpty() || arrivalDate == null || arrivalTimeText.isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, "Invalid Input", "Please fill in all fields.");
+            return;
+        }
+
+        int airportDepartId = Integer.parseInt(airportDepartIdText);
+        int airportArriveId = Integer.parseInt(airportArriveIdText);
+        int volclassId = Integer.parseInt(volclassIdText);
+        int userId = Integer.parseInt(userIdText);
+
+        // Parse departure date-time
+        LocalDateTime heureDepart = LocalDateTime.of(departureDate, LocalTime.parse(departureTimeText));
+
+        // Parse arrival date-time
+        LocalDateTime heureArrive = LocalDateTime.of(arrivalDate, LocalTime.parse(arrivalTimeText));
+
+        // Validate departure and arrival date-time
+        if (heureDepart.isBefore(LocalDateTime.now())) {
+            showAlert(Alert.AlertType.ERROR, "Invalid Input", "Departure date-time must be today or later.");
+            return;
+        }
+
+        if (heureArrive.isBefore(heureDepart)) {
+            showAlert(Alert.AlertType.ERROR, "Invalid Input", "Arrival date-time must be after departure date-time.");
+            return;
+        }
+
+        boolean disponible = newFlightDisponibleCheckbox.isSelected();
+
+        Flight newFlight = new Flight(airportDepartId, airportArriveId, volclassId, userId, compagnieAerienne, heureDepart, heureArrive, disponible);
+        flightDAO.addFlight(newFlight);
+        refreshTableView();
+        clearFields();
     }
+
+    @FXML
+    void handleModifyFlightButton() {
+        Flight selectedFlight = flightTableView.getSelectionModel().getSelectedItem();
+        if (selectedFlight != null) {
+            int id = selectedFlight.getId();
+            String airportDepartIdText = newFlightAirportDepartIdField.getText().trim();
+            String airportArriveIdText = newFlightAirportArriveIdField.getText().trim();
+            String volclassIdText = newFlightVolclassIdField.getText().trim();
+            String userIdText = newFlightUserIdField.getText().trim();
+            String compagnieAerienne = newFlightCompagnieAerienneField.getText().trim();
+            LocalDate departureDate = newFlightDepartureDateField.getValue();
+            String departureTimeText = newFlightDepartureTimeField.getText().trim();
+            LocalDate arrivalDate = newFlightArrivalDateField.getValue();
+            String arrivalTimeText = newFlightArrivalTimeField.getText().trim();
+
+            // Validate input fields
+            if (airportDepartIdText.isEmpty() || airportArriveIdText.isEmpty() || volclassIdText.isEmpty() || userIdText.isEmpty() || compagnieAerienne.isEmpty() || departureDate == null || departureTimeText.isEmpty() || arrivalDate == null || arrivalTimeText.isEmpty()) {
+                showAlert(Alert.AlertType.ERROR, "Invalid Input", "Please fill in all fields.");
+                return;
+            }
+
+            int airportDepartId = Integer.parseInt(airportDepartIdText);
+            int airportArriveId = Integer.parseInt(airportArriveIdText);
+            int volclassId = Integer.parseInt(volclassIdText);
+            int userId = Integer.parseInt(userIdText);
+
+            // Parse departure date-time
+            LocalDateTime heureDepart = LocalDateTime.of(departureDate, LocalTime.parse(departureTimeText));
+
+            // Parse arrival date-time
+            LocalDateTime heureArrive = LocalDateTime.of(arrivalDate, LocalTime.parse(arrivalTimeText));
+
+            // Validate departure and arrival date-time
+            if (heureDepart.isBefore(LocalDateTime.now())) {
+                showAlert(Alert.AlertType.ERROR, "Invalid Input", "Departure date-time must be today or later.");
+                return;
+            }
+
+            if (heureArrive.isBefore(heureDepart)) {
+                showAlert(Alert.AlertType.ERROR, "Invalid Input", "Arrival date-time must be after departure date-time.");
+                return;
+            }
+
+            boolean disponible = newFlightDisponibleCheckbox.isSelected();
+
+            Flight modifiedFlight = new Flight(id, airportDepartId, airportArriveId, volclassId, userId, compagnieAerienne, heureDepart, heureArrive, disponible);
+            flightDAO.updateFlight(modifiedFlight);
+            refreshTableView();
+            clearFields();
+        }
+    }
+
+    // Method to display an alert dialog
+    private void showAlert(Alert.AlertType type, String title, String content) {
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     @FXML
     void handleDeleteFlightButton() {
         Flight selectedFlight = flightTableView.getSelectionModel().getSelectedItem();

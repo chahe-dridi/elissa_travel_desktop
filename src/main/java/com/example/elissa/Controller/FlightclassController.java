@@ -10,10 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -84,6 +81,23 @@ public class FlightclassController implements Initializable {
         ticketNumberColumn.setCellValueFactory(new PropertyValueFactory<>("ticketNumber"));
     }
 
+
+    private void refreshTableView() {
+        List<Flightclass> flightclasses = flightclassDAO.getAllFlightclasses();
+        ObservableList<Flightclass> flightclassObservableList = FXCollections.observableArrayList(flightclasses);
+        flightclassTableView.setItems(flightclassObservableList);
+    }
+    private void populateFields(Flightclass flightclass) {
+        newClassNameField.setText(flightclass.getClassName());
+        newDescriptionField.setText(flightclass.getDescription());
+        newPriceField.setText(String.valueOf(flightclass.getPrice()));
+        newTicketNumberField.setText(String.valueOf(flightclass.getTicketNumber()));
+    }
+
+
+
+
+/*
     @FXML
     void handleNewFlightclassButton() {
         String className = newClassNameField.getText();
@@ -97,11 +111,7 @@ public class FlightclassController implements Initializable {
         clearFields();
     }
 
-    private void refreshTableView() {
-        List<Flightclass> flightclasses = flightclassDAO.getAllFlightclasses();
-        ObservableList<Flightclass> flightclassObservableList = FXCollections.observableArrayList(flightclasses);
-        flightclassTableView.setItems(flightclassObservableList);
-    }
+
 
     @FXML
     void handleModifyFlightclassButton() {
@@ -122,13 +132,106 @@ public class FlightclassController implements Initializable {
             clearFields();
         }
     }
+*/
 
-    private void populateFields(Flightclass flightclass) {
-        newClassNameField.setText(flightclass.getClassName());
-        newDescriptionField.setText(flightclass.getDescription());
-        newPriceField.setText(String.valueOf(flightclass.getPrice()));
-        newTicketNumberField.setText(String.valueOf(flightclass.getTicketNumber()));
+
+    @FXML
+    void handleNewFlightclassButton() {
+        String className = newClassNameField.getText().trim();
+        String description = newDescriptionField.getText().trim();
+        String priceText = newPriceField.getText().trim();
+        String ticketNumberText = newTicketNumberField.getText().trim();
+
+        // Validate input fields
+        if (!isValidClassName(className) || !isValidInput(description) || !isValidPositiveDouble(priceText) || !isValidPositiveInteger(ticketNumberText)) {
+            showAlert(Alert.AlertType.ERROR, "Invalid Input", "Please enter valid values for all fields.");
+            return;
+        }
+
+        double price = Double.parseDouble(priceText);
+        int ticketNumber = Integer.parseInt(ticketNumberText);
+
+        Flightclass newFlightclass = new Flightclass(1, className, description, price, ticketNumber);
+        flightclassDAO.addFlightclass(newFlightclass);
+        refreshTableView();
+        clearFields();
     }
+
+    @FXML
+    void handleModifyFlightclassButton() {
+        Flightclass selectedFlightclass = flightclassTableView.getSelectionModel().getSelectedItem();
+        if (selectedFlightclass != null) {
+            String className = newClassNameField.getText().trim();
+            String description = newDescriptionField.getText().trim();
+            String priceText = newPriceField.getText().trim();
+            String ticketNumberText = newTicketNumberField.getText().trim();
+
+            // Validate input fields
+            if (!isValidClassName(className) || !isValidInput(description) || !isValidPositiveDouble(priceText) || !isValidPositiveInteger(ticketNumberText)) {
+                showAlert(Alert.AlertType.ERROR, "Invalid Input", "Please enter valid values for all fields.");
+                return;
+            }
+
+            double price = Double.parseDouble(priceText);
+            int ticketNumber = Integer.parseInt(ticketNumberText);
+
+            selectedFlightclass.setClassName(className);
+            selectedFlightclass.setDescription(description);
+            selectedFlightclass.setPrice(price);
+            selectedFlightclass.setTicketNumber(ticketNumber);
+
+            flightclassDAO.updateFlightclass(selectedFlightclass);
+            refreshTableView();
+            clearFields();
+        }
+    }
+
+
+    private boolean isValidInput(String str) {
+        return !str.isEmpty(); // Basic validation to check if the string is not empty
+    }
+    // Method to validate className (contains only letters)
+    private boolean isValidClassName(String str) {
+        return str.matches("[a-zA-Z]+"); // Only allows letters (no spaces or special characters)
+    }
+
+    // Method to validate if a string can be parsed to a positive double
+    private boolean isValidPositiveDouble(String str) {
+        try {
+            double value = Double.parseDouble(str);
+            return value > 0; // Check if value is positive
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    // Method to validate if a string can be parsed to a positive integer
+    private boolean isValidPositiveInteger(String str) {
+        try {
+            int value = Integer.parseInt(str);
+            return value > 0; // Check if value is positive
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    // Method to display an alert dialog
+    private void showAlert(Alert.AlertType type, String title, String content) {
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
+
+
+
+
+
+
+
+
+
 
     @FXML
     void handleDeleteFlightclassButton() {
@@ -138,6 +241,12 @@ public class FlightclassController implements Initializable {
             refreshTableView();
         }
     }
+
+
+
+
+
+
 
     private void clearFields() {
         newClassNameField.clear();
