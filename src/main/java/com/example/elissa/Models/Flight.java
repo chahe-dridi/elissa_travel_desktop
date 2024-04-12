@@ -31,7 +31,7 @@ public class Flight {
         this.id = id;
         this.airportDepartId = airportDepartId;
         this.airportArriveId = airportArriveId;
-        this.volclassId = volclassId;
+            this.volclassId = volclassId;
         this.userId = userId;
         this.compagnieAerienne = compagnieAerienne;
         this.heureDepart = heureDepart;

@@ -81,4 +81,35 @@ public class FlightclassDAO {
             e.printStackTrace();
         }
     }
+
+
+
+
+
+
+
+
+    public Flightclass getFlightClassById(int id) {
+        Flightclass flightclass = null;
+        String sql = "SELECT * FROM volclass WHERE id = ?";
+        try (PreparedStatement statement = conn.prepareStatement(sql)) {
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                flightclass = new Flightclass(
+                        resultSet.getInt("id"),
+                        resultSet.getInt("user_id"),
+                        resultSet.getString("class_name"),
+                        resultSet.getString("description"),
+                        resultSet.getDouble("price"),
+                        resultSet.getInt("ticket_number")
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return flightclass;
+    }
+
 }
