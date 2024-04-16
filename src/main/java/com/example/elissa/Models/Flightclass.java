@@ -8,6 +8,13 @@ public class Flightclass {
     private double price;
     private int ticketNumber;
 
+
+
+    public Flightclass() {
+
+    }
+
+
     // Constructor
     public Flightclass(int id, int userId, String className, String description, double price, int ticketNumber) {
         this.id = id;

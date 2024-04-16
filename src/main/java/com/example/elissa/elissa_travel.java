@@ -20,7 +20,7 @@ public class elissa_travel extends Application {
             FXMLLoader fxmlLoader = new FXMLLoader(elissa_travel.class.getResource("/com/example/elissa/Airport/index.fxml"));
 
             // Create a new scene with the loaded FXML file as the root
-            Scene scene = new Scene(fxmlLoader.load(), 1200, 700);
+            Scene scene = new Scene(fxmlLoader.load(), 1200, 800);
 
             // Set the title of the stage
             stage.setTitle("Elissa_travel");

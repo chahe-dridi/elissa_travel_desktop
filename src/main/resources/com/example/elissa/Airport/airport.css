@@ -37,7 +37,7 @@
     -fx-padding: 8px; /* Set padding */
     -fx-font-size: 14px; /* Set font size */
     -fx-border-radius: 5px; /* Round the edges */
-    -fx-effect: dropshadow(rgba(0,0,0,0.2), 3, 3, 3, 0); /* Add shadow effect */
+
 }
 
 /* Hover effect for TextFields */
@@ -52,7 +52,7 @@
     -fx-border-width: 2px; /* Increase border width when focused */
     -fx-background-color: #f0f0f0; /* Change background color when focused */
     -fx-border-radius: 5px; /* Round the edges when focused */
-    -fx-effect: dropshadow(rgba(0,0,0,0.4), 5, 5, 5, 0); /* Add shadow effect when focused */
+
 }
 
 /* Styles for Buttons */
@@ -92,4 +92,36 @@
 /* Disabled effect for Buttons */
 .button:disabled {
     -fx-opacity: 0.6; /* Reduce opacity for disabled state */
+}
+
+
+
+
+
+
+
+
+/* vbox showflightclient   */
+
+/* styles.css */
+.flight-entry {
+    -fx-background-color: #3A7E49;
+    -fx-padding: 20;
+    -fx-spacing: 10;
+    -fx-border-radius: 5;
+}
+
+/* CSS to center VBox elements within ScrollPane */
+#flightContainer .vbox {
+    -fx-alignment: center; /* Center align content horizontally and vertically */
+}
+
+
+/* airport.css */
+
+/* Set background image for the AnchorPane */
+.anchor-pane-background {
+    -fx-background-image: url('bg_1.jpg');
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
 }

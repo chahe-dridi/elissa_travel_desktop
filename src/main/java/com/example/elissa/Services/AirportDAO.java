@@ -112,7 +112,25 @@ public class AirportDAO {
 
 
 
-
+    public Airport findById(int airportId) {
+        Airport airport = null;
+        String sql = "SELECT * FROM airport WHERE id = ?";
+        try (PreparedStatement statement = conn.prepareStatement(sql)) {
+            statement.setInt(1, airportId);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    airport = new Airport();
+                    airport.setId(resultSet.getInt("id"));
+                    airport.setName(resultSet.getString("name"));
+                    airport.setCity(resultSet.getString("city"));
+                    airport.setCountry(resultSet.getString("country"));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return airport;
+    }
 
 
 

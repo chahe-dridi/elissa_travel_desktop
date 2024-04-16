@@ -3,10 +3,7 @@ package com.example.elissa.Services;
 import com.example.elissa.Models.Flight;
 import com.example.elissa.Outil.My_db;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -91,5 +88,46 @@ public class FlightDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+
+
+
+
+
+
+
+
+
+    public Flight getFlightByVolId(int volId) {
+        String sql = "SELECT id, compagnie_aerienne, heure_depart, heure_arrive " +
+                "FROM vol " +
+                "WHERE id = ?";
+
+        try (PreparedStatement statement = conn.prepareStatement(sql)) {
+            statement.setInt(1, volId);
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                // Retrieve flight details from the result set
+                int flightId = resultSet.getInt("id");
+                String compagnieAerienne = resultSet.getString("compagnie_aerienne");
+                Timestamp heureDepart = resultSet.getTimestamp("heure_depart");
+                Timestamp heureArrive = resultSet.getTimestamp("heure_arrive");
+
+                // Create a Flight object and set its details
+                Flight flight = new Flight();
+                flight.setId(flightId);
+                flight.setCompagnieAerienne(compagnieAerienne);
+                flight.setHeureDepart(heureDepart.toLocalDateTime());
+                flight.setHeureArrive(heureArrive.toLocalDateTime());
+
+                return flight;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null; // Return null if no flight is found
     }
 }

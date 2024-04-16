@@ -6,6 +6,7 @@ import com.example.elissa.Models.Flight;
 import com.example.elissa.Models.Flightclass;
 
 import com.example.elissa.Models.ReservationVolAdmin;
+import com.example.elissa.Services.AirportDAO;
 import com.example.elissa.Services.FlightDAO;
 import com.example.elissa.Services.FlightclassDAO;
 import com.example.elissa.Services.ReservationVolAdminDAO;
@@ -50,6 +51,7 @@ public class ReservationVolController {
 
 
 
+
     public Flight getSelectedFlight() {
         return selectedFlight;
     }
@@ -57,6 +59,7 @@ public class ReservationVolController {
   /*  public void setSelectedFlight(Flight flight) {
         this.selectedFlight = flight;
     }*/
+
 
 
     @FXML
@@ -177,41 +180,44 @@ public class ReservationVolController {
     public void populateReservations() {
         // Create an instance of ReservationVolAdminDAO
         ReservationVolAdminDAO reservationVolAdminDAO = new ReservationVolAdminDAO();
+        FlightDAO flightDAO = new FlightDAO(); // Assuming you have a FlightDAO
 
         // Set cell value factories
-        reservationIdColumn.setCellValueFactory(new PropertyValueFactory<>("reservationId"));
-        flightIdColumn.setCellValueFactory(new PropertyValueFactory<>("flightId"));
-        userIdColumn.setCellValueFactory(new PropertyValueFactory<>("userId"));
         totalPriceColumn.setCellValueFactory(new PropertyValueFactory<>("totalPrice"));
         paymentMethodColumn.setCellValueFactory(new PropertyValueFactory<>("paymentMethod"));
-
-        // Set cell value factories for new columns
-        descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("flightClass.description"));
-        classNameColumn.setCellValueFactory(new PropertyValueFactory<>("flightClass.className"));
+        descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
+        classNameColumn.setCellValueFactory(new PropertyValueFactory<>("className"));
         departureTimeColumn.setCellValueFactory(new PropertyValueFactory<>("heureDepart"));
         arrivalTimeColumn.setCellValueFactory(new PropertyValueFactory<>("heureArrive"));
 
-
         // Call the refresh method
-        refreshTableres(reservationVolAdminDAO);
+        refreshTableres(reservationVolAdminDAO, flightDAO);
     }
 
-
-    private void refreshTableres(ReservationVolAdminDAO reservationVolAdminDAO) {
+    private void refreshTableres(ReservationVolAdminDAO reservationVolAdminDAO, FlightDAO flightDAO) {
         // Retrieve all reservations from the database using the DAO instance
-        List<ReservationVolAdmin> ReservationVols = reservationVolAdminDAO.getAllReservations();
+        List<ReservationVolAdmin> reservationVols = reservationVolAdminDAO.getAllReservations();
 
         // Print out the retrieved reservations for debugging
-        System.out.println("Retrieved reservationvol: " + ReservationVols);
+        System.out.println("Retrieved reservationvol: " + reservationVols);
 
         // Clear existing items in the table
         reservationTable.getItems().clear();
 
         // Create an observable list from the retrieved reservations
-        ObservableList<ReservationVolAdmin> ReservationVolObservableList = FXCollections.observableArrayList(ReservationVols);
+        ObservableList<ReservationVolAdmin> reservationVolObservableList = FXCollections.observableArrayList();
+
+        for (ReservationVolAdmin reservation : reservationVols) {
+            // Retrieve Flight based on vol_id
+            Flight flight = flightDAO.getFlightByVolId(reservation.getVolId());
+            reservation.setFlight(flight); // Set the Flight in ReservationVolAdmin
+
+            // Add to observable list
+            reservationVolObservableList.add(reservation);
+        }
 
         // Set the items of the table view
-        reservationTable.setItems(ReservationVolObservableList);
+        reservationTable.setItems(reservationVolObservableList);
     }
 
 
@@ -241,7 +247,7 @@ public class ReservationVolController {
     }
 
 
-    public void populateFlights(List<Flight> flights) {
+ /*   public void populateFlights(List<Flight> flights) {
         if (flightContainer == null) {
             System.out.println("Flight container is null");
             return;
@@ -301,7 +307,118 @@ public class ReservationVolController {
         if (flightCount % flightsPerRow != 0) {
             flightContainer.getChildren().add(currentRow);
         }
+    }*/
+
+
+
+    private void populateFlights(List<Flight> flights) {
+        // Ensure flightContainer is initialized
+        if (flightContainer == null) {
+            System.out.println("Flight container is null");
+            return;
+        }
+
+        // Clear existing content in flightContainer
+        flightContainer.getChildren().clear();
+
+        // Define layout settings
+        int flightsPerRow = 3;
+        int flightCount = 0;
+        HBox currentRow = new HBox();
+
+        AirportDAO airportDAO = new AirportDAO();
+        FlightclassDAO flightclassDAO = new FlightclassDAO();
+
+        // Iterate over each flight to populate flight entries
+        for (Flight flight : flights) {
+            // Create a VBox for each flight entry
+            VBox flightEntry = createFlightEntry(flight, airportDAO, flightclassDAO);
+
+            // Add flightEntry to the currentRow HBox
+            currentRow.getChildren().add(flightEntry);
+            flightCount++;
+
+            // Check if currentRow is full based on flightsPerRow
+            if (flightCount % flightsPerRow == 0) {
+                flightContainer.getChildren().add(currentRow);
+                currentRow = new HBox(); // Reset currentRow for the next row
+            }
+        }
+
+        // Add the last currentRow if it's not full but contains flights
+        if (flightCount % flightsPerRow != 0) {
+            flightContainer.getChildren().add(currentRow);
+        }
     }
+
+    // Helper method to create a flight entry (VBox) with appropriate styling
+    private VBox createFlightEntry(Flight flight, AirportDAO airportDAO, FlightclassDAO flightclassDAO) {
+        VBox flightEntry = new VBox();
+        flightEntry.setSpacing(10);
+
+        // Retrieve departure airport details
+        Airport departureAirport = airportDAO.findById(flight.getAirportDepartId());
+        if (departureAirport == null) {
+            System.out.println("Departure airport not found for flight: " + flight.getId());
+            return flightEntry; // Return empty flight entry or handle error
+        }
+
+        // Retrieve arrival airport details
+        Airport arrivalAirport = airportDAO.findById(flight.getAirportArriveId());
+        if (arrivalAirport == null) {
+            System.out.println("Arrival airport not found for flight: " + flight.getId());
+            return flightEntry; // Return empty flight entry or handle error
+        }
+
+        // Debugging: Log airport details
+        System.out.println("Departure Airport: " + departureAirport.getName() + ", " + departureAirport.getCity());
+        System.out.println("Arrival Airport: " + arrivalAirport.getName() + ", " + arrivalAirport.getCity());
+
+        // Flight details
+        System.out.println("Airline: " + flight.getCompagnieAerienne());
+        System.out.println("Departure Time: " + flight.getHeureDepart().format(dateTimeFormatter));
+        System.out.println("Arrival Time: " + flight.getHeureArrive().format(dateTimeFormatter));
+
+        // Retrieve FlightClass based on volclassId
+        int volclassId = flight.getVolclassId();
+        Flightclass flightClass = flightclassDAO.getFlightClassById(volclassId);
+
+        // Create labels for FlightClass details if available
+        String classLabelText = "Class: " + (flightClass != null ? flightClass.getClassName() : "N/A");
+        String priceLabelText = "Price: $" + (flightClass != null ? flightClass.getPrice() : "N/A");
+
+        Label classLabel = new Label(classLabelText);
+        Label priceLabel = new Label(priceLabelText);
+
+        // Button to view reservation
+        Button viewReservationButton = new Button("View Reservation");
+        viewReservationButton.setOnAction(event -> handleViewReservationButtonClick(flight));
+
+        // Add labels and button to the flightEntry VBox
+        flightEntry.getChildren().addAll(
+                new Label("Departure: " + departureAirport.getName()  ),
+                new Label(   " (" + departureAirport.getCity() + ", " + departureAirport.getCountry() + ")"),
+                new Label("Arrival: " + arrivalAirport.getName()  ),
+                new Label(  " (" + arrivalAirport.getCity() + ", " + arrivalAirport.getCountry() + ")"),
+
+                new Label("Airline: " + flight.getCompagnieAerienne()),
+                new Label("Departure Time: " + flight.getHeureDepart().format(dateTimeFormatter)),
+                new Label("Arrival Time: " + flight.getHeureArrive().format(dateTimeFormatter)),
+                classLabel,
+                priceLabel,
+                viewReservationButton
+        );
+
+
+        // Apply styling to the flightEntry VBox
+        flightEntry.setStyle("-fx-background-color: #3A7E49; -fx-padding: 20; -fx-spacing: 10; -fx-border-radius: 5;");
+        flightEntry.setPrefSize(300, 200); // Set preferred size for uniformity
+
+        return flightEntry;
+    }
+
+
+
 
 
 
@@ -401,6 +518,7 @@ public class ReservationVolController {
             e.printStackTrace();
         }
     }
+
 
 
     @FXML

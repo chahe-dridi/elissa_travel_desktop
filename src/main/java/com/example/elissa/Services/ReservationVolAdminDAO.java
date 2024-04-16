@@ -1,6 +1,8 @@
 package com.example.elissa.Services;
 
 import com.example.elissa.Models.Airport;
+import com.example.elissa.Models.Flight;
+import com.example.elissa.Models.Flightclass;
 import com.example.elissa.Models.ReservationVolAdmin;
 import com.example.elissa.Outil.My_db;
 
@@ -104,7 +106,6 @@ public class ReservationVolAdminDAO {
         }
         return reservations;
     }
-
 
 
 

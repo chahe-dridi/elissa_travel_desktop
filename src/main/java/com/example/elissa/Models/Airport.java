@@ -10,6 +10,14 @@ public class Airport {
     private String city;
     private String country;
 
+
+
+    public Airport(  ) {
+
+
+    }
+
+
     // Constructor
     public Airport(int id, int userId, String code, String name, String city, String country) {
         this.id = id;

@@ -12,6 +12,15 @@ public class ReservationVolAdmin {
     }
 
 
+    private Flight flight; // Assuming Flight is a class representing flight details
+
+    // Constructor, getters, and setters for existing fields...
+
+    public void setFlight(Flight flight) {
+        this.flight = flight;
+    }
+
+
 
 
 

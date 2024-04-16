@@ -5,29 +5,27 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.elissa.Controller.ReservationVolController">
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" styleClass="anchor-pane-background" stylesheets="@airport.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.elissa.Controller.ReservationVolController">
 
-    <Button fx:id="backButton" layoutX="65.0" layoutY="108.0" onAction="#handleBackButtonClick" prefHeight="33.0" prefWidth="66.0" text="Return" />
+    <Button fx:id="backButton" layoutX="1000.0" layoutY="140.0" onAction="#handleBackButtonClick" prefHeight="40.0" prefWidth="160.0" text="Return" />
 
-    <AnchorPane layoutX="197.0" layoutY="181.0" prefHeight="347.0" prefWidth="434.0">
-        <TableView fx:id="reservationTable" layoutY="-27.0" prefHeight="366.0" prefWidth="696.0">
+    <AnchorPane layoutX="128.0" layoutY="189.0" prefHeight="563.0" prefWidth="941.0">
+        <TableView fx:id="reservationTable" layoutX="-59.0" layoutY="35.0" prefHeight="550.0" prefWidth="1000.0">
             <columns>
 
-                <TableColumn fx:id="reservationIdColumn" prefWidth="100" text="Reservation ID" />
-                <TableColumn fx:id="flightIdColumn" prefWidth="110.0" text="Flight ID" />
-                <TableColumn fx:id="userIdColumn" prefWidth="125.0" text="User ID" />
-                <TableColumn fx:id="totalPriceColumn" prefWidth="127.0" text="Total Price" />
-                <TableColumn fx:id="paymentMethodColumn" prefWidth="233.0" text="Payment Method" />
+
+                <TableColumn fx:id="totalPriceColumn" prefWidth="133.0" text="Total Price" />
+                <TableColumn fx:id="paymentMethodColumn" prefWidth="155.0" text="Payment Method" />
 
 
-                <TableColumn text="Description" prefWidth="150" fx:id="descriptionColumn"/>
-                <TableColumn text="Class Name" prefWidth="100" fx:id="classNameColumn"/>
-                <TableColumn text="Departure Time" prefWidth="150" fx:id="departureTimeColumn"/>
-                <TableColumn text="Arrival Time" prefWidth="150" fx:id="arrivalTimeColumn"/>
-                <TableColumn text="Departure Airport" prefWidth="150" fx:id="departureAirportColumn"/>
-                <TableColumn text="Arrival Airport" prefWidth="150" fx:id="arrivalAirportColumn"/>
-                <TableColumn text="City" prefWidth="100" fx:id="cityColumn"/>
-                <TableColumn text="Country" prefWidth="100" fx:id="countryColumn"/>
+                <TableColumn fx:id="descriptionColumn" prefWidth="178.0" text="Description" />
+                <TableColumn fx:id="classNameColumn" prefWidth="150.0" text="Class Name" />
+                <TableColumn fx:id="departureTimeColumn" prefWidth="168.0" text="Departure Time" />
+                <TableColumn fx:id="arrivalTimeColumn" prefWidth="150" text="Arrival Time" />
+                <TableColumn fx:id="departureAirportColumn" prefWidth="150" text="Departure Airport" />
+                <TableColumn fx:id="arrivalAirportColumn" prefWidth="150" text="Arrival Airport" />
+                <TableColumn fx:id="cityColumn" prefWidth="100" text="City" />
+                <TableColumn fx:id="countryColumn" prefWidth="100" text="Country" />
 
 
             </columns>

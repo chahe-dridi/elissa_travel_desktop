@@ -25,6 +25,8 @@ public class Flight {
     }
 
 
+    public Flight( ){
+    }
 
 
     public Flight(int id, int airportDepartId, int airportArriveId, int volclassId, int userId, String compagnieAerienne, LocalDateTime heureDepart, LocalDateTime heureArrive, boolean disponible) {
