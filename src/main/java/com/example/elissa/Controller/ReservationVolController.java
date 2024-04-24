@@ -15,10 +15,14 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -31,7 +35,7 @@ import java.util.List;
 import java.util.Optional;
 
 import javafx.scene.control.Alert;
-
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class ReservationVolController {
@@ -181,22 +185,6 @@ public class ReservationVolController {
     }
 
 //------------------------------------------------------------
-   /* public void populateReservations() {
-        // Create an instance of ReservationVolAdminDAO
-        ReservationVolAdminDAO reservationVolAdminDAO = new ReservationVolAdminDAO();
-        FlightDAO flightDAO = new FlightDAO(); // Assuming you have a FlightDAO
-
-        // Set cell value factories
-        totalPriceColumn.setCellValueFactory(new PropertyValueFactory<>("totalPrice"));
-        paymentMethodColumn.setCellValueFactory(new PropertyValueFactory<>("paymentMethod"));
-        descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
-        classNameColumn.setCellValueFactory(new PropertyValueFactory<>("className"));
-        departureTimeColumn.setCellValueFactory(new PropertyValueFactory<>("heureDepart"));
-        arrivalTimeColumn.setCellValueFactory(new PropertyValueFactory<>("heureArrive"));
-
-        // Call the refresh method
-        refreshTableres(reservationVolAdminDAO, flightDAO);
-    }*/
 
     private void refreshTableres(ReservationVolAdminDAO reservationVolAdminDAO, FlightDAO flightDAO) {
         // Retrieve all reservations from the database using the DAO instance
@@ -251,67 +239,7 @@ public class ReservationVolController {
     }
 
 
- /*   public void populateFlights(List<Flight> flights) {
-        if (flightContainer == null) {
-            System.out.println("Flight container is null");
-            return;
-        }
 
-        flightContainer.getChildren().clear();
-
-        int flightsPerRow = 3;
-        int flightCount = 0;
-        HBox currentRow = new HBox();
-
-        for (Flight flight : flights) {
-            VBox flightEntry = new VBox();
-            flightEntry.setSpacing(10);
-
-            Label departureAirportLabel = new Label("Departure Airport: " + flight.getAirportDepartId());
-            Label arrivalAirportLabel = new Label("Arrival Airport: " + flight.getAirportArriveId());
-            Label airlineLabel = new Label("Airline: " + flight.getCompagnieAerienne());
-            Label departureTimeLabel = new Label("Departure Time: " + flight.getHeureDepart().format(dateTimeFormatter));
-            Label arrivalTimeLabel = new Label("Arrival Time: " + flight.getHeureArrive().format(dateTimeFormatter));
-
-            // Retrieve the volclassId from the flight
-            int volclassId = flight.getVolclassId();
-
-            // Retrieve FlightClass based on volclassId
-            FlightclassDAO flightclassDAO = new FlightclassDAO();
-            Flightclass flightClass = flightclassDAO.getFlightClassById(volclassId);
-
-            // Create labels for FlightClass details if available
-            String classLabelText = "Class: " + (flightClass != null ? flightClass.getClassName() : "N/A");
-            String priceLabelText = "Price: $" + (flightClass != null ? flightClass.getPrice() : "N/A");
-
-            Label classLabel = new Label(classLabelText);
-            Label priceLabel = new Label(priceLabelText);
-
-            Button viewReservationButton = new Button("View Reservation");
-            viewReservationButton.setOnAction(event -> handleViewReservationButtonClick(flight));
-
-            // Add labels and button to the flightEntry VBox
-            flightEntry.getChildren().addAll(
-                    departureAirportLabel, arrivalAirportLabel, airlineLabel,
-                    departureTimeLabel, arrivalTimeLabel, classLabel, priceLabel, viewReservationButton
-            );
-
-            // Add the flightEntry to the currentRow HBox
-            currentRow.getChildren().add(flightEntry);
-            flightCount++;
-
-            // Check if currentRow is full based on flightsPerRow
-            if (flightCount % flightsPerRow == 0) {
-                flightContainer.getChildren().add(currentRow);
-                currentRow = new HBox(); // Reset currentRow for the next row
-            }
-        }
-
-        // Add the last currentRow if it's not full but contains flights
-        if (flightCount % flightsPerRow != 0) {
-            flightContainer.getChildren().add(currentRow);
-        }
-    }*/
 
 
 
@@ -335,12 +263,11 @@ public class ReservationVolController {
 
         // Iterate over each flight to populate flight entries
         for (Flight flight : flights) {
-            // Create a VBox for each flight entry
             VBox flightEntry = createFlightEntry(flight, airportDAO, flightclassDAO);
-
-            // Add flightEntry to the currentRow HBox
-            currentRow.getChildren().add(flightEntry);
-            flightCount++;
+            if (flightEntry != null) {
+                currentRow.getChildren().add(flightEntry);
+                flightCount++;
+            }
 
             // Check if currentRow is full based on flightsPerRow
             if (flightCount % flightsPerRow == 0) {
@@ -348,6 +275,7 @@ public class ReservationVolController {
                 currentRow = new HBox(); // Reset currentRow for the next row
             }
         }
+
 
         // Add the last currentRow if it's not full but contains flights
         if (flightCount % flightsPerRow != 0) {
@@ -361,33 +289,30 @@ public class ReservationVolController {
     private VBox createFlightEntry(Flight flight, AirportDAO airportDAO, FlightclassDAO flightclassDAO) {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-        VBox flightEntry = new VBox();
-        flightEntry.setSpacing(10);
-
         // Retrieve departure airport details
         Airport departureAirport = airportDAO.findById(flight.getAirportDepartId());
         if (departureAirport == null) {
             System.out.println("Departure airport not found for flight: " + flight.getId());
-            return flightEntry; // Return empty flight entry or handle error
+            return null; // Return null to indicate empty flight entry
         }
 
         // Retrieve arrival airport details
         Airport arrivalAirport = airportDAO.findById(flight.getAirportArriveId());
         if (arrivalAirport == null) {
             System.out.println("Arrival airport not found for flight: " + flight.getId());
-            return flightEntry; // Return empty flight entry or handle error
+            return null; // Return null to indicate empty flight entry
         }
 
-        // Debugging: Log airport details
-        System.out.println("Departure Airport: " + departureAirport.getName() + ", " + departureAirport.getCity());
-        System.out.println("Arrival Airport: " + arrivalAirport.getName() + ", " + arrivalAirport.getCity());
+        // Get the current date and time
+        LocalDateTime now = LocalDateTime.now();
 
-        // Flight details
-        System.out.println("Airline: " + flight.getCompagnieAerienne());
-        System.out.println("Departure Time: " + flight.getHeureDepart().format(dateTimeFormatter));
-        System.out.println("Arrival Time: " + flight.getHeureArrive().format(dateTimeFormatter));
+        // Check if the flight's departure time is in the future (from now onwards)
+        if (flight.getHeureDepart().isBefore(now)) {
+            System.out.println("Flight with ID " + flight.getId() + " has already departed.");
+            return null; // Return null to indicate empty flight entry
+        }
 
-        // Retrieve FlightClass based on volclassId
+        // FlightClass details
         int volclassId = flight.getVolclassId();
         Flightclass flightClass = flightclassDAO.getFlightClassById(volclassId);
 
@@ -395,12 +320,13 @@ public class ReservationVolController {
         String classLabelText = "Class: " + (flightClass != null ? flightClass.getClassName() : "N/A");
         String priceLabelText = "Price: $" + (flightClass != null ? flightClass.getPrice() : "N/A");
 
-        Label classLabel = new Label(classLabelText);
-        Label priceLabel = new Label(priceLabelText);
-
         // Button to view reservation
         Button viewReservationButton = new Button("View Reservation");
         viewReservationButton.setOnAction(event -> handleViewReservationButtonClick(flight));
+
+        // Create and configure flightEntry VBox
+        VBox flightEntry = new VBox();
+        flightEntry.setSpacing(10);
 
         // Add labels and button to the flightEntry VBox
         flightEntry.getChildren().addAll(
@@ -409,8 +335,8 @@ public class ReservationVolController {
                 new Label("Airline: " + flight.getCompagnieAerienne()),
                 new Label("Departure Time: " + flight.getHeureDepart().format(dateTimeFormatter)),
                 new Label("Arrival Time: " + flight.getHeureArrive().format(dateTimeFormatter)),
-                classLabel,
-                priceLabel,
+                new Label(classLabelText),
+                new Label(priceLabelText),
                 viewReservationButton
         );
 
@@ -420,19 +346,6 @@ public class ReservationVolController {
 
         return flightEntry;
     }
-
-
-
-
-
-  /*  private void initializeTableColumns() {
-        reservationIdColumn.setCellValueFactory(new PropertyValueFactory<>("reservationId"));
-        flightIdColumn.setCellValueFactory(new PropertyValueFactory<>("flightId"));
-        userIdColumn.setCellValueFactory(new PropertyValueFactory<>("userId"));
-        totalPriceColumn.setCellValueFactory(new PropertyValueFactory<>("totalPrice"));
-        paymentMethodColumn.setCellValueFactory(new PropertyValueFactory<>("paymentMethod"));
-    }*/
-
 
 
 
@@ -479,7 +392,7 @@ public class ReservationVolController {
 
             if (flightClass != null) {
                 // Update labels with FlightClass details
-                classLabel.setText(  flightClass.getClassName());
+                classLabel.setText(flightClass.getClassName());
                 priceLabel.setText("$" + flightClass.getPrice());
             } else {
                 // Handle case where FlightClass is not found
@@ -490,7 +403,7 @@ public class ReservationVolController {
             // Retrieve Departure Airport details
             Airport departureAirport = airportDAO.findById(selectedFlight.getAirportDepartId());
             if (departureAirport != null) {
-                departureAirportLabel.setText(  departureAirport.getName());
+                departureAirportLabel.setText(departureAirport.getName());
                 departureAirportLabel.setText(departureAirportLabel.getText() + " (" + departureAirport.getCity() + ", " + departureAirport.getCountry() + ")");
             } else {
                 departureAirportLabel.setText("Departure Airport: N/A");
@@ -499,18 +412,54 @@ public class ReservationVolController {
             // Retrieve Arrival Airport details
             Airport arrivalAirport = airportDAO.findById(selectedFlight.getAirportArriveId());
             if (arrivalAirport != null) {
-                arrivalAirportLabel.setText(  arrivalAirport.getName());
+                arrivalAirportLabel.setText(arrivalAirport.getName());
                 arrivalAirportLabel.setText(arrivalAirportLabel.getText() + " (" + arrivalAirport.getCity() + ", " + arrivalAirport.getCountry() + ")");
             } else {
                 arrivalAirportLabel.setText("Arrival Airport: N/A");
             }
 
             // Update Airline and Time details
-            airlineLabel.setText(    selectedFlight.getCompagnieAerienne());
-            departureTimeLabel.setText(  selectedFlight.getHeureDepart().format(dateTimeFormatter));
-            arrivalTimeLabel.setText(  selectedFlight.getHeureArrive().format(dateTimeFormatter));
+            airlineLabel.setText(selectedFlight.getCompagnieAerienne());
+
+            // Format departure and arrival time with date and time
+            DateTimeFormatter fullDateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+
+            LocalDateTime departureDateTime = selectedFlight.getHeureDepart();
+            if (departureDateTime != null) {
+                departureTimeLabel.setText(departureDateTime.format(fullDateTimeFormatter));
+            } else {
+                departureTimeLabel.setText("Departure Time: N/A");
+            }
+
+            LocalDateTime arrivalDateTime = selectedFlight.getHeureArrive();
+            if (arrivalDateTime != null) {
+                arrivalTimeLabel.setText(arrivalDateTime.format(fullDateTimeFormatter));
+            } else {
+                arrivalTimeLabel.setText("Arrival Time: N/A");
+            }
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     @FXML
@@ -636,6 +585,49 @@ public class ReservationVolController {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     @FXML
     private ScrollPane reservationScrollPane;
 
@@ -644,14 +636,25 @@ public class ReservationVolController {
 
     @FXML
     private void handleUpdateReservation() {
-        if (selectedReservation != null && selectedReservation.getFlight() != null) {
-            LocalDateTime departureDateTime = selectedReservation.getFlight().getHeureArrive();
-            LocalDateTime currentDateTime = LocalDateTime.now();
+        if (selectedReservation != null && selectedReservation.getVolId() != 0) {
+            int reservationId = selectedReservation.getId(); // Retrieve the reservation ID
+            int flightId = selectedReservation.getVolId(); // Retrieve the flight ID associated with the reservation
 
-            // Check if departure is more than 48 hours from now
-            if (departureDateTime != null && departureDateTime.isBefore(currentDateTime.plusHours(48))) {
-                showAlert(Alert.AlertType.ERROR, "Error", null, "Cannot update reservation within 48 hours of departure.");
-                return;
+            // Retrieve the Flight associated with the selected reservation using the flight ID
+            Flight selectedFlight = getFlightById(flightId);
+
+            if (selectedFlight != null) {
+                LocalDateTime departureDateTime = selectedFlight.getHeureDepart();
+                LocalDateTime currentDateTime = LocalDateTime.now();
+
+                // Calculate the minimum allowable departure time (48 hours from now)
+                LocalDateTime minAllowableDepartureTime = currentDateTime.plusHours(48);
+
+                // Check if departure is more than 48 hours from now
+                if (departureDateTime != null && departureDateTime.isBefore(minAllowableDepartureTime)) {
+                    showAlert(Alert.AlertType.ERROR, "Error", null, "Cannot update reservation within 48 hours of departure.");
+                    return;
+                }
             }
 
             // Display a ChoiceBox dialog to update the payment method
@@ -670,9 +673,13 @@ public class ReservationVolController {
                     selectedReservation.setPaymentMethod(newPaymentMethod);
 
                     try {
+                        // Update the reservation in the database using its ID
                         reservationDAO.updateReservation(selectedReservation);
+
                         showAlert(Alert.AlertType.INFORMATION, "Success", null, "Reservation updated successfully.");
-                        populateReservations(); // Refresh reservations display
+
+                        // Refresh reservations display
+                        populateReservations();
                     } catch (Exception e) {
                         showAlert(Alert.AlertType.ERROR, "Error", null, "Failed to update reservation: " + e.getMessage());
                     }
@@ -683,16 +690,35 @@ public class ReservationVolController {
         }
     }
 
+
+
     @FXML
     private void handleDeleteReservation() {
-        if (selectedReservation != null && selectedReservation.getFlight() != null) {
-            LocalDateTime departureDateTime = selectedReservation.getFlight().getHeureArrive();
-            LocalDateTime currentDateTime = LocalDateTime.now();
+        if (selectedReservation != null) {
+            System.out.println("Selected Reservation: " + selectedReservation);
 
-            // Check if departure is more than 48 hours from now
-            if (departureDateTime != null && departureDateTime.isBefore(currentDateTime.plusHours(48))) {
-                showAlert(Alert.AlertType.ERROR, "Error", null, "Cannot delete reservation within 48 hours of departure.");
-                return;
+            // Retrieve the reservation ID from the selected reservation
+            int reservationId = selectedReservation.getId();
+
+            // Retrieve the idVol (flight ID) associated with the selected reservation
+            int flightId = selectedReservation.getVolId();
+
+            // Retrieve the Flight associated with the selected reservation using the flight ID
+            Flight selectedFlight = getFlightById(flightId);
+            System.out.println("Selected flight: " + selectedFlight);
+
+            if (selectedFlight != null) {
+                LocalDateTime departureDateTime = selectedFlight.getHeureDepart();
+                LocalDateTime currentDateTime = LocalDateTime.now();
+
+                // Calculate the minimum allowable departure time (48 hours from now)
+                LocalDateTime minAllowableDepartureTime = currentDateTime.plusHours(48);
+
+                // Check if departure is more than 48 hours from now
+                if (departureDateTime != null && departureDateTime.isBefore(minAllowableDepartureTime)) {
+                    showAlert(Alert.AlertType.ERROR, "Error", null, "Cannot delete reservation within 48 hours of departure.");
+                    return;
+                }
             }
 
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -703,18 +729,32 @@ public class ReservationVolController {
             alert.showAndWait().ifPresent(result -> {
                 if (result == ButtonType.OK) {
                     try {
-                        reservationDAO.deleteReservation(selectedReservation.getId());
+                        // Delete the reservation from the database using its ID
+                        reservationDAO.deleteReservation(reservationId);
+
+                        // Display success message
                         showAlert(Alert.AlertType.INFORMATION, "Success", null, "Reservation deleted successfully.");
-                        populateReservations(); // Refresh reservations display
+
+                        // Refresh the displayed reservations
+                        populateReservations();
                     } catch (Exception e) {
+                        // Display error message if deletion fails
                         showAlert(Alert.AlertType.ERROR, "Error", null, "Failed to delete reservation: " + e.getMessage());
                     }
                 }
             });
         } else {
-            showAlert(Alert.AlertType.ERROR, "Error", null, "Please select a reservation with a valid flight to delete.");
+            showAlert(Alert.AlertType.ERROR, "Error", null, "Please select a reservation to delete.");
         }
     }
+
+    private Flight getFlightById(int flightId) {
+        // Retrieve Flight details from database using flightId
+        FlightDAO flightDAO = new FlightDAO();
+        return flightDAO.getFlightById(flightId); // Implement this method in FlightDAO
+    }
+
+
 
     private void populateReservations() {
         // Retrieve all reservations from the database using the DAO instance
@@ -737,28 +777,127 @@ public class ReservationVolController {
 
     private VBox createReservationNode(ReservationVolAdmin reservation) {
         VBox reservationNode = new VBox();
-        reservationNode.setStyle("-fx-border-color: black; -fx-border-width: 1px; -fx-padding: 10px;");
+        reservationNode.setSpacing(10);
+        reservationNode.setStyle("-fx-background-color: white; -fx-background-radius: 10px; -fx-border-color: lightgrey; -fx-border-width: 1px;");
+        reservationNode.setPadding(new Insets(10));
 
-        Label userIdLabel = new Label("User ID: " + reservation.getUserId());
-        Label totalPriceLabel = new Label("Total Price: " + reservation.getTotalPrice());
-        Label paymentMethodLabel = new Label("Payment Method: " + reservation.getPaymentMethod());
+        DropShadow dropShadow = new DropShadow();
+        dropShadow.setRadius(10.0);
+        dropShadow.setOffsetX(3.0);
+        dropShadow.setOffsetY(3.0);
+        dropShadow.setColor(Color.rgb(50, 50, 50, 0.5));
+        reservationNode.setEffect(dropShadow);
 
-        Button updateButton = new Button("Update");
-        updateButton.setOnAction(event -> {
-            selectedReservation = reservation; // Set the selected reservation for update
-            handleUpdateReservation(); // Handle update operation
-        });
+        if (reservation != null) {
+            Label userIdLabel = new Label("User ID: " + reservation.getUserId());
+            Label totalPriceLabel = new Label("Total Price: $" + String.format("%.2f", reservation.getTotalPrice()));
+            Label paymentMethodLabel = new Label("Payment Method: " + reservation.getPaymentMethod());
 
-        Button deleteButton = new Button("Delete");
-        deleteButton.setOnAction(event -> {
-            selectedReservation = reservation; // Set the selected reservation for deletion
-            handleDeleteReservation(); // Handle delete operation
-        });
+            int volId = reservation.getVolId(); // Get the volId associated with the reservation
 
-        reservationNode.getChildren().addAll(userIdLabel, totalPriceLabel, paymentMethodLabel, updateButton, deleteButton);
+            // Retrieve Flight information using volId
+            Flight reservationFlight = getFlightByVolId(volId);
 
+            if (reservationFlight != null) {
+                // Retrieve departure and arrival airport details
+                Airport departureAirport = getDepartureAirport(reservationFlight.getAirportDepartId());
+                Airport arrivalAirport = getArrivalAirport(reservationFlight.getAirportArriveId());
+
+                if (departureAirport != null && arrivalAirport != null) {
+                    // Display flight details
+                    Label flightNameLabel = new Label("Flight Name: " + departureAirport.getName());
+                    Label departureLabel = new Label("Departure: " + departureAirport.getCity() + ", " + departureAirport.getCountry() +
+                            " at " + formatDateTime(reservationFlight.getHeureDepart()));
+                    Label arrivalLabel = new Label("Arrival: " + arrivalAirport.getCity() + ", " + arrivalAirport.getCountry() +
+                            " at " + formatDateTime(reservationFlight.getHeureArrive()));
+
+                    // Add flight details to the reservationNode
+                    reservationNode.getChildren().addAll(userIdLabel, totalPriceLabel, paymentMethodLabel, flightNameLabel, departureLabel, arrivalLabel);
+                } else {
+                    // Handle case where airport details are not found
+                    Label errorLabel = new Label("Error: Airport details not found for this flight.");
+                    reservationNode.getChildren().add(errorLabel);
+                }
+            } else {
+                // Handle case where Flight is null or not found
+                Label errorLabel = new Label("Error: Flight information not available for this reservation.");
+                reservationNode.getChildren().add(errorLabel);
+            }
+
+            Button updateButton = new Button("Update");
+            updateButton.setOnAction(event -> {
+                selectedReservation = reservation; // Set the selected reservation for update
+                handleUpdateReservation(); // Handle update operation
+            });
+
+            Button deleteButton = new Button("Delete");
+            deleteButton.setOnAction(event -> {
+                selectedReservation = reservation; // Set the selected reservation for deletion
+                handleDeleteReservation(); // Handle delete operation
+            });
+
+            // Add labels and buttons to the reservationNode
+            reservationNode.getChildren().addAll(updateButton, deleteButton);
+        } else {
+            // Handle case where reservation is null
+            Label errorLabel = new Label("Error: Reservation details not available.");
+            reservationNode.getChildren().add(errorLabel);
+        }
+
+        VBox.setVgrow(reservationNode, Priority.ALWAYS); // Allow VBox to stretch vertically
         return reservationNode;
+
+
+
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    private String formatDateTime(LocalDateTime dateTime) {
+        // Format LocalDateTime to a user-friendly string
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        return dateTime.format(formatter);
+    }
+
+
+
+
+    private Airport getArrivalAirport(int airportId) {
+        // Retrieve Arrival Airport details from the database using airportId
+        AirportDAO airportDAO = new AirportDAO();
+        return airportDAO.findById(airportId); // Implement this method in AirportDAO
+    }
+
+
+    private Flight getFlightByVolId(int volId) {
+        // Retrieve Flight details from database using volId
+        FlightDAO flightDAO = new FlightDAO();
+        return flightDAO.getFlightByVolId(volId); // Implement this method in FlightDAO
+    }
+
+    private Airport getDepartureAirport(int airportId) {
+        // Retrieve Airport details from database using airportId
+        AirportDAO airportDAO = new AirportDAO();
+        return airportDAO.findById(airportId); // Implement this method in AirportDAO
+    }
+
+
+
 
     private void showAlert(Alert.AlertType type, String title, String headerText, String contentText) {
         Alert alert = new Alert(type);
