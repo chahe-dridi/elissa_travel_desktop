@@ -8,6 +8,10 @@ public class ReservationVolAdmin {
     private double totalPrice;
     private String paymentMethod;
 
+
+
+
+
     public ReservationVolAdmin() {
     }
 
@@ -21,7 +25,9 @@ public class ReservationVolAdmin {
     }
 
 
-
+    public Flight getFlight() {
+        return flight;
+    }
 
 
     public ReservationVolAdmin(int volId, int userId, double totalPrice, String paymentMethod) {

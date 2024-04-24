@@ -10,9 +10,9 @@
 
 <AnchorPane prefHeight="700.0" prefWidth="1200.0" stylesheets="@airport.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.elissa.Controller.FlightController">
     <children>
-        <TableView fx:id="flightTableView" layoutX="446.0" layoutY="154.0" prefHeight="342.0" prefWidth="576.0">
+        <TableView fx:id="flightTableView" layoutX="445.0" layoutY="154.0" prefHeight="342.0" prefWidth="576.0">
             <columns>
-                <TableColumn fx:id="flightIdColumn" prefWidth="50.0" text="ID" />
+                <TableColumn fx:id="flightIdColumn" prefWidth="50.0" text="Number" />
                 <TableColumn fx:id="flightAirportDepartIdColumn" prefWidth="74.0" text="Departure Airport ID" />
                 <TableColumn fx:id="flightAirportArriveIdColumn" prefWidth="69.0" text="Arrival Airport ID" />
                 <TableColumn fx:id="flightVolclassIdColumn" prefWidth="122.0" text="Class ID" />

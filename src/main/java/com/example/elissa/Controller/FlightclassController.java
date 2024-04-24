@@ -74,7 +74,7 @@ public class FlightclassController implements Initializable {
     }
 
     private void configureTableView() {
-        IdColumn.setCellValueFactory(new PropertyValueFactory<>("Id"));
+        IdColumn.setCellValueFactory(new PropertyValueFactory<>("id")); // Use "id" instead of "Id"
         classNameColumn.setCellValueFactory(new PropertyValueFactory<>("className"));
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
@@ -185,7 +185,6 @@ public class FlightclassController implements Initializable {
             clearFields();
         }
     }
-
 
     private boolean isValidInput(String str) {
         return !str.isEmpty(); // Basic validation to check if the string is not empty

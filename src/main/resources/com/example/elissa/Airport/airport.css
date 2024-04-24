@@ -125,3 +125,173 @@
     -fx-background-size: cover;
     -fx-background-repeat: no-repeat;
 }
+
+
+
+
+
+
+
+
+/* reservation.css */
+
+.info-label {
+    -fx-font-size: 14pt;
+    -fx-text-fill: #333333;
+}
+
+.action-button {
+    -fx-font-size: 14pt;
+    -fx-padding: 10px 20px;
+    -fx-background-color: #3A7E49;
+    -fx-text-fill: white;
+    -fx-border-radius: 5px;
+}
+
+.anchor-pane-background {
+    -fx-background-color: #f4f4f4;
+}
+
+
+/* reservation.css */
+
+/* Styling for the AnchorPane background */
+.anchor-pane-background {
+    -fx-background-color: #f4f4f4;
+}
+
+/* Styling for labels displaying information */
+.info-label {
+    -fx-font-size: 14pt;
+    -fx-text-fill: #333333;
+    -fx-font-weight: bold;
+}
+
+/* Styling for text within the white box */
+.info-text {
+    -fx-font-size: 14pt;
+    -fx-text-fill: #333333;
+}
+
+
+
+
+/* Styling for action buttons */
+.action-button {
+    -fx-font-size: 14pt;
+    -fx-padding: 10px 20px;
+    -fx-background-color: #3A7E49;
+    -fx-text-fill: white;
+    -fx-border-radius: 5px;
+}
+
+
+
+.anchor-pane-background {
+    -fx-background-color: #f0f0f0; /* Light gray background for the anchor pane */
+}
+
+.info-box {
+    -fx-background-color: #ffffff; /* White background for the info box */
+    -fx-padding: 20px;
+    -fx-spacing: 10px;
+    -fx-border-color: #cccccc; /* Light gray border */
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+}
+
+.info-label {
+    -fx-font-weight: bold;
+}
+
+.info-text {
+    -fx-font-size: 14px;
+}
+
+
+
+.action-button {
+    -fx-background-color: #4CAF50; /* Green background */
+    -fx-text-fill: #ffffff; /* White text color */
+    -fx-font-size: 14px;
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 5px;
+    -fx-cursor: hand; /* Cursor style on hover */
+}
+
+.action-button:hover {
+    -fx-background-color: #45a049; /* Darker green background on hover */
+}
+
+
+
+
+
+
+
+
+
+
+
+.choice-box {
+    -fx-font-size: 14px;
+    -fx-pref-width: 150px;
+    -fx-background-color: white;
+    -fx-border-color: #999999;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-padding: 8px;
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.2) , 2,0,0,1 );
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+}
+
+/* Hover effect for ChoiceBox */
+.choice-box:hover {
+    -fx-border-color: #45a049; /* Dark green border on hover */
+    -fx-cursor: hand; /* Change cursor on hover */
+}
+
+/* Focused effect for ChoiceBox */
+.choice-box:focused {
+    -fx-border-color: #0066ff; /* Blue border when focused */
+    -fx-border-width: 2px;
+}
+
+/* Arrow button in ChoiceBox */
+.choice-box .arrow {
+    -fx-background-color: #999999; /* Light gray background for the arrow button */
+    -fx-shape: "M 0 0 L 5 5 L 10 0 Z"; /* Custom triangle shape for the arrow */
+    -fx-padding: 5px;
+    -fx-background-insets: 0;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.2) , 2,0,0,1 );
+}
+
+/* Styling for arrow button hover effect */
+.choice-box .arrow:hover {
+    -fx-background-color: #45a049; /* Dark green background on hover */
+    -fx-cursor: hand; /* Change cursor on hover */
+}
+
+/* Dropdown list in ChoiceBox */
+.choice-box .list-cell {
+    -fx-background-color: #ffffff; /* White background for list cells */
+    -fx-background-radius: 0;
+    -fx-padding: 8px;
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333; /* Dark text color */
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.2) , 2,0,0,1 );
+}
+
+/* Hover effect for dropdown list cells */
+.choice-box .list-cell:hover {
+    -fx-background-color: #f5f5f5; /* Light gray background on hover */
+}
+
+/* Selected item in dropdown list */
+.choice-box .list-view .list-cell:filled:selected {
+    -fx-background-color: #45a049; /* Dark green background for selected item */
+    -fx-text-fill: white; /* White text color for selected item */
+}

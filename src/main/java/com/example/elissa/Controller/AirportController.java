@@ -22,6 +22,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -82,7 +83,11 @@ public class AirportController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("AirportController initialized");
         configureTableView(); // Call to configureTableView() method
-        refreshTableView();
+        try {
+            refreshTableView();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
         airportTableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
@@ -120,7 +125,7 @@ public class AirportController implements Initializable {
     }
     //-----------------------------------
     @FXML
-    void handleNewAirportButton() {
+    void handleNewAirportButton() throws SQLException {
         // Retrieve data from input fields
         String code = newAirportCodeField.getText().trim();
         String name = newAirportNameField.getText().trim();
@@ -148,7 +153,7 @@ public class AirportController implements Initializable {
 
 
     // Method to refresh the table view with the latest data from the database
-    private void refreshTableView() {
+    private void refreshTableView() throws SQLException {
         // Retrieve all airports from the database
         List<Airport> airports = airportDAO.getAllAirports();
 
@@ -168,7 +173,7 @@ public class AirportController implements Initializable {
 
 
     @FXML
-    void handleModifyAirportButton() {
+    void handleModifyAirportButton() throws SQLException {
         Airport selectedAirport = airportTableView.getSelectionModel().getSelectedItem();
         if (selectedAirport != null) {
             // Retrieve modified data from input fields
@@ -222,19 +227,20 @@ public class AirportController implements Initializable {
 
 
     @FXML
-    void handleDeleteAirportButton() {
+    void handleDeleteAirportButton() throws SQLException {
         Airport selectedAirport = airportTableView.getSelectionModel().getSelectedItem();
         if (selectedAirport != null) {
             // Delete the selected airport from the database
-            airportDAO.deleteAirport(selectedAirport.getId());
+            airportDAO.deleteAirport(selectedAirport);
 
             // Refresh the table view to reflect the deletion
             refreshTableView();
         }
     }
 
+
     @FXML
-    void handleSearchAirportFieldTextChanged() {
+    void handleSearchAirportFieldTextChanged() throws SQLException {
         String searchCode = searchAirportCodeField.getText().trim();
         if (!searchCode.isEmpty()) {
             // Perform search by code

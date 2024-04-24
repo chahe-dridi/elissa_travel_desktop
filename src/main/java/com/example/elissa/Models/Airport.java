@@ -1,5 +1,6 @@
 package com.example.elissa.Models;
 
+
 public class Airport {
 
 
@@ -44,10 +45,11 @@ public class Airport {
     public int getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
     }
+
+
 
     public int getUserId() {
         return userId;
@@ -90,5 +92,17 @@ public class Airport {
     }
 
 
+
+    @Override
+    public String toString() {
+        return "Airport{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", code='" + code + '\'' +
+                ", name='" + name + '\'' +
+                ", city='" + city + '\'' +
+                ", country='" + country + '\'' +
+                '}';
+    }
 
 }

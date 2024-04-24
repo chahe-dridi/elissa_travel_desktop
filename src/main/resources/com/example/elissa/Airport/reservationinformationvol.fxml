@@ -6,28 +6,66 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
 <AnchorPane prefHeight="800.0" prefWidth="1200.0" styleClass="anchor-pane-background" stylesheets="@airport.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.elissa.Controller.ReservationVolController">
+    <!-- Container for Information in a Styled Box -->
+    <VBox layoutX="248.0" layoutY="169.0" spacing="10" styleClass="info-box">
+        <!-- Departure Airport -->
+        <HBox>
+            <Label styleClass="info-label" text="Departure Airport: " />
+            <Label fx:id="departureAirportLabel" styleClass="info-text" />
+        </HBox>
+        <!-- Arrival Airport -->
+        <HBox>
+            <Label styleClass="info-label" text="Arrival Airport: " />
+            <Label fx:id="arrivalAirportLabel" styleClass="info-text" />
+        </HBox>
+        <!-- Airline -->
+        <HBox>
+            <Label styleClass="info-label" text="Airline: " />
+            <Label fx:id="airlineLabel" styleClass="info-text" />
+        </HBox>
+        <!-- Departure Time -->
+        <HBox>
+            <Label styleClass="info-label" text="Departure Time: " />
+            <Label fx:id="departureTimeLabel" styleClass="info-text" />
+        </HBox>
+        <!-- Arrival Time -->
+        <HBox>
+            <Label styleClass="info-label" text="Arrival Time: " />
+            <Label fx:id="arrivalTimeLabel" styleClass="info-text" />
+        </HBox>
+        <!-- Class -->
+        <HBox>
+            <Label styleClass="info-label" text="Class: " />
+            <Label fx:id="classLabel" styleClass="info-text" />
+        </HBox>
+        <!-- Price -->
+        <HBox>
+            <Label styleClass="info-label" text="Price: " />
+            <Label fx:id="priceLabel" styleClass="info-text" />
+        </HBox>
+         <Label styleClass="info-label" text="Payment Method: " />
+         <ChoiceBox fx:id="paymentMethodChoiceBox" styleClass="choice-box">
+             <items>
+                 <FXCollections fx:factory="observableArrayList">
+                     <String fx:value="Cash" />
+                     <String fx:value="Online" />
+                 </FXCollections>
+             </items>
+         </ChoiceBox>
+    </VBox>
 
-    <Label fx:id="departureAirportLabel" layoutX="50.0" layoutY="30.0" />
-    <Label fx:id="arrivalAirportLabel" layoutX="50.0" layoutY="60.0" />
-    <Label fx:id="airlineLabel" layoutX="50.0" layoutY="90.0" />
-    <Label fx:id="departureTimeLabel" layoutX="50.0" layoutY="120.0" />
-    <Label fx:id="arrivalTimeLabel" layoutX="50.0" layoutY="150.0" />
-    <Label fx:id="classLabel" layoutX="200.0" layoutY="90.0" />
-    <Label fx:id="priceLabel" layoutX="200.0" layoutY="120.0" />
+    <!-- Container for Payment Method ChoiceBox and Reserve Button -->
+    <VBox layoutX="50.0" layoutY="300.0" spacing="10">
+        <!-- Payment Method ChoiceBox -->
+        <HBox />
+    </VBox>
 
-    <ChoiceBox fx:id="paymentMethodChoiceBox" layoutX="50.0" layoutY="200.0">
-        <items>
-            <FXCollections fx:factory="observableArrayList">
-                <String fx:value="Cash" />
-                <String fx:value="Online" />
-            </FXCollections>
-        </items>
-    </ChoiceBox>
-
-    <Button fx:id="reserveButton" layoutX="50.0" layoutY="250.0" onAction="#handleReservationButtonClick" text="Reserve" />
-
+    <!-- Back Button -->
     <Button fx:id="backButton" layoutX="1000.0" layoutY="140.0" onAction="#handleBackButtonClick" prefHeight="40.0" prefWidth="160.0" text="Return" />
-
+    <!-- Reserve Button -->
+     <Button fx:id="reserveButton" layoutX="433.0" layoutY="572.0" onAction="#handleReservationButtonClick" styleClass="action-button" text="Reserve" />
 </AnchorPane>

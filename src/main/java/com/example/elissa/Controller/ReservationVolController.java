@@ -25,10 +25,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Optional;
 
 import javafx.scene.control.Alert;
+
+import java.time.format.DateTimeFormatter;
 
 public class ReservationVolController {
 
@@ -176,8 +180,8 @@ public class ReservationVolController {
         }
     }
 
-
-    public void populateReservations() {
+//------------------------------------------------------------
+   /* public void populateReservations() {
         // Create an instance of ReservationVolAdminDAO
         ReservationVolAdminDAO reservationVolAdminDAO = new ReservationVolAdminDAO();
         FlightDAO flightDAO = new FlightDAO(); // Assuming you have a FlightDAO
@@ -192,7 +196,7 @@ public class ReservationVolController {
 
         // Call the refresh method
         refreshTableres(reservationVolAdminDAO, flightDAO);
-    }
+    }*/
 
     private void refreshTableres(ReservationVolAdminDAO reservationVolAdminDAO, FlightDAO flightDAO) {
         // Retrieve all reservations from the database using the DAO instance
@@ -352,7 +356,11 @@ public class ReservationVolController {
     }
 
     // Helper method to create a flight entry (VBox) with appropriate styling
+
+
     private VBox createFlightEntry(Flight flight, AirportDAO airportDAO, FlightclassDAO flightclassDAO) {
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
         VBox flightEntry = new VBox();
         flightEntry.setSpacing(10);
 
@@ -396,11 +404,8 @@ public class ReservationVolController {
 
         // Add labels and button to the flightEntry VBox
         flightEntry.getChildren().addAll(
-                new Label("Departure: " + departureAirport.getName()  ),
-                new Label(   " (" + departureAirport.getCity() + ", " + departureAirport.getCountry() + ")"),
-                new Label("Arrival: " + arrivalAirport.getName()  ),
-                new Label(  " (" + arrivalAirport.getCity() + ", " + arrivalAirport.getCountry() + ")"),
-
+                new Label("Departure: " + departureAirport.getName() + " (" + departureAirport.getCity() + ", " + departureAirport.getCountry() + ")"),
+                new Label("Arrival: " + arrivalAirport.getName() + " (" + arrivalAirport.getCity() + ", " + arrivalAirport.getCountry() + ")"),
                 new Label("Airline: " + flight.getCompagnieAerienne()),
                 new Label("Departure Time: " + flight.getHeureDepart().format(dateTimeFormatter)),
                 new Label("Arrival Time: " + flight.getHeureArrive().format(dateTimeFormatter)),
@@ -409,14 +414,12 @@ public class ReservationVolController {
                 viewReservationButton
         );
 
-
         // Apply styling to the flightEntry VBox
         flightEntry.setStyle("-fx-background-color: #3A7E49; -fx-padding: 20; -fx-spacing: 10; -fx-border-radius: 5;");
         flightEntry.setPrefSize(300, 200); // Set preferred size for uniformity
 
         return flightEntry;
     }
-
 
 
 
@@ -469,25 +472,43 @@ public class ReservationVolController {
     private void updateFlightDetails() {
         if (selectedFlight != null) {
             FlightclassDAO flightclassDAO = new FlightclassDAO();
+            AirportDAO airportDAO = new AirportDAO();
 
             // Retrieve FlightClass associated with selectedFlight
             Flightclass flightClass = flightclassDAO.getFlightClassById(selectedFlight.getVolclassId());
 
             if (flightClass != null) {
                 // Update labels with FlightClass details
-                classLabel.setText("Class: " + flightClass.getClassName());
-                priceLabel.setText("Price: $" + flightClass.getPrice());
+                classLabel.setText(  flightClass.getClassName());
+                priceLabel.setText("$" + flightClass.getPrice());
             } else {
                 // Handle case where FlightClass is not found
                 classLabel.setText("Class: N/A");
                 priceLabel.setText("Price: N/A");
             }
 
-            departureAirportLabel.setText("Departure Airport: " + selectedFlight.getAirportDepartId());
-            arrivalAirportLabel.setText("Arrival Airport: " + selectedFlight.getAirportArriveId());
-            airlineLabel.setText("Airline: " + selectedFlight.getCompagnieAerienne());
-            departureTimeLabel.setText("Departure Time: " + selectedFlight.getHeureDepart().format(dateTimeFormatter));
-            arrivalTimeLabel.setText("Arrival Time: " + selectedFlight.getHeureArrive().format(dateTimeFormatter));
+            // Retrieve Departure Airport details
+            Airport departureAirport = airportDAO.findById(selectedFlight.getAirportDepartId());
+            if (departureAirport != null) {
+                departureAirportLabel.setText(  departureAirport.getName());
+                departureAirportLabel.setText(departureAirportLabel.getText() + " (" + departureAirport.getCity() + ", " + departureAirport.getCountry() + ")");
+            } else {
+                departureAirportLabel.setText("Departure Airport: N/A");
+            }
+
+            // Retrieve Arrival Airport details
+            Airport arrivalAirport = airportDAO.findById(selectedFlight.getAirportArriveId());
+            if (arrivalAirport != null) {
+                arrivalAirportLabel.setText(  arrivalAirport.getName());
+                arrivalAirportLabel.setText(arrivalAirportLabel.getText() + " (" + arrivalAirport.getCity() + ", " + arrivalAirport.getCountry() + ")");
+            } else {
+                arrivalAirportLabel.setText("Arrival Airport: N/A");
+            }
+
+            // Update Airline and Time details
+            airlineLabel.setText(    selectedFlight.getCompagnieAerienne());
+            departureTimeLabel.setText(  selectedFlight.getHeureDepart().format(dateTimeFormatter));
+            arrivalTimeLabel.setText(  selectedFlight.getHeureArrive().format(dateTimeFormatter));
         }
     }
 
@@ -608,4 +629,143 @@ public class ReservationVolController {
 
 
     }
+
+
+
+
+
+
+
+    @FXML
+    private ScrollPane reservationScrollPane;
+
+    private ReservationVolAdmin selectedReservation;
+
+
+    @FXML
+    private void handleUpdateReservation() {
+        if (selectedReservation != null && selectedReservation.getFlight() != null) {
+            LocalDateTime departureDateTime = selectedReservation.getFlight().getHeureArrive();
+            LocalDateTime currentDateTime = LocalDateTime.now();
+
+            // Check if departure is more than 48 hours from now
+            if (departureDateTime != null && departureDateTime.isBefore(currentDateTime.plusHours(48))) {
+                showAlert(Alert.AlertType.ERROR, "Error", null, "Cannot update reservation within 48 hours of departure.");
+                return;
+            }
+
+            // Display a ChoiceBox dialog to update the payment method
+            ChoiceBox<String> paymentMethodChoiceBox = new ChoiceBox<>();
+            paymentMethodChoiceBox.getItems().addAll("Cash", "Online");
+            paymentMethodChoiceBox.setValue(selectedReservation.getPaymentMethod());
+
+            Alert updateAlert = new Alert(Alert.AlertType.CONFIRMATION);
+            updateAlert.setTitle("Update Payment Method");
+            updateAlert.setHeaderText(null);
+            updateAlert.getDialogPane().setContent(paymentMethodChoiceBox);
+
+            updateAlert.showAndWait().ifPresent(result -> {
+                if (result == ButtonType.OK) {
+                    String newPaymentMethod = paymentMethodChoiceBox.getValue();
+                    selectedReservation.setPaymentMethod(newPaymentMethod);
+
+                    try {
+                        reservationDAO.updateReservation(selectedReservation);
+                        showAlert(Alert.AlertType.INFORMATION, "Success", null, "Reservation updated successfully.");
+                        populateReservations(); // Refresh reservations display
+                    } catch (Exception e) {
+                        showAlert(Alert.AlertType.ERROR, "Error", null, "Failed to update reservation: " + e.getMessage());
+                    }
+                }
+            });
+        } else {
+            showAlert(Alert.AlertType.ERROR, "Error", null, "Please select a reservation with valid flight information to update.");
+        }
+    }
+
+    @FXML
+    private void handleDeleteReservation() {
+        if (selectedReservation != null && selectedReservation.getFlight() != null) {
+            LocalDateTime departureDateTime = selectedReservation.getFlight().getHeureArrive();
+            LocalDateTime currentDateTime = LocalDateTime.now();
+
+            // Check if departure is more than 48 hours from now
+            if (departureDateTime != null && departureDateTime.isBefore(currentDateTime.plusHours(48))) {
+                showAlert(Alert.AlertType.ERROR, "Error", null, "Cannot delete reservation within 48 hours of departure.");
+                return;
+            }
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirm Deletion");
+            alert.setHeaderText("Are you sure you want to delete this reservation?");
+            alert.setContentText("This action cannot be undone.");
+
+            alert.showAndWait().ifPresent(result -> {
+                if (result == ButtonType.OK) {
+                    try {
+                        reservationDAO.deleteReservation(selectedReservation.getId());
+                        showAlert(Alert.AlertType.INFORMATION, "Success", null, "Reservation deleted successfully.");
+                        populateReservations(); // Refresh reservations display
+                    } catch (Exception e) {
+                        showAlert(Alert.AlertType.ERROR, "Error", null, "Failed to delete reservation: " + e.getMessage());
+                    }
+                }
+            });
+        } else {
+            showAlert(Alert.AlertType.ERROR, "Error", null, "Please select a reservation with a valid flight to delete.");
+        }
+    }
+
+    private void populateReservations() {
+        // Retrieve all reservations from the database using the DAO instance
+        List<ReservationVolAdmin> reservationVols = reservationDAO.getAllReservations();
+
+        // Clear existing content in the scroll pane
+        VBox reservationsContainer = new VBox(); // Create a VBox to hold reservation entries
+
+        for (ReservationVolAdmin reservation : reservationVols) {
+            // Create a custom node (e.g., VBox) to represent each reservation
+            VBox reservationNode = createReservationNode(reservation);
+
+            // Add the custom node to the VBox
+            reservationsContainer.getChildren().add(reservationNode);
+        }
+
+        // Set the VBox as the content of the scroll pane
+        reservationScrollPane.setContent(reservationsContainer);
+    }
+
+    private VBox createReservationNode(ReservationVolAdmin reservation) {
+        VBox reservationNode = new VBox();
+        reservationNode.setStyle("-fx-border-color: black; -fx-border-width: 1px; -fx-padding: 10px;");
+
+        Label userIdLabel = new Label("User ID: " + reservation.getUserId());
+        Label totalPriceLabel = new Label("Total Price: " + reservation.getTotalPrice());
+        Label paymentMethodLabel = new Label("Payment Method: " + reservation.getPaymentMethod());
+
+        Button updateButton = new Button("Update");
+        updateButton.setOnAction(event -> {
+            selectedReservation = reservation; // Set the selected reservation for update
+            handleUpdateReservation(); // Handle update operation
+        });
+
+        Button deleteButton = new Button("Delete");
+        deleteButton.setOnAction(event -> {
+            selectedReservation = reservation; // Set the selected reservation for deletion
+            handleDeleteReservation(); // Handle delete operation
+        });
+
+        reservationNode.getChildren().addAll(userIdLabel, totalPriceLabel, paymentMethodLabel, updateButton, deleteButton);
+
+        return reservationNode;
+    }
+
+    private void showAlert(Alert.AlertType type, String title, String headerText, String contentText) {
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setHeaderText(headerText);
+        alert.setContentText(contentText);
+        alert.showAndWait();
+    }
+
 }

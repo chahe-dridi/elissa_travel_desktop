@@ -8,14 +8,17 @@ public class Flightclass {
     private double price;
     private int ticketNumber;
 
-
-
     public Flightclass() {
-
     }
 
+    public Flightclass(int userId, String className, String description, double price, int ticketNumber) {
+        this.userId = userId;
+        this.className = className;
+        this.description = description;
+        this.price = price;
+        this.ticketNumber = ticketNumber;
+    }
 
-    // Constructor
     public Flightclass(int id, int userId, String className, String description, double price, int ticketNumber) {
         this.id = id;
         this.userId = userId;
@@ -24,18 +27,6 @@ public class Flightclass {
         this.price = price;
         this.ticketNumber = ticketNumber;
     }
-
-    public Flightclass(  int userId, String className, String description, double price, int ticketNumber) {
-        this.id = id;
-        this.userId = userId;
-        this.className = className;
-        this.description = description;
-        this.price = price;
-        this.ticketNumber = ticketNumber;
-    }
-    // Getters and Setters
-    // You can generate them automatically in IDEs like IntelliJ IDEA or Eclipse
-    // Or write them manually like below:
 
     public int getId() {
         return id;
@@ -83,5 +74,17 @@ public class Flightclass {
 
     public void setTicketNumber(int ticketNumber) {
         this.ticketNumber = ticketNumber;
+    }
+
+    @Override
+    public String toString() {
+        return "Flightclass{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", className='" + className + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", ticketNumber=" + ticketNumber +
+                '}';
     }
 }

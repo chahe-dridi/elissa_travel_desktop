@@ -10,7 +10,7 @@
     <children>
         <TableView fx:id="flightclassTableView" layoutX="446.0" layoutY="154.0" prefHeight="342.0" prefWidth="603.0">
             <columns>
-                <TableColumn fx:id="IdColumn" prefWidth="70.0" text="Id" />
+                <TableColumn fx:id="IdColumn" prefWidth="70.0" text="Number" />
 
                 <TableColumn fx:id="classNameColumn" prefWidth="138.0" text="Class Name" />
                 <TableColumn fx:id="descriptionColumn" prefWidth="203.0" text="Description" />
