@@ -1,18 +1,23 @@
 package com.example.elissa.Controller;
 
+import com.example.elissa.Models.Airport;
 import com.example.elissa.Models.Flight;
+import com.example.elissa.Services.AirportDAO;
 import com.example.elissa.Services.FlightDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -22,7 +27,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
 
+import java.lang.String;
 
 import java.time.format.DateTimeFormatter;
 
@@ -102,9 +109,14 @@ public class FlightController implements Initializable {
 
     @FXML
     private Button deleteFlightButton;
+
+
+    private final AirportDAO airportDAO = new AirportDAO(); // Assuming you have an AirportDAO
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         configureTableView();
+        configureAirportColumns();
         refreshTableView();
 
         // Add listener to handle selection changes in the table view
@@ -126,6 +138,61 @@ public class FlightController implements Initializable {
         flightHeureArriveColumn.setCellValueFactory(new PropertyValueFactory<>("heureArrive"));
         flightDisponibleColumn.setCellValueFactory(new PropertyValueFactory<>("disponible"));
     }
+    private void configureAirportColumns()  {
+        // Configure Departure Airport ID column
+        flightAirportDepartIdColumn.setCellFactory(column -> {
+            return new ComboBoxTableCell<>(new StringConverter<Integer>() {
+                @Override
+                public String toString(Integer airportId) {
+                    Airport airport = null;
+                    try {
+                        airport = airportDAO.getAirportById(airportId);
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                    return (airport != null) ? airport.getCode() : ""; // Get airport code
+                }
+
+                @Override
+                public Integer fromString(String airportCode) {
+                    Airport airport = null;
+                    try {
+                        airport = airportDAO.getAirportByCode(airportCode);
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                    return (airport != null) ? airport.getId() : 0; // Get airport ID
+                }
+            });
+        });
+
+        // Configure Arrival Airport ID column (similar to Departure)
+        flightAirportArriveIdColumn.setCellFactory(column -> {
+            return new ComboBoxTableCell<>(new StringConverter<Integer>() {
+                @Override
+                public String toString(Integer airportId) {
+                    Airport airport = null;
+                    try {
+                        airport = airportDAO.getAirportById(airportId);
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                    return (airport != null) ? airport.getCode() : ""; // Get airport code
+                }
+
+                @Override
+                public Integer fromString(String airportCode) {
+                    Airport airport = null;
+                    try {
+                        airport = airportDAO.getAirportByCode(airportCode);
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                    return (airport != null) ? airport.getId() : 0; // Get airport ID
+                }
+            });
+        });
+    }
 
     private void refreshTableView() {
         List<Flight> flights = flightDAO.getAllFlights();
@@ -137,66 +204,6 @@ public class FlightController implements Initializable {
 
 
 
-
-
-
-
- /*   @FXML
-    void handleNewFlightButton() {
-        int airportDepartId = Integer.parseInt(newFlightAirportDepartIdField.getText());
-        int airportArriveId = Integer.parseInt(newFlightAirportArriveIdField.getText());
-        int volclassId = Integer.parseInt(newFlightVolclassIdField.getText());
-        int userId = Integer.parseInt(newFlightUserIdField.getText());
-        String compagnieAerienne = newFlightCompagnieAerienneField.getText();
-
-        // Parse departure date and time
-        LocalDateTime heureDepart = LocalDateTime.of(
-                newFlightDepartureDateField.getValue(),
-                LocalTime.parse(newFlightDepartureTimeField.getText())
-        );
-
-        // Parse arrival date and time
-        LocalDateTime heureArrive = LocalDateTime.of(
-                newFlightArrivalDateField.getValue(),
-                LocalTime.parse(newFlightArrivalTimeField.getText())
-        );
-
-        boolean disponible = newFlightDisponibleCheckbox.isSelected();
-
-        Flight newFlight = new Flight(airportDepartId, airportArriveId, volclassId, userId, compagnieAerienne, heureDepart, heureArrive, disponible);
-        flightDAO.addFlight(newFlight);
-        refreshTableView();
-        clearFields();
-    }
-
-    @FXML
-    void handleModifyFlightButton() {
-        Flight selectedFlight = flightTableView.getSelectionModel().getSelectedItem();
-        if (selectedFlight != null) {
-            int id = selectedFlight.getId();
-            int airportDepartId = Integer.parseInt(newFlightAirportDepartIdField.getText());
-            int airportArriveId = Integer.parseInt(newFlightAirportArriveIdField.getText());
-            int volclassId = Integer.parseInt(newFlightVolclassIdField.getText());
-            int userId = Integer.parseInt(newFlightUserIdField.getText());
-            String compagnieAerienne = newFlightCompagnieAerienneField.getText();
-
-            // Define custom date-time formatter
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-
-            // Parse departure date-time
-            LocalDateTime heureDepart = LocalDateTime.parse(newFlightDepartureDateField.getValue() + " " + newFlightDepartureTimeField.getText(), formatter);
-
-            // Parse arrival date-time
-            LocalDateTime heureArrive = LocalDateTime.parse(newFlightArrivalDateField.getValue() + " " + newFlightArrivalTimeField.getText(), formatter);
-
-            boolean disponible = newFlightDisponibleCheckbox.isSelected();
-
-            Flight modifiedFlight = new Flight(id, airportDepartId, airportArriveId, volclassId, userId, compagnieAerienne, heureDepart, heureArrive, disponible);
-            flightDAO.updateFlight(modifiedFlight);
-            refreshTableView();
-            clearFields();
-        }
-    }*/
 
 
 
@@ -213,7 +220,9 @@ public class FlightController implements Initializable {
         String arrivalTimeText = newFlightArrivalTimeField.getText().trim();
 
         // Validate input fields
-        if (airportDepartIdText.isEmpty() || airportArriveIdText.isEmpty() || volclassIdText.isEmpty() || userIdText.isEmpty() || compagnieAerienne.isEmpty() || departureDate == null || departureTimeText.isEmpty() || arrivalDate == null || arrivalTimeText.isEmpty()) {
+        if (airportDepartIdText.isEmpty() || airportArriveIdText.isEmpty() || volclassIdText.isEmpty()
+                || userIdText.isEmpty() || compagnieAerienne.isEmpty() || departureDate == null
+                || departureTimeText.isEmpty() || arrivalDate == null || arrivalTimeText.isEmpty()) {
             showAlert(Alert.AlertType.ERROR, "Invalid Input", "Please fill in all fields.");
             return;
         }
@@ -222,12 +231,27 @@ public class FlightController implements Initializable {
         int airportArriveId = Integer.parseInt(airportArriveIdText);
         int volclassId = Integer.parseInt(volclassIdText);
         int userId = Integer.parseInt(userIdText);
+        if (airportDepartId == airportArriveId) {
+            showAlert(Alert.AlertType.ERROR, "Invalid Input", "Departure airport cannot be the same as arrival airport.");
+            return;
+        }
+        // Validate and parse departure date-time
+        LocalDateTime heureDepart;
+        try {
+            heureDepart = LocalDateTime.of(departureDate, LocalTime.parse(departureTimeText));
+        } catch (DateTimeParseException e) {
+            showAlert(Alert.AlertType.ERROR, "Invalid Time Format", "Departure time must be in HH:mm format.");
+            return;
+        }
 
-        // Parse departure date-time
-        LocalDateTime heureDepart = LocalDateTime.of(departureDate, LocalTime.parse(departureTimeText));
-
-        // Parse arrival date-time
-        LocalDateTime heureArrive = LocalDateTime.of(arrivalDate, LocalTime.parse(arrivalTimeText));
+        // Validate and parse arrival date-time
+        LocalDateTime heureArrive;
+        try {
+            heureArrive = LocalDateTime.of(arrivalDate, LocalTime.parse(arrivalTimeText));
+        } catch (DateTimeParseException e) {
+            showAlert(Alert.AlertType.ERROR, "Invalid Time Format", "Arrival time must be in HH:mm format.");
+            return;
+        }
 
         // Validate departure and arrival date-time
         if (heureDepart.isBefore(LocalDateTime.now())) {
@@ -242,11 +266,17 @@ public class FlightController implements Initializable {
 
         boolean disponible = newFlightDisponibleCheckbox.isSelected();
 
-        Flight newFlight = new Flight(airportDepartId, airportArriveId, volclassId, userId, compagnieAerienne, heureDepart, heureArrive, disponible);
+        // Create a new Flight object
+        Flight newFlight = new Flight(airportDepartId, airportArriveId, volclassId, userId,
+                compagnieAerienne, heureDepart, heureArrive, disponible);
+
+        // Add the new flight
         flightDAO.addFlight(newFlight);
         refreshTableView();
         clearFields();
     }
+
+
 
     @FXML
     void handleModifyFlightButton() {
@@ -273,6 +303,11 @@ public class FlightController implements Initializable {
             int airportArriveId = Integer.parseInt(airportArriveIdText);
             int volclassId = Integer.parseInt(volclassIdText);
             int userId = Integer.parseInt(userIdText);
+
+            if (airportDepartId == airportArriveId) {
+                showAlert(Alert.AlertType.ERROR, "Invalid Input", "Departure airport cannot be the same as arrival airport.");
+                return;
+            }
 
             // Parse departure date-time
             LocalDateTime heureDepart = LocalDateTime.of(departureDate, LocalTime.parse(departureTimeText));

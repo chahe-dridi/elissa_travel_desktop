@@ -1,32 +1,68 @@
-/* Styles for TableView */
+/* S/* Styles for TableView */
 .table-view {
-    -fx-background-color: #f9f9f9; /* Set background color */
-    -fx-border-color: #cccccc; /* Set border color */
-    -fx-border-width: 1px; /* Set border width */
+    -fx-background-color: #f9f9f9;
+    -fx-border-color: #4CAF50; /* Set border color to green */
+    -fx-border-width: 2px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 1.5), 10, 0, 0, 2);
 }
 
-/* Styles for TableColumns */
+/* Style for TableColumns */
 .table-column {
-    -fx-alignment: CENTER_LEFT; /* Align column content to left */
-    -fx-font-size: 14px; /* Set font size */
-    -fx-text-fill: #333333; /* Set text color */
+    -fx-alignment: CENTER_LEFT;
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333;
+    -fx-border-color: transparent;
 }
 
-/* Styles for TableCells */
+/* Highlight the first TableColumn */
+.table-view .column-header-background .table-column:first-child {
+    -fx-background-color: #4CAF50; /* Green background for the first column */
+    -fx-text-fill: white; /* White text color for the first column header */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0, 0, 1);
+}
+
+/* Style for TableCells */
 .table-cell {
-    -fx-padding: 10px; /* Set padding */
+    -fx-padding: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 5, 0, 0, 1);
 }
 
 /* Alternate row color for TableView */
 .table-row-cell:even {
-    -fx-background-color: #f0f0f0; /* Set alternate row background color */
+    -fx-background-color: #f0f0f0;
 }
 
 /* Hover effect for TableView rows */
 .table-row-cell:hover {
-    -fx-background-color: #e0e0e0; /* Set background color on hover */
-    -fx-cursor: hand; /* Change cursor on hover */
+    -fx-background-color: #e0e0e0;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0, 0, 1);
 }
+
+.table-view .column-header-background {
+    -fx-background-color: #f0f0f0;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0, 0, 1);
+}
+
+/* Hover effect for TableColumn headers */
+.table-view .column-header:hover {
+    -fx-background-color: #e0e0e0;
+    -fx-cursor: hand;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* Styles for TextFields */
 .text-field {
@@ -295,3 +331,67 @@
     -fx-background-color: #45a049; /* Dark green background for selected item */
     -fx-text-fill: white; /* White text color for selected item */
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* airport.css */
+/* airport.css */
+
+/* Style for the Available CheckBox */
+#newFlightDisponibleCheckbox {
+    -fx-font-size: 14px; /* Set font size */
+    -fx-text-fill: #333333; /* Set text color */
+    -fx-padding: 5px; /* Set padding */
+}
+
+/* Customize the appearance of the CheckBox */
+#newFlightDisponibleCheckbox .box {
+    -fx-background-color: #ffffff; /* Set the background color of the box */
+    -fx-border-color: #999999; /* Set the border color */
+}
+
+/* Change the check mark color for unchecked state */
+#newFlightDisponibleCheckbox .box .mark {
+    -fx-background-color: transparent; /* Hide the check mark for unchecked state */
+}
+
+/* Styling for checked (selected) state */
+#newFlightDisponibleCheckbox:selected .box {
+    -fx-background-color: #4CAF50; /* Set the background color when checked */
+    -fx-border-color: #4CAF50; /* Set the border color when checked */
+}
+
+/* Styling for checked (selected) state - show check mark */
+#newFlightDisponibleCheckbox:selected .box .mark {
+    -fx-background-color: white; /* Set the color of the check mark */
+}
+
+/* Hover effect for the CheckBox */
+#newFlightDisponibleCheckbox:hover .box {
+    -fx-background-color: #f5f5f5; /* Lighten the background color on hover */
+}
+
+/* Pressed effect for the CheckBox */
+#newFlightDisponibleCheckbox:pressed .box {
+    -fx-background-color: #eeeeee; /* Darken the background color when pressed */
+}
+
+/* Focused effect for the CheckBox */
+#newFlightDisponibleCheckbox:focused .box {
+    -fx-border-color: #0066ff; /* Change border color when focused */
+}
+

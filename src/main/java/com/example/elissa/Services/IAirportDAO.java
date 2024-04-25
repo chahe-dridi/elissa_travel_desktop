@@ -20,4 +20,11 @@ public interface IAirportDAO {
     Airport findById(int airportId) throws SQLException;
 
     List<Airport> searchAirportByCode(String code) throws SQLException;
+
+
+
+  Airport getAirportById(int airportId) throws SQLException;
+
+
+     Airport getAirportByCode(String airportCode) throws SQLException ;
 }

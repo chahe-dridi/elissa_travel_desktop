@@ -11,7 +11,7 @@
         <TableView fx:id="reservationTableView" layoutX="445.0" layoutY="154.0" prefHeight="342.0" prefWidth="603.0">
             <columns>
                 <TableColumn fx:id="reservationIdColumn" prefWidth="70.0" text="Number" />
-                <TableColumn fx:id="reservationVolIdColumn" prefWidth="85.0" text="Vol ID" />
+                <TableColumn fx:id="reservationVolIdColumn" prefWidth="85.0" text="Vol Number" />
                 <TableColumn fx:id="reservationUserIdColumn" prefWidth="131.0" text="User ID" />
                 <TableColumn fx:id="reservationTotalPriceColumn" prefWidth="154.0" text="Total Price" />
                 <TableColumn fx:id="reservationPaymentMethodColumn" prefWidth="161.0" text="Payment Method" />
