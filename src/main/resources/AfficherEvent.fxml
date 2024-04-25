@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="nh" prefHeight="760.0" prefWidth="1334.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AfficherEvent">
+   <children>
+      <Pane layoutX="235.0" layoutY="173.0" prefHeight="32.0" prefWidth="986.0" style="-fx-background-color: blue;">
+         <children>
+            <Label layoutX="32.0" layoutY="6.0" text="ID" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="94.0" layoutY="6.0" text="Nom Event" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="200.0" layoutY="7.0" text="Adresse Event" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="314.0" layoutY="8.0" prefHeight="21.0" prefWidth="134.0" text="Nbr Tickets Dispo" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="453.0" layoutY="7.0" prefHeight="21.0" prefWidth="90.0" text="Date Début" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="560.0" layoutY="8.0" prefHeight="21.0" prefWidth="78.0" text="Date Fin" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="646.0" layoutY="6.0" prefHeight="21.0" prefWidth="71.0" text="Prix Entre" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="732.0" layoutY="7.0" prefHeight="21.0" prefWidth="78.0" text="Type Event" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="826.0" layoutY="7.0" prefHeight="21.0" prefWidth="78.0" text="User" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="893.0" layoutY="8.0" prefHeight="21.0" prefWidth="78.0" text="Actions" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <ScrollPane layoutX="235.0" layoutY="205.0" prefHeight="282.0" prefWidth="986.0">
+         <content>
+            <VBox fx:id="vbox1" prefHeight="278.0" prefWidth="994.0" />
+         </content>
+      </ScrollPane>
+      <Button layoutX="879.0" layoutY="61.0" mnemonicParsing="false" onAction="#goToAjouterEvent" text="Ajouter" />
+      <Button layoutX="883.0" layoutY="14.0" mnemonicParsing="false" onAction="#goToMenu" text="Menu" />
+      <Pane layoutY="-2.0" prefHeight="761.0" prefWidth="232.0" style="-fx-background-color: #1F1E2F; -fx-background-radius: 20px;">
+         <children>
+            <Button layoutX="14.0" layoutY="328.0" mnemonicParsing="false" onAction="#goToTypeEvent" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #1f1e30;" stylesheets="@style.css" text="Type Event" textFill="WHITE">
+               <padding>
+                  <Insets left="-35.0" />
+               </padding>
+               <graphic>
+                  <ImageView fitHeight="34.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@les-types.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button layoutX="20.0" layoutY="699.0" mnemonicParsing="false" onAction="#NavConnexion" prefHeight="40.0" prefWidth="188.0" style="-fx-background-color: #1f1e30;" stylesheets="@../../../../../1master/DevHarmony-master/src/main/resources/form.css" text="Déconnecter" textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../1master/DevHarmony-master/src/main/resources/logout.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button layoutX="14.0" layoutY="262.0" mnemonicParsing="false" onAction="#goToEvent" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: blue; -fx-background-radius: 20;" stylesheets="@style.css" text="Event" textFill="WHITE">
+               <padding>
+                  <Insets left="-35.0" />
+               </padding>
+               <graphic>
+                  <ImageView fitHeight="38.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@event-management.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button layoutX="13.0" layoutY="392.0" lineSpacing="5.0" mnemonicParsing="false" onAction="#goToReservationEvent" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #1f1e30; -fx-border-radius: 20;" stylesheets="@style.css" text="Reservation" textAlignment="CENTER" textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@reservation.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Text fill="WHITE" layoutX="42.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Escpace">
+               <font>
+                  <Font name="Arial" size="24.0" />
+               </font>
+            </Text>
+            <Text fx:id="trole" fill="#0022e1" layoutX="134.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin" wrappingWidth="79.99998795986176">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="3.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Elissa Travel">
+               <font>
+                  <Font name="Arial Bold Italic" size="36.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

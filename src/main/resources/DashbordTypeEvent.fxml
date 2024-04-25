@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DashbordTypeEvent">
+    <children>
+        <VBox layoutX="50.0" layoutY="50.0" spacing="10.0">
+            <Button text="Section 1">
+                <effect>
+                    <Glow />
+                </effect>
+            </Button>
+            <Button text="Section 2">
+                <effect>
+                    <Glow />
+                </effect>
+            </Button>
+            <Button text="Section 3">
+                <effect>
+                    <Glow />
+                </effect>
+            </Button>
+        </VBox>
+        <Slider layoutX="50.0" layoutY="350.0" prefWidth="500.0" />
+    </children>
+</AnchorPane>
