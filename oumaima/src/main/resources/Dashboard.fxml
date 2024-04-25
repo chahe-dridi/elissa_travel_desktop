@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #2b255a;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pidev.controllers.DashboardController">
+   <children>
+      <TableView fx:id="tbUsers" layoutX="37.0" layoutY="100.0" prefHeight="200.0" prefWidth="523.0">
+        <columns>
+          <TableColumn fx:id="Cid" prefWidth="32.00006103515625" text="ID" />
+          <TableColumn fx:id="cUsername" prefWidth="78.4000244140625" text="Username" />
+            <TableColumn fx:id="cName" prefWidth="92.00006103515625" text="Name" />
+            <TableColumn fx:id="cLastName" prefWidth="100.00006103515625" text="Last Name" />
+            <TableColumn fx:id="cEmail" prefWidth="142.39996337890625" text="Email" />
+        </columns>
+      </TableView>
+      <Button layoutX="515.0" layoutY="356.0" mnemonicParsing="false" onAction="#Logout" style="-fx-background-color: #13123A; -fx-border-color: #f79517;" text="Logout" textFill="WHITE" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #2b255a;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pidev.controllers.EditProfileController">
+   <children>
+      <Label layoutX="174.0" layoutY="66.0" prefHeight="10.0" prefWidth="118.0" text="Profile details :" textFill="WHITE">
+         <font>
+            <Font name="Constantia" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="205.0" layoutY="111.0" text="Username     :" textFill="WHITE" />
+      <Label layoutX="205.0" layoutY="148.0" text="Name            :" textFill="WHITE" />
+      <Label layoutX="204.0" layoutY="186.0" text="Family Name :" textFill="WHITE" />
+      <Label layoutX="205.0" layoutY="223.0" text="Email             :" textFill="WHITE" />
+      <TextField fx:id="usernamepTF" layoutX="300.0" layoutY="107.0" />
+      <TextField fx:id="nompTF" layoutX="301.0" layoutY="144.0" />
+      <TextField fx:id="prenompTF" layoutX="301.0" layoutY="182.0" />
+      <TextField fx:id="emailpTF" layoutX="300.0" layoutY="219.0" />
+      <Button layoutX="468.0" layoutY="359.0" mnemonicParsing="false" onAction="#update" style="-fx-background-color: #2b255a; -fx-border-color: #f79517;" text="Update" textFill="WHITE" />
+      <VBox layoutX="3.0" layoutY="19.0" prefHeight="400.0" prefWidth="110.0" style="-fx-background-color: #f79517;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <VBox prefHeight="150.0" prefWidth="131.0" style="-fx-background-color: white;">
+               <children>
+                  <ImageView fitHeight="72.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true">
+
+                     <VBox.margin>
+                        <Insets left="17.0" top="40.0" />
+                     </VBox.margin>
+                  </ImageView>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

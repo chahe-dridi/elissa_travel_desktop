@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #2b255a;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pidev.controllers.ProfileController">
+   <children>
+      <VBox prefHeight="400.0" prefWidth="118.0" style="-fx-background-color: #f79517;">
+         <children>
+            <Label prefHeight="62.0" prefWidth="130.0" text=" Profile" textFill="#f7f7f7">
+               <font>
+                  <Font name="Constantia" size="34.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <Label layoutX="240.0" layoutY="66.0" prefHeight="10.0" prefWidth="118.0" text="Profile details :" textFill="WHITE">
+         <font>
+            <Font name="Constantia" size="18.0" />
+         </font>
+      </Label>
+      <Button layoutX="505.0" layoutY="346.0" mnemonicParsing="false" onAction="#Logout" style="-fx-background-color: #13123A; -fx-border-color: #f79517;" text="Logout" textFill="WHITE" />
+      <HBox layoutX="229.0" layoutY="315.0" prefHeight="32.0" prefWidth="231.0" spacing="10.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#Delete" prefHeight="27.0" prefWidth="115.0" style="-fx-background-color: #13123A; -fx-border-color: #f79517;" text="Delete Profile" textFill="WHITE" />
+            <Button mnemonicParsing="false" onAction="#edit" prefHeight="26.0" prefWidth="101.0" style="-fx-background-color: #13123A; -fx-border-color: #f79517;" text="Edit Profile" textFill="WHITE" />
+         </children>
+      </HBox>
+      <HBox layoutX="141.0" layoutY="119.0" prefHeight="178.0" prefWidth="434.0" style="-fx-border-color: #f79517;">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0" spacing="25.0">
+               <children>
+                  <Label text="Username     :" textFill="WHITE">
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label text="Name            :" textFill="WHITE" />
+                  <Label text="Last Name     :" textFill="WHITE" />
+                  <Label text="Email             :" textFill="WHITE" />
+               </children>
+            </VBox>
+            <VBox prefHeight="146.0" prefWidth="284.0" spacing="25.0">
+               <children>
+                  <Label fx:id="usernameLB" prefHeight="18.0" prefWidth="98.0" text="Label" textFill="WHITE" />
+                  <Label fx:id="nomLB" prefHeight="18.0" prefWidth="95.0" text="Label" textFill="WHITE" />
+                  <Label fx:id="prenomLB" prefHeight="18.0" prefWidth="98.0" text="Label" textFill="WHITE" />
+                  <Label fx:id="emailLB" prefHeight="18.0" prefWidth="98.0" text="Label" textFill="WHITE" />
+               </children>
+               <HBox.margin>
+                  <Insets bottom="15.0" top="15.0" />
+               </HBox.margin>
+            </VBox>
+         </children>
+         <padding>
+            <Insets left="40.0" />
+         </padding>
+      </HBox>
+   </children>
+</AnchorPane>
