@@ -44,5 +44,11 @@
         <Button layoutX="754.0" layoutY="70.0" mnemonicParsing="false" onAction="#handleFlightClassButtonClick" prefHeight="40.0" prefWidth="118.0" text="FlightClass" />
         <Button layoutX="904.0" layoutY="70.0" mnemonicParsing="false" onAction="#handleReservationButtonClick" text="Reservation" />
 
+
+
+        <Button layoutX="1054.0" layoutY="350.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="103.0" text="PDF" />
+        <Button layoutX="1054.0" layoutY="415.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="103.0" text="Stats" />
+
+
     </children>
 </AnchorPane>
