@@ -4,8 +4,11 @@ import com.example.elissa.Models.Airport;
 import com.example.elissa.Models.Flight;
 import com.example.elissa.Services.AirportDAO;
 import com.example.elissa.Services.FlightDAO;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.element.Table;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -32,6 +35,19 @@ import javafx.util.StringConverter;
 import java.lang.String;
 
 import java.time.format.DateTimeFormatter;
+
+
+
+
+
+
+
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+
+
+
 
 
 
@@ -343,6 +359,57 @@ public class FlightController implements Initializable {
         alert.setContentText(content);
         alert.showAndWait();
     }
+
+
+
+
+
+
+    @FXML
+    void handleGeneratePdfButton(ActionEvent event) {
+        try (PdfWriter writer = new PdfWriter("flights.pdf");
+             PdfDocument pdf = new PdfDocument(writer);
+             Document document = new Document(pdf)) {
+            document.add(new Paragraph("List of Flights"));
+            Table table = new Table(9); // 9 columns for flight information
+            table.addCell("ID");
+            table.addCell("Departure Airport");
+            table.addCell("Arrival Airport");
+            table.addCell("Class");
+            table.addCell("User ID");
+            table.addCell("Airline");
+            table.addCell("Departure Time");
+            table.addCell("Arrival Time");
+            table.addCell("Available");
+
+            ObservableList<Flight> flights = flightTableView.getItems();
+            // Retrieve flight data from the TableView
+
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
+            for (Flight flight : flights) {
+                table.addCell(String.valueOf(flight.getId()));
+                table.addCell(String.valueOf(flight.getAirportDepartId()));
+                table.addCell(String.valueOf(flight.getAirportArriveId()));
+                table.addCell(String.valueOf(flight.getVolclassId()));
+                table.addCell(String.valueOf(flight.getUserId()));
+                table.addCell(flight.getCompagnieAerienne());
+                table.addCell(flight.getHeureDepart().format(formatter));
+                table.addCell(flight.getHeureArrive().format(formatter));
+                table.addCell(flight.isDisponible() ? "Yes" : "No");
+            }
+
+            document.add(table);
+
+            System.out.println("PDF generated successfully!");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
 
 
 

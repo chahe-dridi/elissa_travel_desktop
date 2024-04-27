@@ -3,7 +3,8 @@ module com.example.elissa {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
-
+    requires kernel;
+    requires layout;
 
 
     opens com.example.elissa.Models;
