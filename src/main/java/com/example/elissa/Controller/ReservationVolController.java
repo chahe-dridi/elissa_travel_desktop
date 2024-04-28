@@ -38,6 +38,9 @@ import javafx.scene.control.Alert;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+
+import com.example.elissa.Models.EmailSender;
+
 public class ReservationVolController {
 
     @FXML
@@ -525,7 +528,7 @@ public class ReservationVolController {
 
         // Save the reservation to the database
         reservationDAO.addReservation(newReservation);
-
+        EmailSender.AjoutCommentaireEmail("chaher.dridi.100@gmail.com","test");
         // Display confirmation message
         showReservationConfirmation();
     }

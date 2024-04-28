@@ -6,11 +6,13 @@ import com.example.elissa.Models.Airport;
 import com.example.elissa.Services.AirportDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -18,6 +20,7 @@ import javafx.scene.control.TextField;
 
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -270,6 +273,78 @@ public class AirportController implements Initializable {
         newAirportCountryField.clear();
     }
 
+
+
+
+
+
+
+
+
+/*
+    @FXML
+    void PageStatMateriel(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/elissa/Airport/airport_stat.fxml"));
+            Parent stat = loader.load();
+            AirportController controller = loader.getController();
+            controller.displayAirportStats(); // Call method to display airport statistics
+            // Create the dialog
+            Stage dialogStage = new Stage();
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(displ.getScene().getWindow());
+            Scene scene = new Scene(stat);
+            dialogStage.setScene(scene);
+
+            // Show the dialog
+            dialogStage.showAndWait();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+
+
+
+
+
+
+    @FXML
+    private Button displ;
+
+    @FXML
+    PieChart pieChart;
+
+
+
+   @FXML
+    void displayAirportStats( ) {
+
+        AirportDAO airportDAO = new AirportDAO();
+        List<Airport> airports = airportDAO.getAllAirports();
+
+        int disponibleCount = 0;
+        int nonDisponibleCount = 0;
+
+        for (Airport Airport : airports) {
+            if (Airport.getDisponibilite() == 0) {
+                nonDisponibleCount++;
+            } else {
+                disponibleCount++;
+            }
+        }
+
+        ObservableList<PieChart.Data> pieChartData =
+                FXCollections.observableArrayList(
+                        new PieChart.Data("Disponible", disponibleCount),
+                        new PieChart.Data("Non Disponible", nonDisponibleCount));
+        pieChart.setData(pieChartData);
+
+
+    }
+
+*/
 
 
 

@@ -5,6 +5,7 @@ module com.example.elissa {
     requires java.sql;
     requires kernel;
     requires layout;
+    requires java.mail;
 
 
     opens com.example.elissa.Models;
