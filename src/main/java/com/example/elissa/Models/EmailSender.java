@@ -9,7 +9,7 @@ import java.util.Properties;
 public class EmailSender {
 
 
-        public static void AjoutCommentaireEmail(String userEmail, String test) {
+        public static void AjoutCommentaireEmail(String userEmail,String htmlContent) {
             // Paramètres de la session pour envoyer l'e-mail
             Properties props = new Properties();
             props.put("mail.smtp.host", "smtp.gmail.com"); // Serveur SMTP de Gmail
@@ -19,8 +19,8 @@ public class EmailSender {
             props.put("mail.smtp.starttls.enable", "true"); // Activation de TLS
 
             // Informations d'authentification pour votre compte Gmail
-            String username = "webuild2026@gmail.com"; // Votre adresse e-mail Gmail
-            String password = "sgwc ggbh plhj auth"; // Votre mot de passe Gmail
+            String username = "tester44.tester2@gmail.com"; // Votre adresse e-mail Gmail
+            String password = "hpev dqbv clze bhxa"; // Votre mot de passe Gmail
 
             // Création de la session avec les informations d'authentification
             Session session = Session.getInstance(props, new Authenticator() {
@@ -35,16 +35,13 @@ public class EmailSender {
                 Message message = new MimeMessage(session);
                 message.setFrom(new InternetAddress(username)); // Adresse e-mail de l'expéditeur
                 message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(userEmail)); // Adresse e-mail du destinataire
-                message.setSubject("Commentaire Ajoute Avec Succés"); // Objet de l'e-mail
-                String emailContent = "Bonjour " + ",\n\n"
-                        + "Félicitations ! Votre Commentaire a ete  Ajouter avec succés\n"
-                        + "Merci de votre participation.\n\n"
-                        + "Cordialement,\n"
-                        + "WeBuild"; // Contenu de l'e-mail
-                message.setText(emailContent);
+                message.setSubject("Flight Reservation Details"); // Objet de l'e-mail
+                message.setContent(htmlContent, "text/html"); // Set the email content as HTML
 
                 // Envoi de l'e-mail
                 Transport.send(message);
+
+                System.out.println("E-mail envoyé avec succès !");
 
                 System.out.println("E-mail envoyé avec succès !");
             } catch (MessagingException e) {

@@ -6,6 +6,8 @@ module com.example.elissa {
     requires kernel;
     requires layout;
     requires java.mail;
+    requires org.controlsfx.controls;
+
 
 
     opens com.example.elissa.Models;

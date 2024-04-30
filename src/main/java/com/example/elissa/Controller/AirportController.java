@@ -10,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
@@ -20,6 +21,7 @@ import javafx.scene.control.TextField;
 
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import javafx.scene.layout.StackPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -32,7 +34,13 @@ import java.util.ResourceBundle;
 
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert;
+import javafx.util.Duration;
+
 import java.util.regex.Pattern;
+import org.controlsfx.control.Notifications;
+
+import javafx.scene.text.Font;
+
 
 public class AirportController implements Initializable {
 
@@ -127,6 +135,56 @@ public class AirportController implements Initializable {
         alert.showAndWait();
     }
     //-----------------------------------
+   /* @FXML
+    void handleNewAirportButton() throws SQLException {
+        // Retrieve data from input fields
+        String code = newAirportCodeField.getText().trim();
+        String name = newAirportNameField.getText().trim();
+        String city = newAirportCityField.getText().trim();
+        String country = newAirportCountryField.getText().trim();
+
+        // Validate input fields
+        if (!isValidInput(code) || !isValidInput(name) || !isValidInput(city) || !isValidInput(country)) {
+            showAlert(Alert.AlertType.ERROR, "Invalid Input", "Fields cannot be empty and must contain valid characters.");
+            return;
+        }
+
+        // Create a new Airport object
+        Airport newAirport = new Airport(1, code, name, city, country);
+
+        // Add the new airport to the database
+        airportDAO.addAirport(newAirport);
+
+        // Refresh the table view to display the updated list of airports
+        refreshTableView();
+        // Load the CSS file
+        String cssPath = getClass().getResource("/com/example/elissa/Airport/notificationStyle.css").toExternalForm();
+        Scene scene = newAirportButton.getScene();
+        // Apply the stylesheet to the scene's root node
+        scene.getRoot().getStylesheets().add(cssPath);
+        Notifications notification = Notifications.create()
+                .title("Airport")
+                .text("Airport Added successfully ")
+                .graphic(null)
+                .hideAfter(Duration.seconds(5))
+                .position(Pos.BOTTOM_RIGHT);
+
+        // Show the notification
+
+
+        // Get the scene of the parent node (you might need to adjust this based on your scene hierarchy)
+
+
+
+        notification.show();
+        System.out.println(cssPath);
+
+        // Clear input fields after adding airport
+        clearFields();
+    }*/
+
+
+
     @FXML
     void handleNewAirportButton() throws SQLException {
         // Retrieve data from input fields
@@ -150,9 +208,33 @@ public class AirportController implements Initializable {
         // Refresh the table view to display the updated list of airports
         refreshTableView();
 
+        // Load the CSS file
+        // Create a notification with styling
+        Notifications notification = Notifications.create()
+                .title("Airport")
+                .text("Airport Added successfully ")
+                .hideAfter(Duration.seconds(5))
+                .position(Pos.BOTTOM_RIGHT)
+                .graphic(null) // No graphic
+                .darkStyle() // Use dark style for better visibility
+                .hideCloseButton(); // Hide close button
+
+// Apply the CSS styling directly
+        //notification.showInformation(); // Show the notification as information style
+
+// Apply the CSS styling directly
+        notification.show();
+
+
+
+
+
+
+
         // Clear input fields after adding airport
         clearFields();
     }
+
 
 
     // Method to refresh the table view with the latest data from the database

@@ -5,9 +5,12 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="800.0" prefWidth="1200.0" styleClass="anchor-pane-background" stylesheets="@airport.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.elissa.Controller.ReservationVolController">
     <!-- Container for Information in a Styled Box -->
@@ -65,7 +68,17 @@
     </VBox>
 
     <!-- Back Button -->
-    <Button fx:id="backButton" layoutX="1000.0" layoutY="140.0" onAction="#handleBackButtonClick" prefHeight="40.0" prefWidth="160.0" text="Return" />
+    <Button fx:id="backButton" layoutX="1000.0" layoutY="140.0" onAction="#handleBackButtonClick" prefHeight="40.0" prefWidth="180.0" text="      Return           ">
+      <font>
+         <Font size="29.0" />
+      </font>
+      <graphic>
+         <ImageView fitHeight="23.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@icons/back-arrow.png" />
+            </image>
+         </ImageView>
+      </graphic></Button>
      <!-- Reserve Button -->
      <Button fx:id="reserveButton" layoutX="433.0" layoutY="572.0" onAction="#handleReservationButtonClick" prefHeight="40.0" prefWidth="160.0" styleClass="action-button" text="Reserve" />
 </AnchorPane>

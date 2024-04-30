@@ -16,13 +16,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.effect.DropShadow;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.LinearGradient;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -176,7 +178,7 @@ public class ReservationVolController {
             double currentWidth = stage.getWidth();
             double currentHeight = stage.getHeight();
 
-            Scene scene = new Scene(root, currentWidth, currentHeight);
+            Scene scene = new Scene(root, currentWidth, currentHeight); // Set the same dimensions as the current scene
 
             stage.setScene(scene);
 
@@ -243,7 +245,7 @@ public class ReservationVolController {
 
 
 
-
+// -----------------------------------creates show flight -------------------
 
 
     private void populateFlights(List<Flight> flights) {
@@ -270,18 +272,17 @@ public class ReservationVolController {
             if (flightEntry != null) {
                 currentRow.getChildren().add(flightEntry);
                 flightCount++;
-            }
 
-            // Check if currentRow is full based on flightsPerRow
-            if (flightCount % flightsPerRow == 0) {
-                flightContainer.getChildren().add(currentRow);
-                currentRow = new HBox(); // Reset currentRow for the next row
+                // Check if currentRow is full based on flightsPerRow
+                if (flightCount % flightsPerRow == 0) {
+                    flightContainer.getChildren().add(currentRow);
+                    currentRow = new HBox(); // Reset currentRow for the next row
+                }
             }
         }
 
-
-        // Add the last currentRow if it's not full but contains flights
-        if (flightCount % flightsPerRow != 0) {
+        // Add the last currentRow if it's not empty
+        if (!currentRow.getChildren().isEmpty()) {
             flightContainer.getChildren().add(currentRow);
         }
     }
@@ -326,29 +327,63 @@ public class ReservationVolController {
         // Button to view reservation
         Button viewReservationButton = new Button("View Reservation");
         viewReservationButton.setOnAction(event -> handleViewReservationButtonClick(flight));
+        viewReservationButton.setAlignment(Pos.CENTER);
 
         // Create and configure flightEntry VBox
         VBox flightEntry = new VBox();
         flightEntry.setSpacing(10);
+        flightEntry.setPadding(new Insets(10));
+        flightEntry.setAlignment(Pos.CENTER_LEFT);
+        flightEntry.setBackground(new Background(new BackgroundFill(
+                LinearGradient.valueOf("linear-gradient(to bottom, #80b3ff, #0073e6)"),
+                new CornerRadii(10), null)));
+        flightEntry.setMaxWidth(300); // Set maximum width for consistent sizing
 
         // Add labels and button to the flightEntry VBox
+        Label departureLabel = new Label("Departure: " + departureAirport.getName() + " (" + departureAirport.getCity() + ", " + departureAirport.getCountry() + ")");
+        Label arrivalLabel = new Label("Arrival: " + arrivalAirport.getName() + " (" + arrivalAirport.getCity() + ", " + arrivalAirport.getCountry() + ")");
+        Label airlineLabel = new Label("Airline: " + flight.getCompagnieAerienne());
+        Label departureTimeLabel = new Label("Departure Time: " + flight.getHeureDepart().format(dateTimeFormatter));
+        Label arrivalTimeLabel = new Label("Arrival Time: " + flight.getHeureArrive().format(dateTimeFormatter));
+        Label classLabel = new Label(classLabelText);
+        Label priceLabel = new Label(priceLabelText);
+
+        // Set font styles and wrapping
+        Font labelFont = Font.font("Arial", FontWeight.BOLD, 12);
+        departureLabel.setFont(labelFont);
+        arrivalLabel.setFont(labelFont);
+        airlineLabel.setFont(labelFont);
+        departureTimeLabel.setFont(labelFont);
+        arrivalTimeLabel.setFont(labelFont);
+        classLabel.setFont(labelFont);
+        priceLabel.setFont(labelFont);
+
+        departureLabel.setWrapText(true);
+        arrivalLabel.setWrapText(true);
+        airlineLabel.setWrapText(true);
+        departureTimeLabel.setWrapText(true);
+        arrivalTimeLabel.setWrapText(true);
+        classLabel.setWrapText(true);
+        priceLabel.setWrapText(true);
+
         flightEntry.getChildren().addAll(
-                new Label("Departure: " + departureAirport.getName() + " (" + departureAirport.getCity() + ", " + departureAirport.getCountry() + ")"),
-                new Label("Arrival: " + arrivalAirport.getName() + " (" + arrivalAirport.getCity() + ", " + arrivalAirport.getCountry() + ")"),
-                new Label("Airline: " + flight.getCompagnieAerienne()),
-                new Label("Departure Time: " + flight.getHeureDepart().format(dateTimeFormatter)),
-                new Label("Arrival Time: " + flight.getHeureArrive().format(dateTimeFormatter)),
-                new Label(classLabelText),
-                new Label(priceLabelText),
+                departureLabel,
+                arrivalLabel,
+                airlineLabel,
+                departureTimeLabel,
+                arrivalTimeLabel,
+                classLabel,
+                priceLabel,
                 viewReservationButton
         );
 
-        // Apply styling to the flightEntry VBox
-        flightEntry.setStyle("-fx-background-color: #3A7E49; -fx-padding: 20; -fx-spacing: 10; -fx-border-radius: 5;");
-        flightEntry.setPrefSize(300, 200); // Set preferred size for uniformity
+        // Apply shadow effect
+        DropShadow dropShadow = new DropShadow(10, Color.GRAY);
+        flightEntry.setEffect(dropShadow);
 
         return flightEntry;
     }
+
 
 
 
@@ -507,10 +542,15 @@ public class ReservationVolController {
         // Retrieve the volclassId associated with the flight
         int volclassId = flight.getVolclassId();
 
+//changed
+        FlightclassDAO flightClassDAO = new FlightclassDAO();
+        Flightclass flightClass = flightClassDAO.getFlightClassById(volclassId);
+
+
         if (volclassId != 0) {
             // Assuming there's a method in ReservationVolAdminDAO to fetch FlightClass by volclassId
-            FlightclassDAO flightClassDAO = new FlightclassDAO();
-            Flightclass flightClass = flightClassDAO.getFlightClassById(volclassId);
+        //    FlightclassDAO flightClassDAO = new FlightclassDAO();
+        //    Flightclass flightClass = flightClassDAO.getFlightClassById(volclassId);
 
             if (flightClass != null) {
                 // Use the price from the FlightClass as the totalPrice for the reservation
@@ -525,10 +565,15 @@ public class ReservationVolController {
         }
 
         newReservation.setPaymentMethod(paymentMethod);
+        AirportDAO airportDAO = new AirportDAO();
+        Airport departureAirport = airportDAO.findById(flight.getAirportArriveId() );
 
+        Airport departureArrive = airportDAO.findById(flight.getAirportArriveId() );
+
+        String htmlContent = "<html>\n<head>\n<style>\nbody {\nfont-family: Arial, sans-serif;\nline-height: 1.6;\nbackground-color: #f4f4f4;\npadding: 20px;\nmargin: 0;\n}\n.container {\nmax-width: 600px;\nmargin: 0 auto;\nbackground-color: #fff;\npadding: 20px;\nborder-radius: 8px;\nbox-shadow: 0 0 20px rgba(0, 0, 0, 0.1);\n}\nh2 {\ncolor: #333;\nfont-size: 24px;\nmargin-bottom: 20px;\n}\np {\nmargin-bottom: 15px;\nfont-size: 16px;\n}\nul {\nlist-style: none;\npadding: 0;\nmargin-bottom: 20px;\n}\nli {\nmargin-bottom: 10px;\nfont-size: 16px;\n}\nstrong {\nfont-weight: bold;\n}\n.thank-you {\nfont-size: 16px;\nmargin-top: 20px;\n}\n</style>\n</head>\n<body>\n<div class='container'>\n<h2>Dear " + /*user.getFirstName() */  "name"+ " " + "lastname" /*user.getLastName() */+ ",</h2>\n<p>We are delighted to confirm your flight reservation. Below are the details:</p>\n<ul>\n<li><strong>Departure Country:</strong> " +  departureAirport.getCountry() + "</li>\n<li><strong>Departure City:</strong> " + departureAirport.getCity() + "</li>\n<li><strong>Arrival Country:</strong> " + departureArrive.getCountry() + "</li>\n<li><strong>Arrival City:</strong> " + departureArrive.getCity() + "</li>\n<li><strong>Departure Time:</strong> " + flight.getHeureDepart() + "</li>\n<li><strong>Arrival Time:</strong> " + flight.getHeureArrive() + "</li>\n<li><strong>Departure Airport:</strong> " + departureAirport.getName() + "</li>\n<li><strong>Arrival Airport:</strong> " + departureArrive.getName() + "</li>\n<li><strong>Class Name:</strong> " + flightClass.getClassName() + "</li>\n<li><strong>Class Description:</strong> " + flightClass.getDescription() + "</li>\n<li><strong>Total Price:</strong> " + newReservation.getTotalPrice() + "</li>\n</ul>\n<p class='thank-you'>Thank you for choosing " + flight.getCompagnieAerienne() + ". We look forward to serving you on board.</p>\n<p>Best regards,<br> " + flight.getCompagnieAerienne() + " Team</p>\n</div>\n</body>\n</html>";
         // Save the reservation to the database
         reservationDAO.addReservation(newReservation);
-        EmailSender.AjoutCommentaireEmail("chaher.dridi.100@gmail.com","test");
+        EmailSender.AjoutCommentaireEmail("chaher.dridi.100@gmail.com",htmlContent);
         // Display confirmation message
         showReservationConfirmation();
     }
@@ -628,7 +673,7 @@ public class ReservationVolController {
 
 
 
-
+//------------my reservation
 
 
     @FXML
@@ -765,10 +810,12 @@ public class ReservationVolController {
 
         // Clear existing content in the scroll pane
         VBox reservationsContainer = new VBox(); // Create a VBox to hold reservation entries
+        reservationsContainer.setSpacing(15); // Set spacing between reservation nodes
 
         for (ReservationVolAdmin reservation : reservationVols) {
             // Create a custom node (e.g., VBox) to represent each reservation
             VBox reservationNode = createReservationNode(reservation);
+            HBox.setHgrow(reservationNode, Priority.ALWAYS); // Allow reservation node to stretch horizontally
 
             // Add the custom node to the VBox
             reservationsContainer.getChildren().add(reservationNode);
@@ -780,9 +827,9 @@ public class ReservationVolController {
 
     private VBox createReservationNode(ReservationVolAdmin reservation) {
         VBox reservationNode = new VBox();
-        reservationNode.setSpacing(10);
         reservationNode.setStyle("-fx-background-color: white; -fx-background-radius: 10px; -fx-border-color: lightgrey; -fx-border-width: 1px;");
-        reservationNode.setPadding(new Insets(10));
+        reservationNode.setPadding(new Insets(15));
+        reservationNode.setMaxWidth(Double.MAX_VALUE); // Ensure VBox stretches horizontally
 
         DropShadow dropShadow = new DropShadow();
         dropShadow.setRadius(10.0);
@@ -790,6 +837,7 @@ public class ReservationVolController {
         dropShadow.setOffsetY(3.0);
         dropShadow.setColor(Color.rgb(50, 50, 50, 0.5));
         reservationNode.setEffect(dropShadow);
+
 
         if (reservation != null) {
             Label userIdLabel = new Label("User ID: " + reservation.getUserId());
@@ -847,15 +895,9 @@ public class ReservationVolController {
             reservationNode.getChildren().add(errorLabel);
         }
 
-        VBox.setVgrow(reservationNode, Priority.ALWAYS); // Allow VBox to stretch vertically
+        HBox.setHgrow(reservationNode, Priority.ALWAYS);
         return reservationNode;
-
-
-
     }
-
-
-
 
 
 
