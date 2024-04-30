@@ -20,11 +20,14 @@ import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.LinearGradient;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -39,6 +42,7 @@ import java.util.Optional;
 import javafx.scene.control.Alert;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.concurrent.atomic.AtomicInteger;
 
 
 import com.example.elissa.Models.EmailSender;
@@ -290,7 +294,7 @@ public class ReservationVolController {
     // Helper method to create a flight entry (VBox) with appropriate styling
 
 
-    private VBox createFlightEntry(Flight flight, AirportDAO airportDAO, FlightclassDAO flightclassDAO) {
+    private VBox createFlightEntry(Flight flight, AirportDAO airportDAO, FlightclassDAO flightclassDAO)  {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
         // Retrieve departure airport details
@@ -348,6 +352,82 @@ public class ReservationVolController {
         Label classLabel = new Label(classLabelText);
         Label priceLabel = new Label(priceLabelText);
 
+
+
+        Label Degrees = new Label();
+        Label City = new Label();
+        Label Time = new Label();
+
+
+
+
+
+        try {
+            // Fetch weather information based on arrival airport
+            String country = arrivalAirport.getCity().replaceAll("\\s", "");
+            System.out.println("Formatted country name: " + country);
+
+            Connection connection = new Connection(arrivalAirport.getCity()); // Assuming this is your weather API connection
+            String temperature = connection.getTemp_C_Api(); // Example method to get temperature from weather API
+            System.out.println("Formatted temperature name: " + temperature);
+            String cityName = connection.getCityNameApi(); // Example method to get city name from weather API
+            System.out.println("Formatted cityName name: " + cityName);
+
+            String localTime = connection.getLocalTime(); // Example method to get local time from weather API
+            System.out.println("Formatted localTime name: " + localTime);
+            // Create labels to display weather information
+            Label temperatureLabel = new Label("Temperature: " + temperature + "°C");
+
+            // Add weather labels to the flight entry VBox
+            flightEntry.getChildren().addAll(
+                    // Your existing labels...
+                    temperatureLabel
+
+            );
+            Font labelFont = Font.font("Arial", FontWeight.BOLD, 12);
+            // Set font styles and wrapping for weather labels
+            temperatureLabel.setFont(labelFont);
+
+            temperatureLabel.setWrapText(true);
+
+        } catch (IOException e) {
+            // Handle weather API connection error
+            System.out.println("Failed to connect to weather API: " + e.getMessage());
+            // You may want to display a placeholder or handle this error differently
+        }
+
+
+
+
+
+       // changeIconWeather(connectionParis);
+
+
+        //Degrees.setText(connectionParis.getTemp_C_Api() + "°C");
+        //City.setText("City: " + connectionParis.getCityNameApi());
+      //  Humidity.setProgress(Double.parseDouble(connectionParis.getHumidityApi())/100);
+     //   Time.setText(connectionParis.getLocalTime());
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         // Set font styles and wrapping
         Font labelFont = Font.font("Arial", FontWeight.BOLD, 12);
         departureLabel.setFont(labelFont);
@@ -358,6 +438,13 @@ public class ReservationVolController {
         classLabel.setFont(labelFont);
         priceLabel.setFont(labelFont);
 
+//--
+        /*Degrees.setFont(labelFont);
+        City.setFont(labelFont);
+        Time.setFont(labelFont);*/
+//--
+
+
         departureLabel.setWrapText(true);
         arrivalLabel.setWrapText(true);
         airlineLabel.setWrapText(true);
@@ -365,7 +452,11 @@ public class ReservationVolController {
         arrivalTimeLabel.setWrapText(true);
         classLabel.setWrapText(true);
         priceLabel.setWrapText(true);
-
+//--
+      /*  Degrees.setWrapText(true);
+        City.setWrapText(true);
+        Time.setWrapText(true);*/
+//--
         flightEntry.getChildren().addAll(
                 departureLabel,
                 arrivalLabel,
@@ -374,6 +465,7 @@ public class ReservationVolController {
                 arrivalTimeLabel,
                 classLabel,
                 priceLabel,
+
                 viewReservationButton
         );
 
@@ -381,8 +473,48 @@ public class ReservationVolController {
         DropShadow dropShadow = new DropShadow(10, Color.GRAY);
         flightEntry.setEffect(dropShadow);
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         return flightEntry;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -475,6 +607,11 @@ public class ReservationVolController {
             } else {
                 arrivalTimeLabel.setText("Arrival Time: N/A");
             }
+
+
+
+
+
         }
     }
 
@@ -625,6 +762,28 @@ public class ReservationVolController {
         populateFlights(flights);
 
 
+//-----------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//----------------------------------------
     }
 
 
@@ -908,6 +1067,89 @@ public class ReservationVolController {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//-----------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//-----------------------------------------------------------------------
 
 
 

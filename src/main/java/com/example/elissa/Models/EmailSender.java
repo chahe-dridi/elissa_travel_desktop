@@ -19,8 +19,8 @@ public class EmailSender {
             props.put("mail.smtp.starttls.enable", "true"); // Activation de TLS
 
             // Informations d'authentification pour votre compte Gmail
-            String username = "tester44.tester2@gmail.com"; // Votre adresse e-mail Gmail
-            String password = "hpev dqbv clze bhxa"; // Votre mot de passe Gmail
+            String username = " "; // Votre adresse e-mail Gmail
+            String password = " "; // Votre mot de passe Gmail
 
             // Création de la session avec les informations d'authentification
             Session session = Session.getInstance(props, new Authenticator() {
