@@ -4,11 +4,13 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1200.0" stylesheets="@airport.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.elissa.Controller.FlightclassController">
+<AnchorPane prefHeight="800.0" prefWidth="850.0" stylesheets="@airport.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.elissa.Controller.FlightclassController">
     <children>
-        <TableView fx:id="flightclassTableView" layoutX="446.0" layoutY="154.0" prefHeight="342.0" prefWidth="603.0">
+        <TableView fx:id="flightclassTableView" layoutX="71.0" layoutY="154.0" prefHeight="342.0" prefWidth="600.0">
             <columns>
                 <TableColumn fx:id="IdColumn" prefWidth="70.0" text="Number" />
 
@@ -18,19 +20,66 @@
                 <TableColumn fx:id="ticketNumberColumn" prefWidth="105.0" text="Ticket Number" />
             </columns>
         </TableView>
-        <TextField fx:id="newClassNameField" layoutX="488.0" layoutY="521.0" promptText="Class Name" />
-        <TextField fx:id="newDescriptionField" layoutX="488.0" layoutY="585.0" promptText="Description" />
-        <TextField fx:id="newPriceField" layoutX="788.0" layoutY="521.0" promptText="Price" />
-        <TextField fx:id="newTicketNumberField" layoutX="788.0" layoutY="585.0" promptText="Ticket Number" />
-        <Button fx:id="newFlightClassAButton" layoutX="1060.0" layoutY="154.0" mnemonicParsing="false" onAction="#handleNewFlightclassButton" prefHeight="40.0" prefWidth="103.0" text="Add" />
-        <Button fx:id="deleteFlightClassButton" layoutX="1060.0" layoutY="285.0" mnemonicParsing="false" onAction="#handleDeleteFlightclassButton" prefHeight="40.0" prefWidth="103.0" text="Delete" />
-        <Button fx:id="updateFlightClassButton" layoutX="1060.0" layoutY="220.0" mnemonicParsing="false" onAction="#handleModifyFlightclassButton" prefHeight="40.0" prefWidth="103.0" text="Update" />
+        <TextField fx:id="newClassNameField" layoutX="114.0" layoutY="521.0" promptText="Class Name" />
+        <TextField fx:id="newDescriptionField" layoutX="114.0" layoutY="585.0" promptText="Description" />
+        <TextField fx:id="newPriceField" layoutX="414.0" layoutY="521.0" promptText="Price" />
+        <TextField fx:id="newTicketNumberField" layoutX="414.0" layoutY="585.0" promptText="Ticket Number" />
+        <Button fx:id="newFlightClassAButton" alignment="BASELINE_LEFT" layoutX="686.0" layoutY="156.0" mnemonicParsing="false" onAction="#handleNewFlightclassButton" prefHeight="40.0" prefWidth="120.0" text="Add">
+         <graphic>
+            <ImageView fitHeight="23.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@icons/airplaneclass.png" />
+               </image></ImageView>
+         </graphic></Button>
+        <Button fx:id="deleteFlightClassButton" alignment="BASELINE_LEFT" layoutX="686.0" layoutY="285.0" mnemonicParsing="false" onAction="#handleDeleteFlightclassButton" prefHeight="40.0" prefWidth="120.0" text="Delete">
+         <graphic>
+            <ImageView fitHeight="23.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@icons/delete.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+        <Button fx:id="updateFlightClassButton" alignment="BASELINE_LEFT" layoutX="686.0" layoutY="220.0" mnemonicParsing="false" onAction="#handleModifyFlightclassButton" prefHeight="40.0" prefWidth="120.0" text="Update">
+         <graphic>
+            <ImageView fitHeight="23.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@icons/update.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
 
 
-        <Button layoutX="446.0" layoutY="70.0" mnemonicParsing="false" onAction="#handleAirportsButtonClick" text="Airports" />
-        <Button layoutX="600.0" layoutY="70.0" mnemonicParsing="false" onAction="#handleFlightsButtonClick" text="Flights" />
-        <Button layoutX="751.0" layoutY="70.0" mnemonicParsing="false" onAction="#handleFlightClassButtonClick" text="FlightClass" />
-        <Button layoutX="904.0" layoutY="70.0" mnemonicParsing="false" onAction="#handleReservationButtonClick" text="Reservation" />
-
+        <Button layoutX="71.0" layoutY="70.0" mnemonicParsing="false" onAction="#handleAirportsButtonClick" prefHeight="40.0" prefWidth="131.0" text="Airports">
+            <graphic>
+                <ImageView fitHeight="23.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@icons/airport%20(1).png" />
+                    </image>
+                </ImageView>
+            </graphic></Button>
+        <Button layoutX="226.0" layoutY="70.0" mnemonicParsing="false" onAction="#handleFlightsButtonClick" prefHeight="40.0" prefWidth="131.0" text="Flights">
+            <graphic>
+                <ImageView fitHeight="23.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@icons/airplane.png" />
+                    </image>
+                </ImageView>
+            </graphic></Button>
+        <Button layoutX="381.0" layoutY="70.0" mnemonicParsing="false" onAction="#handleFlightClassButtonClick" prefHeight="40.0" prefWidth="150.0" text="FlightClass">
+            <graphic>
+                <ImageView fitHeight="23.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@icons/airplaneclass.png" />
+                    </image>
+                </ImageView>
+            </graphic></Button>
+        <Button layoutX="556.0" layoutY="70.0" mnemonicParsing="false" onAction="#handleReservationButtonClick" prefHeight="40.0" prefWidth="160.0" text="Reservation">
+            <graphic>
+                <ImageView fitHeight="23.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@icons/electronic-ticket.png" />
+                    </image>
+                </ImageView>
+            </graphic></Button>
     </children>
 </AnchorPane>

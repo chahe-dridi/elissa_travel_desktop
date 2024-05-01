@@ -1,56 +1,25 @@
-/* S/* Styles for TableView */
-.table-view {
-    -fx-background-color: #f9f9f9;
-    -fx-border-color: #4CAF50; /* Set border color to green */
-    -fx-border-width: 2px;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 1.5), 10, 0, 0, 2);
+.table-view{
+    -fx-background-color:transparent;
+    -fx-border-color:linear-gradient(to bottom right, #272b3f, #256b51);
+    -fx-border-radius:8px;
+    -fx-padding:0px;
 }
-
-/* Style for TableColumns */
-.table-column {
-    -fx-alignment: CENTER_LEFT;
-    -fx-font-size: 14px;
-    -fx-text-fill: #333333;
-    -fx-border-color: transparent;
+.table-view .table-column{
+    -fx-alignment:CENTER;
 }
-
-/* Highlight the first TableColumn */
-.table-view .column-header-background .table-column:first-child {
-    -fx-background-color: #4CAF50; /* Green background for the first column */
-    -fx-text-fill: white; /* White text color for the first column header */
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0, 0, 1);
+.table-view .column-header-background{
+    -fx-background-color:linear-gradient(to bottom right, #272b3f, #256b51);
+    -fx-background-insets: 0 0 0 0;
+    -f-background-radius:8px 8px 0px 0px;
 }
-
-/* Style for TableCells */
-.table-cell {
-    -fx-padding: 10px;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 5, 0, 0, 1);
+.table-view .column-header, .filter{
+    -fx-background-color: transparent;
+    -fx-size:40px;
 }
-
-/* Alternate row color for TableView */
-.table-row-cell:even {
-    -fx-background-color: #f0f0f0;
+.table-view .column-header .label{
+    -fx-text-fill:#fff;
+    -fx-font-family:"Arial";
 }
-
-/* Hover effect for TableView rows */
-.table-row-cell:hover {
-    -fx-background-color: #e0e0e0;
-    -fx-cursor: hand;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0, 0, 1);
-}
-
-.table-view .column-header-background {
-    -fx-background-color: #f0f0f0;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0, 0, 1);
-}
-
-/* Hover effect for TableColumn headers */
-.table-view .column-header:hover {
-    -fx-background-color: #e0e0e0;
-    -fx-cursor: hand;
-}
-
-
 
 
 
