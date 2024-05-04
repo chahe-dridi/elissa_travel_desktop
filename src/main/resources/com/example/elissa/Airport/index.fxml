@@ -52,6 +52,10 @@
                </effect>
             </ImageView>
          </graphic></Button>
+
+
+      <Button fx:id="showStatsButton" alignment="BASELINE_LEFT" layoutX="686.0" layoutY="420.0" mnemonicParsing="false" onAction="#showStatsPage" prefHeight="40.0" prefWidth="120.0" text="Show Statistics" />
+
       <Button fx:id="deleteAirportButton" alignment="BASELINE_LEFT" layoutX="686.0" layoutY="285.0" mnemonicParsing="false" onAction="#handleDeleteAirportButton" prefHeight="40.0" prefWidth="120.0" text="Delete">
          <graphic>
             <ImageView fitHeight="23.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
@@ -73,38 +77,6 @@
          </graphic></Button>
 
 
-      <Button layoutX="71.0" layoutY="70.0" mnemonicParsing="false" onAction="#handleAirportsButtonClick" prefHeight="40.0" prefWidth="131.0" text="Airports">
-         <graphic>
-            <ImageView fitHeight="23.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@icons/airport%20(1).png" />
-               </image>
-            </ImageView>
-         </graphic></Button>
-      <Button layoutX="226.0" layoutY="70.0" mnemonicParsing="false" onAction="#handleFlightsButtonClick" prefHeight="40.0" prefWidth="131.0" text="Flights">
-         <graphic>
-            <ImageView fitHeight="23.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@icons/airplane.png" />
-               </image>
-            </ImageView>
-         </graphic></Button>
-      <Button layoutX="381.0" layoutY="70.0" mnemonicParsing="false" onAction="#handleFlightClassButtonClick" prefHeight="40.0" prefWidth="150.0" text="FlightClass">
-         <graphic>
-            <ImageView fitHeight="23.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@icons/airplaneclass.png" />
-               </image>
-            </ImageView>
-         </graphic></Button>
-      <Button layoutX="556.0" layoutY="70.0" mnemonicParsing="false" onAction="#handleReservationButtonClick" prefHeight="40.0" prefWidth="160.0" text="Reservation">
-         <graphic>
-            <ImageView fitHeight="23.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@icons/electronic-ticket.png" />
-               </image>
-            </ImageView>
-         </graphic></Button>
 
 
 

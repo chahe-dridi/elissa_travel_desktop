@@ -7,12 +7,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<?import javafx.scene.text.Text?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.control.ProgressIndicator?>
-<?import javafx.scene.effect.Blend?>
-<?import javafx.scene.Cursor?>
-
 <AnchorPane prefHeight="800.0" prefWidth="1200.0" styleClass="anchor-pane-background" stylesheets="@airport.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.elissa.Controller.ReservationVolController">
 
     <!-- Button for My Reservations -->
@@ -26,7 +20,7 @@
       </graphic></Button>
 
     <!-- ScrollPane to contain the VBox -->
-    <ScrollPane fx:id="scrollPane" layoutX="60.0" layoutY="200.0" prefHeight="550.0" prefWidth="1000.0" AnchorPane.bottomAnchor="54.0" AnchorPane.leftAnchor="59.0" AnchorPane.rightAnchor="194.0" AnchorPane.topAnchor="196.0">
+    <ScrollPane fx:id="scrollPane" layoutX="154.0" layoutY="196.0" maxWidth="955.0" prefHeight="550.0" prefWidth="850.0" AnchorPane.bottomAnchor="54.0" AnchorPane.leftAnchor="154.0" AnchorPane.rightAnchor="196.0" AnchorPane.topAnchor="196.0">
 
         <!-- Content of the ScrollPane -->
         <VBox fx:id="flightContainer" alignment="CENTER" spacing="20.0" style="-fx-padding: 20;">
@@ -40,7 +34,7 @@
     </ScrollPane>
 
 
-
+    <!-- Add text fields for search criteria -->
 
 
 

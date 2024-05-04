@@ -5,106 +5,122 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="800.0" prefWidth="1200.0" stylesheets="@airport.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.elissa.Controller.BaseController">
    <children>
-      <VBox prefHeight="800.0" prefWidth="250.0" style="-fx-background-color: #D6EAF8;">
+      <Pane layoutX="10.0" layoutY="8.0" prefHeight="761.0" prefWidth="232.0" style="-fx-background-color: #1F1E2F; -fx-background-radius: 20px;">
          <children>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="5.0" mnemonicParsing="false" prefHeight="78.0" prefWidth="250.0" style="-fx-background-color: #2874A6;" text="Elissa Travel" textFill="WHITE">
+            <Button layoutX="16.0" layoutY="215.0" mnemonicParsing="false"   prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #1f1e30;"   text="Type Event" textFill="WHITE">
+               <padding>
+                  <Insets left="-35.0" />
+               </padding>
                <graphic>
-                  <ImageView fitHeight="46.0" fitWidth="111.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="34.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../logo.png" />
+                        <Image url="@icons/plus.png" />
                      </image>
                   </ImageView>
                </graphic>
-               <font>
-                  <Font name="AdobeHebrew-Bold" size="20.0" />
-               </font>
             </Button>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#goto_airport" prefHeight="57.0" prefWidth="250.0" style="-fx-background-color: #AED6F1;" text="Airport">
-               <padding>
-                  <Insets left="50.0" />
-               </padding>
-               <font>
-                  <Font name="AdobeHebrew-Bold" size="15.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="20.0" right="20.0" top="10.0" />
-               </VBox.margin>
+            <Button layoutX="20.0" layoutY="699.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="188.0" style="-fx-background-color: #1f1e30;"   text="Déconnecter" textFill="WHITE">
                <graphic>
-                  <ImageView fitHeight="34.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icons/plus.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button layoutX="14.0" layoutY="137.0" mnemonicParsing="false"   prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: blue; -fx-background-radius: 20;"   text="Event" textFill="WHITE">
+               <padding>
+                  <Insets left="-35.0" />
+               </padding>
+               <graphic>
+                  <ImageView fitHeight="38.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icons/plus.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button layoutX="16.0" layoutY="277.0" lineSpacing="5.0" mnemonicParsing="false"   prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #1f1e30; -fx-border-radius: 20;"   text="Reservation" textAlignment="CENTER" textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icons/plus.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Text fill="WHITE" layoutX="42.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Espace">
+               <font>
+                  <Font name="Arial" size="24.0" />
+               </font>
+            </Text>
+            <Text fx:id="trole" fill="#0022e1" layoutX="134.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin" wrappingWidth="79.99998795986176">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="3.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Elissa Travel">
+               <font>
+                  <Font name="Arial Bold Italic" size="36.0" />
+               </font>
+            </Text>
+            <Button layoutX="16.0" layoutY="347.0" mnemonicParsing="false" onAction="#goto_airport" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #1f1e30;"   text="Airport" textFill="WHITE">
+               <padding>
+                  <Insets left="-35.0" />
+               </padding>
+               <graphic>
+                  <ImageView fitHeight="34.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@icons/airport%20(1).png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-
-
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#goto_flights" prefHeight="57.0" prefWidth="250.0" style="-fx-background-color: #AED6F1;" text="Flights">
+            <Button layoutX="14.0" layoutY="412.0" mnemonicParsing="false" onAction="#goto_flights" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #1f1e30;"   text="Flights" textFill="WHITE">
                <padding>
-                  <Insets left="50.0" />
+                  <Insets left="-35.0" />
                </padding>
-               <font>
-                  <Font name="AdobeHebrew-Bold" size="15.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="20.0" right="20.0" top="10.0" />
-               </VBox.margin>
                <graphic>
-                  <ImageView fitHeight="34.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="34.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@icons/airplane.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-
-
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#goto_flight_class" prefHeight="57.0" prefWidth="250.0" style="-fx-background-color: #AED6F1;" text="Flight Class">
+            <Button layoutX="16.0" layoutY="481.0" mnemonicParsing="false" onAction="#goto_flight_class" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #1f1e30;"   text="Flight Class" textFill="WHITE">
                <padding>
-                  <Insets left="50.0" />
+                  <Insets left="-35.0" />
                </padding>
-               <font>
-                  <Font name="AdobeHebrew-Bold" size="15.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="20.0" right="20.0" top="10.0" />
-               </VBox.margin>
                <graphic>
-                  <ImageView fitHeight="34.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="34.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@icons/airplaneclass.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#goto_reservation_flight" prefHeight="57.0" prefWidth="250.0" style="-fx-background-color: #AED6F1;" text="Reservations Flight">
+            <Button layoutX="16.0" layoutY="547.0" mnemonicParsing="false" onAction="#goto_reservation_flight" prefHeight="54.0" prefWidth="206.0" style="-fx-background-color: #1f1e30;"   text="Reservations Flight" textFill="WHITE">
                <padding>
-                  <Insets left="50.0" />
+                  <Insets left="-35.0" />
                </padding>
-               <font>
-                  <Font name="AdobeHebrew-Bold" size="15.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="20.0" right="20.0" top="10.0" />
-               </VBox.margin>
                <graphic>
-                  <ImageView fitHeight="34.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="34.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@icons/electronic-ticket.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-
          </children>
-      </VBox>
+      </Pane>
       <StackPane fx:id="contentArea" layoutX="249.0" layoutY="-1.0" prefHeight="800.0" prefWidth="950.0" />
    </children>
 </AnchorPane>

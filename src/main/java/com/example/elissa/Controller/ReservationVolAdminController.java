@@ -7,6 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -21,12 +22,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-
-
-
-
-
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 
 
 public class ReservationVolAdminController {
@@ -136,6 +133,22 @@ public class ReservationVolAdminController {
 
         ReservationVolAdmin newReservation = new ReservationVolAdmin(volId, userId, totalPrice, paymentMethod);
         reservationDAO.addReservation(newReservation);
+
+
+        Notifications notification = Notifications.create()
+                .title("Reservation Flight")
+                .text("Reservation Flight Added successfully ")
+                .hideAfter(Duration.seconds(5))
+                .position(Pos.BOTTOM_RIGHT)
+                .graphic(null) // No graphic
+                .darkStyle() // Use dark style for better visibility
+                .hideCloseButton(); // Hide close button
+
+// Apply the CSS styling directly
+        //notification.showInformation(); // Show the notification as information style
+
+// Apply the CSS styling directly
+        notification.show();
         refreshTableView();
         clearFields();
     }
@@ -165,6 +178,21 @@ public class ReservationVolAdminController {
             selectedReservation.setPaymentMethod(paymentMethod);
 
             reservationDAO.updateReservation(selectedReservation);
+
+            Notifications notification = Notifications.create()
+                    .title("Reservation Flight")
+                    .text("Reservation Flight Updated successfully ")
+                    .hideAfter(Duration.seconds(5))
+                    .position(Pos.BOTTOM_RIGHT)
+                    .graphic(null) // No graphic
+                    .darkStyle() // Use dark style for better visibility
+                    .hideCloseButton(); // Hide close button
+
+// Apply the CSS styling directly
+            //notification.showInformation(); // Show the notification as information style
+
+// Apply the CSS styling directly
+            notification.show();
             refreshTableView();
             clearFields();
         }
@@ -262,6 +290,20 @@ public class ReservationVolAdminController {
         ReservationVolAdmin selectedReservation = reservationTableView.getSelectionModel().getSelectedItem();
         if (selectedReservation != null) {
             reservationDAO.deleteReservation(selectedReservation.getId());
+            Notifications notification = Notifications.create()
+                    .title("Reservation Flight")
+                    .text("Reservation Flight Deleted successfully ")
+                    .hideAfter(Duration.seconds(5))
+                    .position(Pos.BOTTOM_RIGHT)
+                    .graphic(null) // No graphic
+                    .darkStyle() // Use dark style for better visibility
+                    .hideCloseButton(); // Hide close button
+
+// Apply the CSS styling directly
+            //notification.showInformation(); // Show the notification as information style
+
+// Apply the CSS styling directly
+            notification.show();
             refreshTableView();
         }
     }

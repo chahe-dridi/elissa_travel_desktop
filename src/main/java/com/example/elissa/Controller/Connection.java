@@ -134,7 +134,9 @@ public class Connection {
             int findNameOfCity = response.indexOf("localtime", findNameOfCity1 + 1);
             int findStartCityName = response.indexOf(":", findNameOfCity) + 2;
             String localTime = response.substring(findStartCityName, response.indexOf("\"", findStartCityName));
-            response = new StringBuffer(localTime); // Assign the value back to response
+            response = new StringBuffer(localTime);
+
+
             return "Weather at " + localTime;
         } catch (Exception e) {
             e.printStackTrace();

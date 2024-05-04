@@ -28,7 +28,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 
@@ -94,8 +96,12 @@ public class AirportController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("AirportController initialized");
         configureTableView(); // Call to configureTableView() method
+
+
+
         try {
             refreshTableView();
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -135,53 +141,6 @@ public class AirportController implements Initializable {
         alert.showAndWait();
     }
     //-----------------------------------
-   /* @FXML
-    void handleNewAirportButton() throws SQLException {
-        // Retrieve data from input fields
-        String code = newAirportCodeField.getText().trim();
-        String name = newAirportNameField.getText().trim();
-        String city = newAirportCityField.getText().trim();
-        String country = newAirportCountryField.getText().trim();
-
-        // Validate input fields
-        if (!isValidInput(code) || !isValidInput(name) || !isValidInput(city) || !isValidInput(country)) {
-            showAlert(Alert.AlertType.ERROR, "Invalid Input", "Fields cannot be empty and must contain valid characters.");
-            return;
-        }
-
-        // Create a new Airport object
-        Airport newAirport = new Airport(1, code, name, city, country);
-
-        // Add the new airport to the database
-        airportDAO.addAirport(newAirport);
-
-        // Refresh the table view to display the updated list of airports
-        refreshTableView();
-        // Load the CSS file
-        String cssPath = getClass().getResource("/com/example/elissa/Airport/notificationStyle.css").toExternalForm();
-        Scene scene = newAirportButton.getScene();
-        // Apply the stylesheet to the scene's root node
-        scene.getRoot().getStylesheets().add(cssPath);
-        Notifications notification = Notifications.create()
-                .title("Airport")
-                .text("Airport Added successfully ")
-                .graphic(null)
-                .hideAfter(Duration.seconds(5))
-                .position(Pos.BOTTOM_RIGHT);
-
-        // Show the notification
-
-
-        // Get the scene of the parent node (you might need to adjust this based on your scene hierarchy)
-
-
-
-        notification.show();
-        System.out.println(cssPath);
-
-        // Clear input fields after adding airport
-        clearFields();
-    }*/
 
 
 
@@ -285,6 +244,26 @@ public class AirportController implements Initializable {
             // Refresh the table view to reflect the changes
             refreshTableView();
 
+
+
+
+
+            // Create a notification with styling
+            Notifications notification = Notifications.create()
+                    .title("Airport")
+                    .text("Airport Updated successfully ")
+                    .hideAfter(Duration.seconds(5))
+                    .position(Pos.BOTTOM_RIGHT)
+                    .graphic(null) // No graphic
+                    .darkStyle() // Use dark style for better visibility
+                    .hideCloseButton(); // Hide close button
+
+// Apply the CSS styling directly
+            //notification.showInformation(); // Show the notification as information style
+
+// Apply the CSS styling directly
+            notification.show();
+
             // Clear input fields after modification
             clearFields();
         }
@@ -317,6 +296,23 @@ public class AirportController implements Initializable {
         if (selectedAirport != null) {
             // Delete the selected airport from the database
             airportDAO.deleteAirport(selectedAirport);
+
+
+            // Create a notification with styling
+            Notifications notification = Notifications.create()
+                    .title("Airport")
+                    .text("Airport Deleted successfully ")
+                    .hideAfter(Duration.seconds(5))
+                    .position(Pos.BOTTOM_RIGHT)
+                    .graphic(null) // No graphic
+                    .darkStyle() // Use dark style for better visibility
+                    .hideCloseButton(); // Hide close button
+
+// Apply the CSS styling directly
+            //notification.showInformation(); // Show the notification as information style
+
+// Apply the CSS styling directly
+            notification.show();
 
             // Refresh the table view to reflect the deletion
             refreshTableView();
@@ -363,115 +359,41 @@ public class AirportController implements Initializable {
 
 
 
-/*
-    @FXML
-    void PageStatMateriel(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/elissa/Airport/airport_stat.fxml"));
-            Parent stat = loader.load();
-            AirportController controller = loader.getController();
-            controller.displayAirportStats(); // Call method to display airport statistics
-            // Create the dialog
-            Stage dialogStage = new Stage();
-            dialogStage.initModality(Modality.WINDOW_MODAL);
-            dialogStage.initOwner(displ.getScene().getWindow());
-            Scene scene = new Scene(stat);
-            dialogStage.setScene(scene);
 
-            // Show the dialog
-            dialogStage.showAndWait();
+
+
+
+
+
+
+    @FXML
+    void showStatsPage(ActionEvent event) {
+        try {
+            // Load the FXML file for the statistics page
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/elissa/Airport/airport_stat.fxml"));
+            Parent root = loader.load();
+
+            // Get the controller associated with the loaded FXML
+            AirportStatController statController = loader.getController();
+
+            // Refresh the pie chart in the statistics page
+            statController.refreshPieChart();
+
+            // Create a new stage for the statistics page
+            Stage statsStage = new Stage();
+            statsStage.setTitle("Airport Statistics");
+            statsStage.initModality(Modality.APPLICATION_MODAL);
+            statsStage.setScene(new Scene(root));
+
+            // Show the statistics page
+            statsStage.showAndWait();
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
-
-
-
-
-
-
-
-    @FXML
-    private Button displ;
-
-    @FXML
-    PieChart pieChart;
-
-
-
-   @FXML
-    void displayAirportStats( ) {
-
-        AirportDAO airportDAO = new AirportDAO();
-        List<Airport> airports = airportDAO.getAllAirports();
-
-        int disponibleCount = 0;
-        int nonDisponibleCount = 0;
-
-        for (Airport Airport : airports) {
-            if (Airport.getDisponibilite() == 0) {
-                nonDisponibleCount++;
-            } else {
-                disponibleCount++;
-            }
-        }
-
-        ObservableList<PieChart.Data> pieChartData =
-                FXCollections.observableArrayList(
-                        new PieChart.Data("Disponible", disponibleCount),
-                        new PieChart.Data("Non Disponible", nonDisponibleCount));
-        pieChart.setData(pieChartData);
-
-
-    }
-
-*/
-
-
-
-
-
-
-
-
-
-
-    @FXML
-    void handleAirportsButtonClick() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/elissa/Airport/index.fxml"));
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) airportTableView.getScene().getWindow();
-        stage.setScene(scene);
-    }
-
-    @FXML
-    void handleFlightsButtonClick() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/elissa/Airport/flight.fxml"));
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) airportTableView.getScene().getWindow();
-        stage.setScene(scene);
-    }
-
-    @FXML
-    void handleFlightClassButtonClick() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/elissa/Airport/flightclass.fxml"));
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) airportTableView.getScene().getWindow();
-        stage.setScene(scene);
-    }
-
-    @FXML
-    void handleReservationButtonClick() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/elissa/Airport/reservationvoladmin.fxml"));
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) airportTableView.getScene().getWindow();
-        stage.setScene(scene);
-    }
 
 
 

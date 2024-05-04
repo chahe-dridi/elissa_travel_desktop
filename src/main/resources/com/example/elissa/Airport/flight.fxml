@@ -105,5 +105,12 @@
          </graphic></Button>
 
 
+
+
+
+
+
+        <TextField fx:id="departureAirportSearchField" layoutX="325.0" layoutY="723.0" onKeyReleased="#handleDepartureAirportSearch" prefWidth="200.0" promptText="Search by Departure Airport" />
+
     </children>
 </AnchorPane>

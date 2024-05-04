@@ -22,6 +22,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.LinearGradient;
@@ -266,6 +267,7 @@ public class ReservationVolController {
         int flightsPerRow = 3;
         int flightCount = 0;
         HBox currentRow = new HBox();
+        currentRow.setSpacing(20); // Set spacing between flight entries
 
         AirportDAO airportDAO = new AirportDAO();
         FlightclassDAO flightclassDAO = new FlightclassDAO();
@@ -281,6 +283,7 @@ public class ReservationVolController {
                 if (flightCount % flightsPerRow == 0) {
                     flightContainer.getChildren().add(currentRow);
                     currentRow = new HBox(); // Reset currentRow for the next row
+                    currentRow.setSpacing(20); // Set spacing between flight entries
                 }
             }
         }
@@ -341,7 +344,7 @@ public class ReservationVolController {
         flightEntry.setBackground(new Background(new BackgroundFill(
                 LinearGradient.valueOf("linear-gradient(to bottom, #80b3ff, #0073e6)"),
                 new CornerRadii(10), null)));
-        flightEntry.setMaxWidth(300); // Set maximum width for consistent sizing
+        flightEntry.setMaxWidth(250); // Set maximum width for consistent sizing
 
         // Add labels and button to the flightEntry VBox
         Label departureLabel = new Label("Departure: " + departureAirport.getName() + " (" + departureAirport.getCity() + ", " + departureAirport.getCountry() + ")");
@@ -357,7 +360,6 @@ public class ReservationVolController {
         Label Degrees = new Label();
         Label City = new Label();
         Label Time = new Label();
-
 
 
 
@@ -398,8 +400,6 @@ public class ReservationVolController {
 
 
 
-
-
        // changeIconWeather(connectionParis);
 
 
@@ -407,24 +407,6 @@ public class ReservationVolController {
         //City.setText("City: " + connectionParis.getCityNameApi());
       //  Humidity.setProgress(Double.parseDouble(connectionParis.getHumidityApi())/100);
      //   Time.setText(connectionParis.getLocalTime());
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -477,22 +459,6 @@ public class ReservationVolController {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         return flightEntry;
     }
 
@@ -526,6 +492,24 @@ public class ReservationVolController {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //---------
     @FXML
     private Label departureAirportLabel;
 

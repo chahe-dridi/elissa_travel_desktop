@@ -8,11 +8,14 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 
 import java.io.IOException;
 import java.net.URL;
@@ -71,6 +74,8 @@ public class FlightclassController implements Initializable {
                 populateFields(newSelection);
             }
         });
+
+
     }
 
     private void configureTableView() {
@@ -153,7 +158,26 @@ public class FlightclassController implements Initializable {
 
         Flightclass newFlightclass = new Flightclass(1, className, description, price, ticketNumber);
         flightclassDAO.addFlightclass(newFlightclass);
+
+
+        Notifications notification = Notifications.create()
+                .title("FlightClass")
+                .text("FlightClass Added successfully ")
+                .hideAfter(Duration.seconds(5))
+                .position(Pos.BOTTOM_RIGHT)
+                .graphic(null) // No graphic
+                .darkStyle() // Use dark style for better visibility
+                .hideCloseButton(); // Hide close button
+
+// Apply the CSS styling directly
+        //notification.showInformation(); // Show the notification as information style
+
+// Apply the CSS styling directly
+        notification.show();
         refreshTableView();
+
+
+
         clearFields();
     }
 
@@ -181,7 +205,25 @@ public class FlightclassController implements Initializable {
             selectedFlightclass.setTicketNumber(ticketNumber);
 
             flightclassDAO.updateFlightclass(selectedFlightclass);
+
+
+            Notifications notification = Notifications.create()
+                    .title("FlightClass")
+                    .text("FlightClass Updated successfully ")
+                    .hideAfter(Duration.seconds(5))
+                    .position(Pos.BOTTOM_RIGHT)
+                    .graphic(null) // No graphic
+                    .darkStyle() // Use dark style for better visibility
+                    .hideCloseButton(); // Hide close button
+
+// Apply the CSS styling directly
+            //notification.showInformation(); // Show the notification as information style
+
+// Apply the CSS styling directly
+            notification.show();
             refreshTableView();
+
+
             clearFields();
         }
     }
@@ -237,7 +279,25 @@ public class FlightclassController implements Initializable {
         Flightclass selectedFlightclass = flightclassTableView.getSelectionModel().getSelectedItem();
         if (selectedFlightclass != null) {
             flightclassDAO.deleteFlightclass(selectedFlightclass.getId());
+            // Create a notification with styling
+            Notifications notification = Notifications.create()
+                    .title("FlightClass")
+                    .text("FlightClass Deleted successfully ")
+                    .hideAfter(Duration.seconds(5))
+                    .position(Pos.BOTTOM_RIGHT)
+                    .graphic(null) // No graphic
+                    .darkStyle() // Use dark style for better visibility
+                    .hideCloseButton(); // Hide close button
+
+// Apply the CSS styling directly
+            //notification.showInformation(); // Show the notification as information style
+
+// Apply the CSS styling directly
+            notification.show();
+
             refreshTableView();
+
+
         }
     }
 
@@ -262,8 +322,24 @@ public class FlightclassController implements Initializable {
 
 
 
+    @FXML
+    private TextField flightClassNameSearchField;
 
+    private void handleFlightClassNameSearch() {
+        String searchTerm = flightClassNameSearchField.getText().trim().toLowerCase();
+        ObservableList<Flightclass> allFlightClasses = flightclassTableView.getItems();
+        ObservableList<Flightclass> filteredFlightClasses = FXCollections.observableArrayList();
 
+        // Filter flight classes where the class name contains the search term
+        for (Flightclass flightclass : allFlightClasses) {
+            if (flightclass.getClassName().toLowerCase().contains(searchTerm)) {
+                filteredFlightClasses.add(flightclass);
+            }
+        }
+
+        // Update the table view with search result
+        flightclassTableView.setItems(filteredFlightClasses);
+    }
 
 
 

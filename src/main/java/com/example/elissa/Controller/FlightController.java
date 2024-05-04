@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -30,6 +31,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import javafx.util.StringConverter;
 
 import java.lang.String;
@@ -45,12 +47,7 @@ import java.time.format.DateTimeFormatter;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
-
-
-
-
-
-
+import org.controlsfx.control.Notifications;
 
 
 public class FlightController implements Initializable {
@@ -288,6 +285,20 @@ public class FlightController implements Initializable {
 
         // Add the new flight
         flightDAO.addFlight(newFlight);
+        Notifications notification = Notifications.create()
+                .title("Flight")
+                .text("Flight Added successfully ")
+                .hideAfter(Duration.seconds(5))
+                .position(Pos.BOTTOM_RIGHT)
+                .graphic(null) // No graphic
+                .darkStyle() // Use dark style for better visibility
+                .hideCloseButton(); // Hide close button
+
+// Apply the CSS styling directly
+        //notification.showInformation(); // Show the notification as information style
+
+// Apply the CSS styling directly
+        notification.show();
         refreshTableView();
         clearFields();
     }
@@ -346,6 +357,22 @@ public class FlightController implements Initializable {
 
             Flight modifiedFlight = new Flight(id, airportDepartId, airportArriveId, volclassId, userId, compagnieAerienne, heureDepart, heureArrive, disponible);
             flightDAO.updateFlight(modifiedFlight);
+
+
+            Notifications notification = Notifications.create()
+                    .title("Flight")
+                    .text("Flight Updated successfully ")
+                    .hideAfter(Duration.seconds(5))
+                    .position(Pos.BOTTOM_RIGHT)
+                    .graphic(null) // No graphic
+                    .darkStyle() // Use dark style for better visibility
+                    .hideCloseButton(); // Hide close button
+
+// Apply the CSS styling directly
+            //notification.showInformation(); // Show the notification as information style
+
+// Apply the CSS styling directly
+            notification.show();
             refreshTableView();
             clearFields();
         }
@@ -434,6 +461,21 @@ public class FlightController implements Initializable {
         if (selectedFlight != null) {
             int id = selectedFlight.getId();
             flightDAO.deleteFlight(id);
+
+            Notifications notification = Notifications.create()
+                    .title("Flight")
+                    .text("Flight Deleted successfully ")
+                    .hideAfter(Duration.seconds(5))
+                    .position(Pos.BOTTOM_RIGHT)
+                    .graphic(null) // No graphic
+                    .darkStyle() // Use dark style for better visibility
+                    .hideCloseButton(); // Hide close button
+
+// Apply the CSS styling directly
+            //notification.showInformation(); // Show the notification as information style
+
+// Apply the CSS styling directly
+            notification.show();
             refreshTableView();
         }
     }
@@ -512,6 +554,55 @@ public class FlightController implements Initializable {
         Stage stage = (Stage) flightTableView.getScene().getWindow();
         stage.setScene(scene);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @FXML
+    private TextField departureAirportSearchField;
+
+    @FXML
+    void handleDepartureAirportSearch() {
+        String searchAirportCode = departureAirportSearchField.getText().trim().toUpperCase();
+        if (!searchAirportCode.isEmpty()) {
+            // Filter flights where the departure airport code partially matches the search term
+            List<Flight> filteredFlights = flightTableView.getItems().filtered(flight -> {
+                Airport departureAirport = null;
+                try {
+                    departureAirport = airportDAO.getAirportById(flight.getAirportDepartId());
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                return departureAirport != null && departureAirport.getCode().toUpperCase().contains(searchAirportCode);
+            });
+            // Update the table view with search result
+            ObservableList<Flight> flightObservableList = FXCollections.observableArrayList(filteredFlights);
+            flightTableView.setItems(flightObservableList);
+        } else {
+            // If search text is empty, refresh the table view with all flights
+            refreshTableView();
+        }
+    }
+
+
+
+
+
+
+
+
 
 
 
