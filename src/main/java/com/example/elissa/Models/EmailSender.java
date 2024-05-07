@@ -8,7 +8,7 @@ import java.util.Properties;
 
 public class EmailSender {
 
-
+//comment
         public static void AjoutCommentaireEmail(String userEmail,String htmlContent) {
             // Paramètres de la session pour envoyer l'e-mail
             Properties props = new Properties();
