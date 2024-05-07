@@ -1,10 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"  fx:controller="com.example.elissa.Controller.AirportStatController">
+<?import javafx.scene.paint.LinearGradient?>
+<?import java.net.URL?>
+<?import javafx.scene.paint.Stop?>
+<AnchorPane prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.elissa.Controller.AirportStatController">
+    <stylesheets>
+        <URL value="@stat.css" />
+    </stylesheets>
     <children>
-        <PieChart fx:id="airportPieChart" layoutX="25.0" layoutY="25.0" prefHeight="350.0" prefWidth="550.0" />
+        <!-- Background gradient -->
+        <Rectangle width="600.0" height="400.0">
+            <fill>
+                <LinearGradient endX="1.0" endY="1.0">
+                    <stops>
+                        <Stop color="#4F81BD" offset="0.0" />
+                        <Stop color="#C0504D" offset="1.0" />
+                    </stops>
+                </LinearGradient>
+            </fill>
+        </Rectangle>
+        <!-- Title -->
+        <Label text="Airport Distribution by Country" layoutX="25.0" layoutY="20.0" styleClass="title-label" />
+        <!-- Chart with styling -->
+        <PieChart fx:id="airportPieChart" layoutX="50.0" layoutY="60.0" prefHeight="280.0" prefWidth="500.0" styleClass="chart" />
+        <!-- Information -->
+        <Label text="Total Airports: " layoutX="50.0" layoutY="360.0" styleClass="info-label" />
+        <Label fx:id="totalAirportsLabel" layoutX="150.0" layoutY="360.0" styleClass="info-value" />
     </children>
 </AnchorPane>

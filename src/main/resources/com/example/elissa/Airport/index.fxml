@@ -54,7 +54,14 @@
          </graphic></Button>
 
 
-      <Button fx:id="showStatsButton" alignment="BASELINE_LEFT" layoutX="686.0" layoutY="420.0" mnemonicParsing="false" onAction="#showStatsPage" prefHeight="40.0" prefWidth="120.0" text="Show Statistics" />
+      <Button fx:id="showStatsButton" alignment="BASELINE_LEFT" layoutX="686.0" layoutY="420.0" mnemonicParsing="false" onAction="#showStatsPage" prefHeight="40.0" prefWidth="120.0" text="Statistics">
+         <graphic>
+            <ImageView fitHeight="32.0" fitWidth="33.0">
+               <image>
+                  <Image url="@../../../../../../../../../../../../Downloads/stats.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
 
       <Button fx:id="deleteAirportButton" alignment="BASELINE_LEFT" layoutX="686.0" layoutY="285.0" mnemonicParsing="false" onAction="#handleDeleteAirportButton" prefHeight="40.0" prefWidth="120.0" text="Delete">
          <graphic>

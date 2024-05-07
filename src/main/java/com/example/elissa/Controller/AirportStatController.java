@@ -2,10 +2,13 @@ package com.example.elissa.Controller;
 
 import com.example.elissa.Models.Airport;
 import com.example.elissa.Services.AirportDAO;
+import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
+import javafx.scene.control.Label;
+import javafx.util.Duration;
 
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -17,6 +20,13 @@ public class AirportStatController {
     private final AirportDAO airportDAO = new AirportDAO();
     @FXML
     private PieChart airportPieChart;
+    @FXML
+    private Label totalAirportsLabel;
+
+    @FXML
+    void initialize() throws SQLException {
+        refreshPieChart();
+    }
 
     @FXML
     void refreshPieChart() throws SQLException {
@@ -46,12 +56,17 @@ public class AirportStatController {
 
         // Set the data to the pie chart
         airportPieChart.setData(pieChartData);
+
+        // Update total airports label with animation
+        int totalAirports = airports.size();
+        totalAirportsLabel.setText("Total Airports: " + totalAirports);
+        animateTotalAirportsLabel();
     }
 
-
-
-
+    private void animateTotalAirportsLabel() {
+        TranslateTransition tt = new TranslateTransition(Duration.seconds(0.5), totalAirportsLabel);
+        tt.setByY(20);
+        tt.play();
+        totalAirportsLabel.getStyleClass().add("shown");
+    }
 }
-
-
-

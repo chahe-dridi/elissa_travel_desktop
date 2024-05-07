@@ -17,7 +17,7 @@ public class elissa_travel extends Application {
     public void start(Stage stage) {
         try {
             // Load the index.fxml file
-            FXMLLoader fxmlLoader = new FXMLLoader(elissa_travel.class.getResource("/com/example/elissa/Airport/base.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(elissa_travel.class.getResource("/com/example/elissa/Airport/showflightclient.fxml"));
 
             // Create a new scene with the loaded FXML file as the root
             Scene scene = new Scene(fxmlLoader.load(), 1200, 800);
