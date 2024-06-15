@@ -114,8 +114,8 @@ public class ServiceReservationEvent implements IServiceReservationEvent {
 
  public void envoyerSMS(String numeroDestinataire, String message) {
         // Remplacez les valeurs suivantes par vos propres informations Twilio
-        String ACCOUNT_SID = "ACe7a8c1b7315f79c623dd95f79ef9c47e";
-        String AUTH_TOKEN = "865962a232553b2c854f517dee7a6f54";
+        String ACCOUNT_SID = "";
+        String AUTH_TOKEN = "";
         String TWILIO_NUMERO = "+12176693891";
 
         Twilio.init(ACCOUNT_SID, AUTH_TOKEN);

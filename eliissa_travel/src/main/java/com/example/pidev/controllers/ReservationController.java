@@ -33,7 +33,7 @@ public class ReservationController implements Initializable {
     private Connection connection;
 
     // Vos identifiants Twilio
-    private static final String ACCOUNT_SID = "ACd163ba35306183d3f6827db1543dd88f";
+    private static final String ACCOUNT_SID = "";
     private static final String AUTH_TOKEN = "e714aef58d789658dd4a6f531e8c3726";
     // Le numéro Twilio à partir duquel vous envoyez le SMS
     private static final String TWILIO_PHONE_NUMBER = "+14244041721";
