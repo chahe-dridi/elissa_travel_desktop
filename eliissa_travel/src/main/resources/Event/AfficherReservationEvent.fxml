@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="nh" prefHeight="762.0" prefWidth="1000.0" styleClass="anchor-pane-background-event" stylesheets="@yesmine.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pidev.controllers.AfficherReservationEvent">
+   <children>
+      <Pane layoutX="14.0" layoutY="191.0" prefHeight="32.0" prefWidth="703.0" style="-fx-background-color: #00A43E;">
+         <children>
+            <Label layoutX="37.0" layoutY="6.0" text="Prenom User" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="493.0" layoutY="6.0" prefHeight="21.0" prefWidth="78.0" text="Actions" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="154.0" layoutY="5.0" text="Nom User" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="306.0" layoutY="8.0" text="Nom Event" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <ScrollPane layoutX="14.0" layoutY="223.0" prefHeight="282.0" prefWidth="703.0">
+         <content>
+            <VBox fx:id="vbox1" prefHeight="278.0" prefWidth="702.0" />
+         </content>
+      </ScrollPane>
+      <Button layoutX="228.0" layoutY="117.0" mnemonicParsing="false" onAction="#exportDataToExcel" style="-fx-background-color: #00A43E; -fx-border-color: blue; -fx-background-radius: 5em; -fx-border-radius: 2em;" text="Export Excel" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+   </children>
+</AnchorPane>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pidev.controllers.EditVoyageController">
+   <children>
+      <VBox layoutX="14.0" layoutY="58.0" prefHeight="223.0" prefWidth="554.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" />
+            <TextField fx:id="tVilleDepart" prefHeight="25.0" prefWidth="100.0" promptText="Departure City" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" />
+            <TextField fx:id="tdestination" prefHeight="25.0" prefWidth="100.0" promptText="Destination" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" />
+            <TextField fx:id="tmois" prefHeight="25.0" prefWidth="100.0" promptText="Month" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" />
+            <TextField fx:id="tannee" prefHeight="25.0" prefWidth="100.0" promptText="Year" />
+         </children>
+      </VBox>
+      <Button fx:id="update" layoutX="44.0" layoutY="289.0" mnemonicParsing="false" onAction="#update" prefHeight="25.0" prefWidth="495.0" style="-fx-background-color: #252F3A;" text="Done" textFill="#f5f0f0" />
+   </children>
+</AnchorPane>

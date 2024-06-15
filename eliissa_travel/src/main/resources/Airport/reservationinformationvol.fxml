@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="650.0" prefWidth="1200.0" styleClass="anchor-pane-background" stylesheets="@airport.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pidev.controllers.ReservationVolController">
+    <!-- Container for Information in a Styled Box -->
+    <VBox layoutX="248.0" layoutY="101.0" spacing="10" styleClass="info-box">
+        <!-- Departure Airport -->
+        <HBox>
+            <Label styleClass="info-label" text="Departure Airport: " />
+            <Label fx:id="departureAirportLabel" styleClass="info-text" />
+        </HBox>
+        <!-- Arrival Airport -->
+        <HBox>
+            <Label styleClass="info-label" text="Arrival Airport: " />
+            <Label fx:id="arrivalAirportLabel" styleClass="info-text" />
+        </HBox>
+        <!-- Airline -->
+        <HBox>
+            <Label styleClass="info-label" text="Airline: " />
+            <Label fx:id="airlineLabel" styleClass="info-text" />
+        </HBox>
+        <!-- Departure Time -->
+        <HBox>
+            <Label styleClass="info-label" text="Departure Time: " />
+            <Label fx:id="departureTimeLabel" styleClass="info-text" />
+        </HBox>
+        <!-- Arrival Time -->
+        <HBox>
+            <Label styleClass="info-label" text="Arrival Time: " />
+            <Label fx:id="arrivalTimeLabel" styleClass="info-text" />
+        </HBox>
+        <!-- Class -->
+        <HBox>
+            <Label styleClass="info-label" text="Class: " />
+            <Label fx:id="classLabel" styleClass="info-text" />
+        </HBox>
+        <!-- Price -->
+        <!-- Price -->
+        <HBox>
+            <Label styleClass="info-label" text="Price: " />
+            <Label fx:id="priceLabel" styleClass="info-text" />
+        </HBox>
+
+        <!-- Payment Method -->
+        <HBox>
+            <Label styleClass="info-label" text="Payment Method: " />
+            <ChoiceBox fx:id="paymentMethodChoiceBox" styleClass="choice-box">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="Online" />
+                    </FXCollections>
+                </items>
+            </ChoiceBox>
+        </HBox>
+        <!-- Card Number -->
+        <HBox>
+            <Label styleClass="info-label" text="Card Number: " />
+            <TextField fx:id="cardNumberField" styleClass="text-field" />
+        </HBox>
+        <!-- CVV/CVC -->
+        <HBox>
+            <Label styleClass="info-label" text="CVV/CVC: " />
+            <TextField fx:id="cvcField" styleClass="text-field" />
+        </HBox>
+    </VBox>
+
+    <!-- Back Button -->
+    <Button fx:id="backButton" layoutX="1000.0" layoutY="72.0" onAction="#handleBackButtonClick" prefHeight="40.0" prefWidth="180.0" text="      Return           ">
+        <font>
+            <Font size="29.0" />
+        </font>
+        <graphic>
+            <ImageView fitHeight="23.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@icons/back-arrow.png" />
+                </image>
+            </ImageView>
+        </graphic>
+    </Button>
+    <!-- Reserve Button -->
+    <Button fx:id="reserveButton" layoutX="481.0" layoutY="578.0" onAction="#handleReservationButtonClick" prefHeight="40.0" prefWidth="160.0" styleClass="action-button" text="Reserve" />
+</AnchorPane>

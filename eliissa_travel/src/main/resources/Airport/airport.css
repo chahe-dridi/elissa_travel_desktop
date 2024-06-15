@@ -1,0 +1,385 @@
+.table-view{
+    -fx-background-color:transparent;
+    -fx-border-color:linear-gradient(to bottom right, #272b3f, #256b51);
+    -fx-border-radius:8px;
+    -fx-padding:0px;
+}
+.table-view .table-column{
+    -fx-alignment:CENTER;
+}
+.table-view .column-header-background{
+    -fx-background-color:linear-gradient(to bottom right, #272b3f, #256b51);
+    -fx-background-insets: 0 0 0 0;
+    -f-background-radius:8px 8px 0px 0px;
+}
+.table-view .column-header, .filter{
+    -fx-background-color: transparent;
+    -fx-size:40px;
+}
+.table-view .column-header .label{
+    -fx-text-fill:#fff;
+    -fx-font-family:"Arial";
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Styles for TextFields */
+.text-field {
+    -fx-background-color: #ffffff; /* Set background color */
+    -fx-border-color: #cccccc; /* Set border color */
+    -fx-border-width: 1px; /* Set border width */
+    -fx-pref-width: 200px; /* Set preferred width */
+    -fx-padding: 8px; /* Set padding */
+    -fx-font-size: 14px; /* Set font size */
+    -fx-border-radius: 5px; /* Round the edges */
+
+}
+
+/* Hover effect for TextFields */
+.text-field:hover {
+    -fx-border-color: #999999; /* Change border color on hover */
+    -fx-background-color: #f5f5f5; /* Change background color on hover */
+}
+
+/* Focused effect for TextFields */
+.text-field:focused {
+    -fx-border-color: #0066ff; /* Change border color when focused */
+    -fx-border-width: 2px; /* Increase border width when focused */
+    -fx-background-color: #f0f0f0; /* Change background color when focused */
+    -fx-border-radius: 5px; /* Round the edges when focused */
+
+}
+
+/* Styles for Buttons */
+.button {
+    -fx-background-color: #4CAF50; /* Set default background color */
+    -fx-text-fill: white; /* Set text color */
+    -fx-font-weight: bold; /* Set font weight */
+    -fx-padding: 10px 20px; /* Set padding */
+    -fx-border-radius: 30px; /* Set border radius */
+    -fx-font-size: 14px; /* Set font size */
+    -fx-cursor: hand; /* Change cursor on hover */
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 1, 1, 1, 1); /* Add drop shadow effect */
+    -fx-transition-duration: 0.2s; /* Set transition duration */
+}
+
+/* Hover effect for Buttons */
+.button:hover {
+    -fx-background-color: #45a049; /* Set background color on hover */
+    -fx-border-color: #45a049; /* Set border color on hover */
+    -fx-border-width: 2px; /* Increase border width on hover */
+    -fx-padding: 8px 18px; /* Adjust padding on hover */
+    -fx-border-radius: 30px; /* Set border radius on hover */
+    -fx-scale-x: 1.05; /* Scale up horizontally on hover */
+    -fx-scale-y: 1.05; /* Scale up vertically on hover */
+    -fx-rotate: 2deg; /* Rotate slightly on hover */
+}
+
+/* Pressed effect for Buttons */
+.button:pressed {
+    -fx-background-color: derive(#4CAF50, -20%); /* Darken the background color on press */
+    -fx-border-color: derive(#45a049, -20%); /* Darken the border color on press */
+    -fx-padding: 9px 19px; /* Adjust padding on press */
+    -fx-scale-x: 0.95; /* Scale down horizontally on press */
+    -fx-scale-y: 0.95; /* Scale down vertically on press */
+}
+
+/* Disabled effect for Buttons */
+.button:disabled {
+    -fx-opacity: 0.6; /* Reduce opacity for disabled state */
+}
+
+
+
+
+
+
+
+
+/* vbox showflightclient   */
+
+/* styles.css */
+.flight-entry {
+    -fx-background-color: #3A7E49;
+    -fx-padding: 20;
+    -fx-spacing: 10;
+    -fx-border-radius: 5;
+}
+
+/* CSS to center VBox elements within ScrollPane */
+#flightContainer .vbox {
+    -fx-alignment: center; /* Center align content horizontally and vertically */
+}
+
+
+/* airport.css */
+
+/* Set background image for the AnchorPane */
+.anchor-pane-background {
+    -fx-background-image: url('bg_1.jpg');
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+}
+
+
+.anchor-pane-background-admin {
+    -fx-background-image: url('index_airport.jpg');
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+}
+
+.anchor-pane-background-admin_flight {
+    -fx-background-image: url('flight_back.png');
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+}
+
+.anchor-pane-background-admin_flight_class {
+    -fx-background-image: url('flight_class.jpg');
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+}
+
+.anchor-pane-background-admin_reservation_vol {
+    -fx-background-image: url('resrevation_flight_back.jpg');
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+}
+
+
+/* reservation.css */
+
+.info-label {
+    -fx-font-size: 14pt;
+    -fx-text-fill: #333333;
+}
+
+.action-button {
+    -fx-font-size: 14pt;
+    -fx-padding: 10px 20px;
+    -fx-background-color: #3A7E49;
+    -fx-text-fill: white;
+    -fx-border-radius: 5px;
+}
+
+.anchor-pane-background {
+    -fx-background-color: #f4f4f4;
+}
+
+
+/* reservation.css */
+
+/* Styling for the AnchorPane background */
+.anchor-pane-background {
+    -fx-background-color: #f4f4f4;
+}
+
+/* Styling for labels displaying information */
+.info-label {
+    -fx-font-size: 14pt;
+    -fx-text-fill: #333333;
+    -fx-font-weight: bold;
+}
+
+/* Styling for text within the white box */
+.info-text {
+    -fx-font-size: 14pt;
+    -fx-text-fill: #333333;
+}
+
+
+
+
+/* Styling for action buttons */
+.action-button {
+    -fx-font-size: 14pt;
+    -fx-padding: 10px 20px;
+    -fx-background-color: #3A7E49;
+    -fx-text-fill: white;
+    -fx-border-radius: 5px;
+}
+
+
+
+.anchor-pane-background {
+    -fx-background-color: #f0f0f0; /* Light gray background for the anchor pane */
+}
+
+.info-box {
+    -fx-background-color: #ffffff; /* White background for the info box */
+    -fx-padding: 20px;
+    -fx-spacing: 10px;
+    -fx-border-color: #cccccc; /* Light gray border */
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+}
+
+.info-label {
+    -fx-font-weight: bold;
+}
+
+.info-text {
+    -fx-font-size: 14px;
+}
+
+
+
+.action-button {
+    -fx-background-color: #4CAF50; /* Green background */
+    -fx-text-fill: #ffffff; /* White text color */
+    -fx-font-size: 14px;
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 5px;
+    -fx-cursor: hand; /* Cursor style on hover */
+}
+
+.action-button:hover {
+    -fx-background-color: #45a049; /* Darker green background on hover */
+}
+
+
+
+
+
+
+
+
+
+
+
+.choice-box {
+    -fx-font-size: 14px;
+    -fx-pref-width: 150px;
+    -fx-background-color: white;
+    -fx-border-color: #999999;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-padding: 8px;
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.2) , 2,0,0,1 );
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+}
+
+/* Hover effect for ChoiceBox */
+.choice-box:hover {
+    -fx-border-color: #45a049; /* Dark green border on hover */
+    -fx-cursor: hand; /* Change cursor on hover */
+}
+
+/* Focused effect for ChoiceBox */
+.choice-box:focused {
+    -fx-border-color: #0066ff; /* Blue border when focused */
+    -fx-border-width: 2px;
+}
+
+/* Arrow button in ChoiceBox */
+.choice-box .arrow {
+    -fx-background-color: #999999; /* Light gray background for the arrow button */
+    -fx-shape: "M 0 0 L 5 5 L 10 0 Z"; /* Custom triangle shape for the arrow */
+    -fx-padding: 5px;
+    -fx-background-insets: 0;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.2) , 2,0,0,1 );
+}
+
+/* Styling for arrow button hover effect */
+.choice-box .arrow:hover {
+    -fx-background-color: #45a049; /* Dark green background on hover */
+    -fx-cursor: hand; /* Change cursor on hover */
+}
+
+/* Dropdown list in ChoiceBox */
+.choice-box .list-cell {
+    -fx-background-color: #ffffff; /* White background for list cells */
+    -fx-background-radius: 0;
+    -fx-padding: 8px;
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333; /* Dark text color */
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.2) , 2,0,0,1 );
+}
+
+/* Hover effect for dropdown list cells */
+.choice-box .list-cell:hover {
+    -fx-background-color: #f5f5f5; /* Light gray background on hover */
+}
+
+/* Selected item in dropdown list */
+.choice-box .list-view .list-cell:filled:selected {
+    -fx-background-color: #45a049; /* Dark green background for selected item */
+    -fx-text-fill: white; /* White text color for selected item */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* airport.css */
+/* airport.css */
+
+/* Style for the Available CheckBox */
+#newFlightDisponibleCheckbox {
+    -fx-font-size: 14px; /* Set font size */
+    -fx-text-fill: #333333; /* Set text color */
+    -fx-padding: 5px; /* Set padding */
+}
+
+/* Customize the appearance of the CheckBox */
+#newFlightDisponibleCheckbox .box {
+    -fx-background-color: #ffffff; /* Set the background color of the box */
+    -fx-border-color: #999999; /* Set the border color */
+}
+
+/* Change the check mark color for unchecked state */
+#newFlightDisponibleCheckbox .box .mark {
+    -fx-background-color: transparent; /* Hide the check mark for unchecked state */
+}
+
+/* Styling for checked (selected) state */
+#newFlightDisponibleCheckbox:selected .box {
+    -fx-background-color: #4CAF50; /* Set the background color when checked */
+    -fx-border-color: #4CAF50; /* Set the border color when checked */
+}
+
+/* Styling for checked (selected) state - show check mark */
+#newFlightDisponibleCheckbox:selected .box .mark {
+    -fx-background-color: white; /* Set the color of the check mark */
+}
+
+/* Hover effect for the CheckBox */
+#newFlightDisponibleCheckbox:hover .box {
+    -fx-background-color: #f5f5f5; /* Lighten the background color on hover */
+}
+
+/* Pressed effect for the CheckBox */
+#newFlightDisponibleCheckbox:pressed .box {
+    -fx-background-color: #eeeeee; /* Darken the background color when pressed */
+}
+
+/* Focused effect for the CheckBox */
+#newFlightDisponibleCheckbox:focused .box {
+    -fx-border-color: #0066ff; /* Change border color when focused */
+}
+

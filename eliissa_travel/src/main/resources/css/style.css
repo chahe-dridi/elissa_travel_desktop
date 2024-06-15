@@ -1,0 +1,69 @@
+.buttonRead{
+
+    -fx-background-insets: 0;
+    -fx-background-radius: 30;
+    -fx-background-color:
+        linear-gradient(from 0% 93% to 0% 100%, #a34313 0%, #903b12 100%),
+
+        radial-gradient(center 50% 50%, radius 100%, #d86e3a);
+    -fx-font-weight: bold;
+    -fx-font-size: 1.1em;
+}
+.buttonBook{
+    -fx-background-insets: 0;
+    -fx-background-radius: 30;
+    -fx-background-color:
+            linear-gradient(from 0% 93% to 0% 100%, #a34313 0%, #903b12 100%),
+
+            radial-gradient(center 50% 50%, radius 100%, #d86e3a);
+    -fx-font-weight: bold;
+    -fx-font-size: 1.1em;
+
+
+
+}
+.DoneReservation {
+                     -fx-background-insets: 0;
+                     -fx-background-radius: 30;
+                     -fx-background-color:
+                             linear-gradient(from 0% 93% to 0% 100%, #a34313 0%, #903b12 100%),
+
+                             radial-gradient(center 50% 50%, radius 100%, #d86e3a);
+                     -fx-font-weight: bold;
+                     -fx-font-size: 1.1em;
+
+
+
+                 }
+.btnReturn{
+ -fx-background-insets: 0;
+                     -fx-background-radius: 30;
+                     -fx-background-color:
+                             linear-gradient(from 0% 93% to 0% 100%, #a34313 0%, #903b12 100%),
+
+                             radial-gradient(center 50% 50%, radius 100%, #d86e3a);
+                     -fx-font-weight: bold;
+                     -fx-font-size: 1.1em;
+
+}
+.btnAddProgram {
+-fx-background-insets: 0;
+                     -fx-background-radius: 30;
+                     -fx-background-color:
+                             linear-gradient(from 0% 93% to 0% 100%, #a34313 0%, #903b12 100%),
+
+                             radial-gradient(center 50% 50%, radius 100%, #d86e3a);
+                     -fx-font-weight: bold;
+                     -fx-font-size: 1.1em;
+
+}
+.ReturnProgram{
+-fx-background-insets: 0;
+                     -fx-background-radius: 30;
+                     -fx-background-color:
+                             linear-gradient(from 0% 93% to 0% 100%, #a34313 0%, #903b12 100%),
+
+                             radial-gradient(center 50% 50%, radius 100%, #d86e3a);
+                     -fx-font-weight: bold;
+                     -fx-font-size: 1.1em;
+}

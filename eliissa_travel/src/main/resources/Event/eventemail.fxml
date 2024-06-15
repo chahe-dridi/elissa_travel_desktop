@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="453.0" prefWidth="666.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pidev.controllers.EventEmail">
+   <children>
+      <ImageView fitHeight="500.0" fitWidth="750.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@avion.jpg" />
+         </image>
+      </ImageView>
+      <TextField fx:id="emailField" layoutX="179.0" layoutY="137.0" prefHeight="29.0" prefWidth="307.0" style="-fx-background-radius: 5em; -fx-border-radius: 2em;" />
+      <Label layoutX="216.0" layoutY="58.0" prefHeight="22.0" prefWidth="233.0" text="Adresse e-mail:" textFill="#20096e">
+         <font>
+            <Font name="System Bold" size="27.0" />
+         </font>
+      </Label>
+      <Label layoutX="216.0" layoutY="219.0" prefHeight="22.0" prefWidth="233.0" text="Evenement Choisi" textFill="#20096e">
+         <font>
+            <Font name="System Bold" size="27.0" />
+         </font>
+      </Label>
+      <TextField fx:id="eventField" layoutX="185.0" layoutY="305.0" prefHeight="29.0" prefWidth="307.0" style="-fx-background-radius: 5em; -fx-border-radius: 2em;" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="539.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@mailevv.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="313.0" layoutY="370.0" mnemonicParsing="false" onAction="#sendReservationEmail" style="-fx-background-color: #20096e; -fx-background-radius: 5em; -fx-border-radius: 2em;" text="Envoyer" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

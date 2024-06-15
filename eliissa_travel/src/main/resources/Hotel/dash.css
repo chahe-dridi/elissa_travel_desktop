@@ -1,0 +1,22 @@
+.anchor-pane-background-hotel {
+    -fx-background-image: url('hotel.jpg');
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+}
+
+.anchor-pane-background-liste {
+    -fx-background-image: url('liste.jpg');
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+}
+
+.anchor-pane-background-reservation {
+    -fx-background-image: url('reservation.jpg');
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+}
+.anchor-pane-background-chambre{
+    -fx-background-image: url('chambre.jpg');
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+}

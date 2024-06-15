@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="800.0" prefWidth="850.0" styleClass="anchor-pane-background-admin_reservation_vol" stylesheets="@airport.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pidev.controllers.ReservationVolAdminController">
+    <children>
+        <TableView fx:id="reservationTableView" layoutX="50.0" layoutY="154.0" prefHeight="342.0" prefWidth="621.0">
+            <columns>
+                <TableColumn fx:id="reservationIdColumn" prefWidth="70.0" text="Number" />
+                <TableColumn fx:id="reservationVolIdColumn" prefWidth="85.0" text="Vol Number" />
+                <TableColumn fx:id="reservationUserIdColumn" prefWidth="131.0" text="User Number" />
+                <TableColumn fx:id="reservationTotalPriceColumn" prefWidth="168.0" text="Total Price" />
+                <TableColumn fx:id="reservationPaymentMethodColumn" prefWidth="166.0" text="Payment Method" />
+            </columns>
+        </TableView>
+
+        <TextField fx:id="searchReservationField" layoutX="114.0" layoutY="650.0" onKeyReleased="#handleSearchReservationFieldTextChanged" promptText="Search by query" />
+
+
+        <TextField fx:id="newReservationVolIdField" layoutX="114.0" layoutY="521.0" promptText="Vol ID" />
+        <TextField fx:id="newReservationUserIdField" layoutX="114.0" layoutY="585.0" promptText="User ID" />
+        <TextField fx:id="newReservationTotalPriceField" layoutX="414.0" layoutY="521.0" promptText="Total Price" />
+        <TextField fx:id="newReservationPaymentMethodField" layoutX="414.0" layoutY="585.0" promptText="Payment Method" />
+        <Button fx:id="NewReservationVolAButton" alignment="BASELINE_LEFT" layoutX="686.0" layoutY="156.0" mnemonicParsing="false" onAction="#handleNewReservationButton" prefHeight="40.0" prefWidth="120.0" text="Add">
+         <graphic>
+            <ImageView fitHeight="23.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@icons/electronic-ticket.png" />
+               </image></ImageView>
+         </graphic></Button>
+        <Button fx:id="UpdateReservationVolAButton" alignment="BASELINE_LEFT" layoutX="686.0" layoutY="220.0" mnemonicParsing="false" onAction="#handleModifyReservationButton" prefHeight="40.0" prefWidth="120.0" text="Update">
+         <graphic>
+            <ImageView fitHeight="23.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@icons/update.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+        <Button fx:id="DeleteReservationVolAButton" alignment="BASELINE_LEFT" layoutX="686.0" layoutY="285.0" mnemonicParsing="false" onAction="#handleDeleteReservationButton" prefHeight="40.0" prefWidth="120.0" text="Delete">
+         <graphic>
+            <ImageView fitHeight="23.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@icons/delete.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button alignment="CENTER" layoutX="310.0" layoutY="60.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="233.0" text="Flight Reservations">
+         <font>
+            <Font name="System Bold" size="80.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="23.0" fitWidth="33.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@icons/electronic-ticket.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="NONE" />
+               </cursor>
+               <effect>
+                  <Glow level="0.0" />
+               </effect>
+            </ImageView>
+         </graphic>
+      </Button>
+
+
+
+
+    </children>
+
+</AnchorPane>

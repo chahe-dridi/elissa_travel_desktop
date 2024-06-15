@@ -1,0 +1,7 @@
+/* Définir les styles pour les boutons de la barre latérale */
+.sidebar-button {
+    -fx-background-color: #5533FF;
+    -fx-text-fill: white;
+    -fx-font-size: 14pt;
+    -fx-font-family: 'Arial';
+}

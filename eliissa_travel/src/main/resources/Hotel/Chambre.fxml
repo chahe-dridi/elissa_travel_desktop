@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: grey;" styleClass="anchor-pane-background-chambre" stylesheets="@dash.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pidev.controllers.ChambreController">
+    <children>
+        <Accordion layoutX="53.0" layoutY="69.0" />
+        <Label layoutX="43.0" layoutY="89.0" text="Hotel" textFill="#110000">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font></Label>
+        <ChoiceBox fx:id="TypeChambre" layoutX="117.0" layoutY="149.0" prefWidth="150.0">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="Single" />
+                    <String fx:value="Double" />
+                    <String fx:value="Suite" />
+                </FXCollections>
+            </items>
+        </ChoiceBox>
+        <ChoiceBox fx:id="vueHotel" layoutX="116.0" layoutY="218.0" prefHeight="26.0" prefWidth="150.0">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="Vue mer" />
+                    <String fx:value="Vue piscine" />
+                </FXCollections>
+            </items>
+        </ChoiceBox>
+        <TextField fx:id="prixHotel" layoutX="117.0" layoutY="347.0" />
+        <Label layoutX="3.0" layoutY="151.0" text="Type chambre" textFill="#070000">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font></Label>
+        <Label layoutX="53.0" layoutY="349.0" text="Prix" textFill="#0d0000">
+         <font>
+            <Font name="System Bold Italic" size="16.0" />
+         </font></Label>
+        <Label layoutX="27.0" layoutY="209.0" text="Vue hôtel" textFill="#1b0101">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font></Label>
+        <Button layoutX="203.0" layoutY="393.0" mnemonicParsing="false" onAction="#confirmerAjoutChambre" text="Conformer" />
+        <Button layoutX="699.0" layoutY="460.0" mnemonicParsing="false" onAction="#supprimerChambre" prefHeight="26.0" prefWidth="74.0" text="supprimer" />
+        <TableView fx:id="tableViewId" layoutX="307.0" layoutY="51.0" prefHeight="399.0" prefWidth="466.0">
+            <columns>
+                <TableColumn fx:id="idC" prefWidth="75.0" text="ID " />
+                <TableColumn fx:id="nomH" prefWidth="75.0" text="Nom Hotel" />
+                <TableColumn fx:id="TypeC" prefWidth="75.0" text="Type" />
+                <TableColumn fx:id="vueH" prefWidth="75.0" text="Vue" />
+                <TableColumn fx:id="prixH" prefWidth="82.400146484375" text="Prix" />
+            <TableColumn fx:id="prixH1" prefWidth="82.400146484375" text="type_log" />
+            </columns>
+        </TableView>
+        <Button layoutX="606.0" layoutY="458.0" mnemonicParsing="false" onAction="#modifierChambre" prefHeight="26.0" prefWidth="74.0" text="Modifier" />
+        <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#retourToHotel" prefHeight="22.0" prefWidth="62.0" text="retour" />
+        <ComboBox fx:id="logement" layoutX="117.0" layoutY="279.0" prefHeight="26.0" prefWidth="150.0" promptText="Type de logement">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="standart" />
+                    <String fx:value="demis " />
+                    <String fx:value="complete " />
+                    <!-- Add more types as needed -->
+                </FXCollections>
+            </items>
+        </ComboBox>
+        <Label layoutX="39.0" layoutY="281.0" text="type log" textFill="#110101">
+         <font>
+            <Font name="System Bold Italic" size="16.0" />
+         </font></Label>
+      <ComboBox fx:id="nomHotel" layoutX="116.0" layoutY="87.0" prefWidth="150.0" />
+    </children>
+</AnchorPane>

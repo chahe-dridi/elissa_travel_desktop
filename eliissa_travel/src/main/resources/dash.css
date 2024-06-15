@@ -1,0 +1,27 @@
+.anchor-pane-background-login {
+    -fx-background-image: url('login_cli.png');
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+}
+
+
+.anchor-pane-background-register {
+    -fx-background-image: url('register_cli.png');
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+}
+.anchor-pane-background-profille {
+    -fx-background-image: url('profile.jpg');
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+}
+.anchor-pane-background-utilisateur {
+    -fx-background-image: url('user.jpg');
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+}
+.anchor-pane-background-hotel {
+    -fx-background-image: url('Hotel/hotel.jpg');
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+}

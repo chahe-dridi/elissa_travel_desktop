@@ -1,0 +1,19 @@
+/* notificationStyle.css */
+
+.notification {
+    -fx-background-color: #ff8080; /* Background color */
+    -fx-text-fill: white; /* Text color */
+    -fx-font-size: 14px; /* Font size */
+    -fx-font-weight: bold; /* Font weight */
+    -fx-padding: 10px; /* Padding */
+}
+
+.notification-title {
+    -fx-font-size: 16px; /* Title font size */
+    -fx-font-weight: bold; /* Title font weight */
+}
+
+.notification-text {
+    -fx-font-size: 14px; /* Text font size */
+}
+

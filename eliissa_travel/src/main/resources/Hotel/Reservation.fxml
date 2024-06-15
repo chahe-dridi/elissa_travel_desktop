@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="459.0" prefWidth="827.0" style="-fx-background-color: grey;" styleClass="anchor-pane-background-hotel" stylesheets="@dash.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pidev.controllers.ReservationController">
+   <children>
+      <Label fx:id="reser" layoutX="107.0" layoutY="14.0" prefHeight="50.0" prefWidth="223.0" text="Reservation" textFill="#110404">
+         <font>
+            <Font name="Bodoni Bd BT Bold Italic" size="40.0" />
+         </font>
+      </Label>
+      <Label layoutX="30.0" layoutY="88.0" text="nom" textFill="#fffefe">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="nom_u" layoutX="102.0" layoutY="86.0" prefHeight="26.0" prefWidth="195.0" />
+      <Label layoutX="16.0" layoutY="150.0" text="pre_nom" textFill="#fffefe">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="prenom_u" layoutX="107.0" layoutY="151.0" prefHeight="26.0" prefWidth="195.0" />
+      <Label layoutX="36.0" layoutY="221.0" text="Email" textFill="#fffefe">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="email_u" layoutX="102.0" layoutY="219.0" prefHeight="26.0" prefWidth="195.0" />
+      <DatePicker fx:id="date_arr" layoutX="570.0" layoutY="245.0" prefHeight="26.0" prefWidth="210.0" />
+      <DatePicker fx:id="date_depart" layoutX="102.0" layoutY="288.0" prefHeight="26.0" prefWidth="195.0" />
+      <Label fx:id="date" layoutX="436.0" layoutY="235.0" text="Date arriver" textFill="#f8f1f1">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="3.0" layoutY="288.0" text="Date arriver" textFill="#f8f8f8">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="461.0" layoutY="177.0" text="hotel" textFill="#fffefe">
+         <font>
+            <Font name="System Bold Italic" size="17.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="hotelCh" layoutX="570.0" layoutY="177.0" prefHeight="26.0" prefWidth="210.0" />
+      <Label layoutX="442.0" layoutY="109.0" text="Chambre" textFill="#fffefe">
+         <font>
+            <Font name="System Bold Italic" size="17.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="chambrech" layoutX="570.0" layoutY="109.0" prefHeight="26.0" prefWidth="210.0" />
+      <TextField fx:id="destination" layoutX="573.0" layoutY="43.0" prefHeight="26.0" prefWidth="204.0" />
+      <Label fx:id="dis" layoutX="442.0" layoutY="43.0" text="Distination" textFill="#fffefe">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </Label>
+
+
+      <Button layoutX="499.0" layoutY="416.0" mnemonicParsing="false" onAction="#reserver" prefHeight="21.0" prefWidth="137.0" text="Reserver" />
+      <Button layoutX="654.0" layoutY="416.0" mnemonicParsing="false" onAction="#switchToReservations" prefHeight="26.0" prefWidth="159.0" text="Mes Rseservations" />
+      <TextField fx:id="numTel" layoutX="102.0" layoutY="365.0" prefHeight="26.0" prefWidth="195.0" />
+      <Label layoutX="36.0" layoutY="368.0" text="Tel" textFill="#fffefe">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

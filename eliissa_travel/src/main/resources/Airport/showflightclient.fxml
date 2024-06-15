@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="650.0" prefWidth="1200.0" styleClass="anchor-pane-background" stylesheets="@airport.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pidev.controllers.ReservationVolController">
+
+    <!-- Button for My Reservations -->
+    <!--  <Button fx:id="reserveButton" layoutX="1000.0" layoutY="140.0" onAction="#handleMyReservationsButtonClick" prefHeight="40.0" prefWidth="180.0" text="My Reservations">
+       <graphic>
+          <ImageView fitHeight="21.0" fitWidth="23.0" layoutX="20.0" pickOnBounds="true" preserveRatio="true">
+             <image>
+                <Image url="@icons/electronic-ticket.png" />
+             </image>
+          </ImageView>
+       </graphic></Button>
+ -->
+     <!-- ScrollPane to contain the VBox -->
+    <ScrollPane fx:id="scrollPane" layoutX="126.0" layoutY="46.0" maxWidth="955.0" prefHeight="590.0" prefWidth="850.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="126.0" AnchorPane.rightAnchor="224.0" AnchorPane.topAnchor="46.0">
+
+        <!-- Content of the ScrollPane -->
+        <VBox fx:id="flightContainer" alignment="CENTER" spacing="20.0" style="-fx-padding: 20;">
+
+            <!-- Flight Card 1 -->
+
+            <!-- Add more flight cards as needed -->
+
+        </VBox>
+
+    </ScrollPane>
+
+
+    <!-- Add text fields for search criteria -->
+
+
+
+
+</AnchorPane>

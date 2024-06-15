@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="anchor-pane-background-reservation" stylesheets="@dash.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pidev.controllers.AfficherController">
+   <children>
+      <TextArea fx:id="nom" layoutX="155.0" layoutY="56.0" prefHeight="30.0" prefWidth="166.0" />
+      <Label layoutX="24.0" layoutY="60.0" prefHeight="34.0" prefWidth="75.0" text="Nom" textFill="WHITE">
+         <font>
+            <Font name="Bodoni Bd BT Bold Italic" size="23.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="pre_nom" layoutX="155.0" layoutY="101.0" prefHeight="30.0" prefWidth="166.0" />
+      <Label layoutX="14.0" layoutY="106.0" prefHeight="30.0" prefWidth="83.0" text="Prénom" textFill="WHITE">
+         <font>
+            <Font name="Bodoni Bd BT Bold Italic" size="20.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="Email" layoutX="155.0" layoutY="149.0" prefHeight="30.0" prefWidth="166.0" />
+      <Label layoutX="13.0" layoutY="154.0" prefHeight="30.0" prefWidth="66.0" text="Email" textFill="#f8f8f8">
+         <font>
+            <Font name="Bodoni Bd BT Bold Italic" size="23.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="destination" layoutX="155.0" layoutY="198.0" prefHeight="30.0" prefWidth="166.0" />
+      <Label layoutX="12.0" layoutY="203.0" prefHeight="30.0" prefWidth="114.0" text="Destination" textFill="WHITE">
+         <font>
+            <Font name="Bodoni Bd BT Bold Italic" size="21.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="chambre" layoutX="155.0" layoutY="250.0" prefHeight="39.0" prefWidth="166.0" />
+      <Label layoutX="17.0" layoutY="255.0" prefHeight="30.0" prefWidth="105.0" text="Chambre" textFill="WHITE">
+         <font>
+            <Font name="Bodoni Bd BT Bold Italic" size="21.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="date_arriver" layoutX="155.0" layoutY="299.0" prefHeight="39.0" prefWidth="166.0" />
+      <Label layoutY="304.0" prefHeight="30.0" prefWidth="134.0" text="Date d'arrivée" textFill="WHITE">
+         <font>
+            <Font name="Bodoni Bd BT Bold Italic" size="21.0" />
+         </font>
+      </Label>
+      <Label layoutX="12.0" layoutY="346.0" prefHeight="30.0" prefWidth="114.0" text="Date de départ" textFill="WHITE">
+         <font>
+            <Font name="Bodoni Bd BT Bold Italic" size="21.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="date_depart" layoutX="155.0" layoutY="346.0" prefHeight="39.0" prefWidth="166.0" />
+      <Label layoutX="175.0" prefHeight="46.0" prefWidth="281.0" text="Votre Réservation" textFill="#ff7676">
+         <font>
+            <Font name="Bodoni Bd BT Bold Italic" size="35.0" />
+         </font>
+      </Label>
+      <Button layoutX="457.0" layoutY="80.0" mnemonicParsing="false" onAction="#generatePDF" prefHeight="26.0" prefWidth="132.0" text="PDF" />
+   </children>
+</AnchorPane>

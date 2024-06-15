@@ -1,0 +1,83 @@
+/* styles.css */
+
+.course-pane {
+    -fx-background-color: #f8f5f5;
+    -fx-background-radius: 10;
+    -fx-padding: 10;
+}
+
+.course-name-label {
+    -fx-font-family: "titleFont";
+    -fx-font-weight: bold;
+    -fx-font-size: 15;
+    -fx-text-fill: #333333; /* Darker text color for better readability */
+}
+
+.title-label {
+    -fx-font-family: "titleFont";
+    -fx-font-weight: bold;
+    -fx-font-size: 14;
+    -fx-text-fill: #008080; /* Dark teal color for the title */
+}
+
+.price-label {
+    -fx-font-family: "priceFont";
+    -fx-font-weight: bold;
+    -fx-font-size: 12;
+    -fx-text-fill: #4CAF50; /* Green color for the price */
+}
+
+/* Add any other styling as needed */
+
+.list-cell {
+    -fx-background-color: #f0f0f0; /* Couleur de fond des cellules */
+    -fx-padding: 10px; /* Marge intérieure des cellules */
+}
+
+.list-cell:hover {
+    -fx-background-color: #d0d0d0; /* Couleur de fond lorsqu'une cellule est survolée */
+}
+
+.list-view {
+    -fx-background-color: #e0e0e0; /* Couleur de fond de la ListView */
+}
+
+.no-courses-label {
+    -fx-font-size: 18px;
+    -fx-text-fill: red;
+    -fx-alignment: center;
+}
+
+
+.course-pane {
+    -fx-border-width: 1;
+    -fx-border-color: gray;
+    -fx-border-radius: 5;
+    -fx-padding: 5;
+}
+
+.course-name-label {
+    -fx-font-size: 14;
+    -fx-font-weight: bold;
+}
+
+.price-label {
+    -fx-font-size: 12;
+    -fx-text-fill: #666;
+}
+
+.no-courses-label {
+    -fx-font-size: 18;
+    -fx-text-fill: #666;
+}
+/* Mode clair */
+.light-mode {
+    -fx-background-color: white;
+    -fx-text-fill: black;
+}
+
+/* Mode sombre */
+.dark-mode {
+    -fx-background-color: orchid;
+    -fx-text-fill: orchid;
+}

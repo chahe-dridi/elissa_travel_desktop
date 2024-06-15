@@ -1,0 +1,5 @@
+.anchor-pane-background-event {
+    -fx-background-image: url('evenement.jpg');
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+}

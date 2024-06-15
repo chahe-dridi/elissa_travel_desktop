@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="640.0" prefWidth="914.0" style="-fx-background-color: grey;"   styleClass="anchor-pane-background-hotel" stylesheets="@dash.css"   xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pidev.controllers.HotelController">
+    <children>
+        <TextField fx:id="nom_hotel" layoutX="104.0" layoutY="56.0" />
+        <TextField fx:id="lieu" layoutX="104.0" layoutY="107.0" />
+        <TextField fx:id="telephone" layoutX="104.0" layoutY="154.0" />
+        <TextField fx:id="email" layoutX="104.0" layoutY="200.0" />
+        <TextField fx:id="description" layoutX="406.0" layoutY="148.0" prefHeight="79.0" prefWidth="212.0" />
+        <TextField fx:id="etat" layoutX="406.0" layoutY="56.0" />
+        <TextField fx:id="nb_chambre" layoutX="406.0" layoutY="104.0" />
+        <TextField fx:id="image" layoutX="406.0" layoutY="244.0" />
+        <TableView fx:id="tableView" layoutX="46.0" layoutY="307.0" prefHeight="318.0" prefWidth="802.0">
+            <columns>
+                <TableColumn fx:id="nomColumn" prefWidth="100" text="Nom Hotel" />
+                <TableColumn fx:id="lieuColumn" prefWidth="100" text="Lieu" />
+                <TableColumn fx:id="telephoneColumn" prefWidth="100" text="Telephone" />
+                <TableColumn fx:id="emailColumn" prefWidth="100" text="Email" />
+                <TableColumn fx:id="descriptionColumn" prefWidth="100" text="Description" />
+                <TableColumn fx:id="etatColumn" prefWidth="100" text="Etat" />
+                <TableColumn fx:id="nb_chambreColumn" prefWidth="106.39990234375" text="Nombre Chambre" />
+                <TableColumn fx:id="imageColumn" prefWidth="93.60009765625" text="Image" />
+            </columns>
+        </TableView>
+        <Button layoutX="710.0" layoutY="94.0" mnemonicParsing="false" onAction="#ajouter" prefHeight="26.0" prefWidth="126.0" text="Ajouter" />
+        <Button layoutX="709.0" layoutY="133.0" mnemonicParsing="false" onAction="#supprimer" prefHeight="26.0" prefWidth="126.0" text="Supprimer" />
+        <Button layoutX="710.0" layoutY="175.0" mnemonicParsing="false" onAction="#modifier" prefHeight="26.0" prefWidth="126.0" text="Modifier" />
+      <Text fill="#fcfafa" fontSmoothingType="LCD" layoutX="14.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom hotel">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font></Text>
+      <Text fill="#fcf6f6" layoutX="26.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lieu">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font></Text>
+      <Text fill="#fcf9f9" layoutX="20.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Telephone">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font></Text>
+      <Text fill="#f7f5f5" layoutX="9.0" layoutY="217.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font></Text>
+      <Text fill="#f2f2f2" layoutX="312.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font></Text>
+      <Text fill="#f2eeee" layoutX="350.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Etat">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font></Text>
+      <Text fill="#f4f1f1" layoutX="311.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="nb chambre">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font></Text>
+      <Text fill="#f7f0f0" layoutX="342.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" text="image">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font></Text>
+      <Button layoutX="585.0" layoutY="244.0" mnemonicParsing="false" onAction="#selectImage" text="select image" />
+      <Button layoutX="762.0" layoutY="23.0" mnemonicParsing="false" onAction="#switchToChambre" prefHeight="26.0" prefWidth="126.0" text="chambre" />
+      <TextField fx:id="chercherhotels" layoutX="161.0" layoutY="261.0" />
+      <Button layoutX="52.0" layoutY="261.0" mnemonicParsing="false" onAction="#rechercherhotel" prefHeight="26.0" prefWidth="72.0" text="chercher" />
+    </children>
+</AnchorPane>

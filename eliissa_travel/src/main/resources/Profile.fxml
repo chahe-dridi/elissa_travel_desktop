@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #2b255a;" styleClass="anchor-pane-background-utilisateur" stylesheets="@dash.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pidev.controllers.ProfileController">
+   <children>
+      <VBox layoutY="6.0" prefHeight="800.0" prefWidth="118.0" style="-fx-background-color: green;">
+         <children>
+            <Label prefHeight="62.0" prefWidth="130.0" text=" Profile" textFill="#f7f7f7">
+               <font>
+                  <Font name="Constantia" size="34.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <Label layoutX="232.0" layoutY="155.0" prefHeight="10.0" prefWidth="118.0" text="Profile details :" textFill="WHITE">
+         <font>
+            <Font name="Constantia" size="18.0" />
+         </font>
+      </Label>
+      <Button layoutX="917.0" layoutY="135.0" mnemonicParsing="false" onAction="#Logout" prefHeight="40.0" prefWidth="160.0" style="-fx-background-color: green; -fx-border-color: #f79517;" text="Logout" textFill="WHITE" />
+      <HBox layoutX="141.0" layoutY="615.0" prefHeight="32.0" prefWidth="231.0" spacing="10.0" />
+      <HBox layoutX="205.0" layoutY="219.0" prefHeight="262.0" prefWidth="712.0" style="-fx-border-color: #f79517;">
+         <children>
+            <VBox prefHeight="484.0" prefWidth="168.0" spacing="25.0">
+               <children>
+                  <Label text="Username     :" textFill="WHITE">
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Label>
+                  <Label text="Name            :" textFill="WHITE">
+                     <font>
+                        <Font size="22.0" />
+                     </font></Label>
+                  <Label prefHeight="35.0" prefWidth="151.0" text="Email           :" textFill="WHITE">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="17.0" prefWidth="159.0" text="Last Name     :" textFill="WHITE">
+                     <font>
+                        <Font size="22.0" />
+                     </font></Label>
+               </children>
+            </VBox>
+            <VBox prefHeight="146.0" prefWidth="284.0" spacing="25.0">
+               <children>
+                  <Label fx:id="usernameLB" prefHeight="18.0" prefWidth="179.0" text="Label" textFill="WHITE">
+                     <font>
+                        <Font size="22.0" />
+                     </font></Label>
+                  <Label fx:id="nomLB" prefHeight="18.0" prefWidth="95.0" text="Label" textFill="WHITE">
+                     <font>
+                        <Font size="23.0" />
+                     </font></Label>
+                  <Label fx:id="prenomLB" prefHeight="18.0" prefWidth="98.0" text="Label" textFill="WHITE">
+                     <font>
+                        <Font size="23.0" />
+                     </font></Label>
+                  <Label fx:id="emailLB" prefHeight="18.0" prefWidth="98.0" text="Label" textFill="WHITE">
+                     <font>
+                        <Font size="22.0" />
+                     </font></Label>
+               </children>
+               <HBox.margin>
+                  <Insets bottom="15.0" top="15.0" />
+               </HBox.margin>
+            </VBox>
+         </children>
+         <padding>
+            <Insets left="40.0" />
+         </padding>
+      </HBox>
+      <Button fx:id="gotof" layoutX="724.0" layoutY="135.0" mnemonicParsing="false" onAction="#goto_front_client_nav" prefHeight="40.0" prefWidth="160.0" style="-fx-background-color: green;" text="Interface" textFill="WHITE" />
+      <Button layoutX="205.0" layoutY="512.0" mnemonicParsing="false" onAction="#Delete" prefHeight="40.0" prefWidth="160.0" style="-fx-background-color: green; -fx-border-color: #f79517;" text="Delete Profile" textFill="WHITE" />
+      <Button layoutX="372.0" layoutY="512.0" mnemonicParsing="false" onAction="#edit" prefHeight="40.0" prefWidth="160.0" style="-fx-background-color: green; -fx-border-color: #f79517;" text="Edit Profile" textFill="WHITE" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="800.0" prefWidth="850.0" styleClass="anchor-pane-background-admin_flight_class" stylesheets="@airport.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pidev.controllers.FlightclassController">
+    <children>
+        <TableView fx:id="flightclassTableView" layoutX="50.0" layoutY="154.0" prefHeight="342.0" prefWidth="621.0">
+            <columns>
+                <TableColumn fx:id="IdColumn" prefWidth="70.0" text="Number" />
+
+                <TableColumn fx:id="classNameColumn" prefWidth="138.0" text="Class Name" />
+                <TableColumn fx:id="descriptionColumn" prefWidth="218.0" text="Description" />
+                <TableColumn fx:id="priceColumn" prefWidth="78.0" text="Price" />
+                <TableColumn fx:id="ticketNumberColumn" prefWidth="116.0" text="Ticket Number" />
+            </columns>
+        </TableView>
+        <TextField fx:id="newClassNameField" layoutX="114.0" layoutY="521.0" promptText="Class Name" />
+        <TextField fx:id="newDescriptionField" layoutX="114.0" layoutY="585.0" promptText="Description" />
+        <TextField fx:id="newPriceField" layoutX="414.0" layoutY="521.0" promptText="Price" />
+        <TextField fx:id="newTicketNumberField" layoutX="414.0" layoutY="585.0" promptText="Ticket Number" />
+
+
+
+        <Button fx:id="newFlightClassAButton" alignment="BASELINE_LEFT" layoutX="686.0" layoutY="156.0" mnemonicParsing="false" onAction="#handleNewFlightclassButton" prefHeight="40.0" prefWidth="120.0" text="Add">
+         <graphic>
+            <ImageView fitHeight="23.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@icons/airplaneclass.png" />
+               </image></ImageView>
+         </graphic></Button>
+        <Button fx:id="deleteFlightClassButton" alignment="BASELINE_LEFT" layoutX="686.0" layoutY="285.0" mnemonicParsing="false" onAction="#handleDeleteFlightclassButton" prefHeight="40.0" prefWidth="120.0" text="Delete">
+         <graphic>
+            <ImageView fitHeight="23.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@icons/delete.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+        <Button fx:id="updateFlightClassButton" alignment="BASELINE_LEFT" layoutX="686.0" layoutY="220.0" mnemonicParsing="false" onAction="#handleModifyFlightclassButton" prefHeight="40.0" prefWidth="120.0" text="Update">
+         <graphic>
+            <ImageView fitHeight="23.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@icons/update.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button alignment="CENTER" layoutX="310.0" layoutY="60.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="233.0" text="Flight Class">
+         <font>
+            <Font name="System Bold" size="80.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="23.0" fitWidth="33.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@icons/airplaneclass.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="NONE" />
+               </cursor>
+               <effect>
+                  <Glow level="1.0" />
+               </effect>
+            </ImageView>
+         </graphic>
+      </Button>
+
+
+
+    </children>
+</AnchorPane>

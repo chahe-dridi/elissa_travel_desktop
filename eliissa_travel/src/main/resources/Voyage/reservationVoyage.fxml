@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0"   xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pidev.controllers.reservationVoyageController">
+   <children>
+      <VBox alignment="CENTER" layoutX="71.0" layoutY="54.0" prefHeight="278.0" prefWidth="458.0" AnchorPane.topAnchor="54.0">
+         <children>
+            <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" text="Booking" textFill="#30226f">
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="Berlin Sans FB Bold" size="45.0" />
+               </font>
+            </Label>
+            <TextField fx:id="Rnom" alignment="CENTER" prefHeight="25.0" prefWidth="426.0" promptText="First Name">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="Rprenom" alignment="CENTER" promptText="Last name">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="Rnumberticket" alignment="CENTER" promptText="Number of ticket">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="Remail" alignment="CENTER" promptText="Email">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </TextField>
+            <Button fx:id="DoneReservation" mnemonicParsing="false" onAction="#createReservation" prefHeight="25.0" prefWidth="468.0" style="-fx-background-color: #1a1d4d;" styleClass="DoneReservation" stylesheets="@../css/style.css" text="Done" textFill="#fcf3f3">
+               <VBox.margin>
+                  <Insets top="50.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

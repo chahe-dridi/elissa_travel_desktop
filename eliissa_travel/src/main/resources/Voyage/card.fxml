@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="185.0" prefWidth="500.0" spacing="15.0" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pidev.controllers.cardController">
+   <children>
+      <ImageView fx:id="img" fitHeight="185.0" fitWidth="155.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/concept-voyage-complet-points-repere_23-2149153258.jpg" />
+         </image>
+      </ImageView>
+      <VBox alignment="CENTER" prefHeight="185.0" prefWidth="197.0">
+         <children>
+            <Label fx:id="NomTrip" prefHeight="76.0" prefWidth="187.0" text="Paris" textFill="#5e5e5e">
+               <font>
+                  <Font name="Berlin Sans FB Bold" size="24.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="50.0" />
+               </VBox.margin>
+            </Label>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="20.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/Depart.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="nomVilleDepart" text="Monastir">
+                     <font>
+                        <Font name="Berlin Sans FB" size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Button fx:id="buttonRead" mnemonicParsing="false" prefHeight="20.0" prefWidth="128.0" styleClass="buttonRead" stylesheets="@../css/style.css" text="Read more .." textFill="#9e9494">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="System Italic" size="12.0" />
+                     </font>
+                  </Button>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Button fx:id="buttonBook" alignment="CENTER" mnemonicParsing="false" onAction="#buttonBook" prefHeight="27.0" prefWidth="169.0" style="-fx-background-color: #1a1d4d;" styleClass="buttonBook" stylesheets="@../css/style.css" text="To Book" textFill="WHITE">
+                           <VBox.margin>
+                              <Insets top="15.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Berlin Sans FB Bold" size="12.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </children>
+</HBox>
